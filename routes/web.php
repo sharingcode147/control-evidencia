@@ -16,5 +16,15 @@
 // });
 
 
+Route::get('/', function () {
+    return view('auth/login');
+});
 
-Route::get('/', 'inicioController@index');
+Route::get('/admin/home', 'inicioController@index');
+Route::get('/profesor/home', 'inicioController@index');
+Route::get('/revisor/home', 'inicioController@index');
+Route::get('/dac/home', 'inicioController@index');
+
+Auth::routes(['register'=>false]);
+
+Route::get('/home', 'HomeController@index')->name('home');
