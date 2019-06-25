@@ -14,6 +14,7 @@
       </div>
       
       <!-- ADMINISTRADOR -->
+      @if(auth()->user()->hasRole('admin'))
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">ADMINISTRADOR</li>
         <li><a href="#"><i class="fa fa-book"></i> <span>Opción</span></a></li>
@@ -32,8 +33,10 @@
           </ul>
         </li>
       </ul>
+      @endif
 
       <!-- PROFESOR -->
+      @if(auth()->user()->hasRole('profesor'))
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">PROFESOR</li>
         <li><a href="#"><i class="fa fa-book"></i> <span>Opción</span></a></li>
@@ -52,8 +55,10 @@
           </ul>
         </li>
       </ul>
+      @endif
 
       <!-- REVISOR -->
+      @if(auth()->user()->hasRole('revisor'))
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">REVISOR</li>
         <li><a href="#"><i class="fa fa-book"></i> <span>Opción</span></a></li>
@@ -72,8 +77,10 @@
           </ul>
         </li>
       </ul>
+      @endif
 
       <!-- DAC -->
+      @if(auth()->user()->hasRole('dac'))
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">DAC</li>
         <li><a href="#"><i class="fa fa-book"></i> <span>Opción</span></a></li>
@@ -92,7 +99,7 @@
           </ul>
         </li>
       </ul>
-
+      @endif
 
 
     </section>
