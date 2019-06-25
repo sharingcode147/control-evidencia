@@ -19,12 +19,29 @@
 Route::get('/', function () {
     return view('auth/login');
 });
-
-Route::get('/admin/home', 'inicioController@index');
-Route::get('/profesor/home', 'inicioController@index');
-Route::get('/revisor/home', 'inicioController@index');
-Route::get('/dac/home', 'inicioController@index');
-
 Auth::routes(['register'=>false]);
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+//	Protección rutas PROFESOR
+Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'prefix' => 'profesor'], function()
+{
+	Route::get('home','HomeProfesorController@index')->name('profeHome');
+});
+//	Protección rutas ADMINISTRADOR
+Route::group(['namespace' => 'Admin', 'middleware' => ['authAdmin','auth'], 'prefix' => 'admin'], function()
+{
+	Route::get('home','HomeAdminController@index')->name('adminHome');
+});
+//	Protección rutas REVISOR
+Route::group(['namespace' => 'Revisor', 'middleware' => ['authRevisor','auth'], 'prefix' => 'revisor'], function()
+{
+	Route::get('home','HomeRevisorController@index')->name('revisorHome');
+});
+//	Protección rutas DAC
+Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix' => 'dac'], function()
+{
+	Route::get('home','HomeDacController@index')->name('dacHome');
+});
+
+
+
