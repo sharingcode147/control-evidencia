@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition skin-blue layout-boxed sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
   <div class="wrapper">
       
@@ -40,7 +40,7 @@
       <!--Fin header-->
 
       <!--Inicio aside -->
-    @include("theme/$theme/aside")
+      @include("theme/$theme/aside")
       <!--Fin aside -->
       <!-- -->
 
@@ -48,7 +48,7 @@
         <div class="content-wrapper">
           <!-- Content Header (Page header) -->
           <section class="content">
-            @yield("contenido")
+            @yield("content")
           </section>
         </div>
 

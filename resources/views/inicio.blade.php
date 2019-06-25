@@ -1,1 +1,6 @@
-@include("theme.$theme.layout")
+
+@extends('theme.LTE.layout')
+
+@section('content')
+
+@endsection
