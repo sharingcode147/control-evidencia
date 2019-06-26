@@ -20,13 +20,19 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    
     //  Función para redirección según tipo de usuario
     protected function redirectTo()
     {
 
         if (auth()->user()->hasRole('admin')) {
             //  Si el usuario es administrador se dirige a la vista de administrador.
-            $redirectTo = '/admin/home';  
+            $redirectTo = '/admin/homes';  
         }
         if (auth()->user()->hasRole('profesor')) {
             //  Si el usuario es profesor se dirige a la vista de profesor.
@@ -43,7 +49,6 @@ class LoginController extends Controller
         
         return $redirectTo;
     }
-
     /**
      * Create a new controller instance.
      *
