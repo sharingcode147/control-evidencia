@@ -2,7 +2,7 @@
 
 use App\Role;
 use App\User;
-//use App\Profesor;
+use App\Profesor;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -42,11 +42,10 @@ class UsersTableSeeder extends Seeder
         $user->password = Hash::make('profe12345');
         $user->save();
         $user->roles()->attach(Role::where('name', 'profesor')->first());
-        /*$user->datos_profesor('19696122-4','Nicolás','Ignacio','Gómez','Lira',$user->id);
+        $user->datos_profesor('19696122-4','Nicolás','Ignacio','Gómez','Lira',$user->id);
         $user->profesor_carrera('19696122-4','ICI');     
         $user->profesor_carrera('19696122-4','EICI'); 
         $user->profesor_carrera('19696122-4','IND'); 
         $user->profesor_carrera('19696122-4','ICE'); 
-        */
     }
 }
