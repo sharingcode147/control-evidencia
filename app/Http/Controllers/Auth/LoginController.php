@@ -32,7 +32,7 @@ class LoginController extends Controller
 
         if (auth()->user()->hasRole('admin')) {
             //  Si el usuario es administrador se dirige a la vista de administrador.
-            $redirectTo = '/admin/homes';  
+            $redirectTo = '/admin/home';  
         }
         if (auth()->user()->hasRole('profesor')) {
             //  Si el usuario es profesor se dirige a la vista de profesor.
