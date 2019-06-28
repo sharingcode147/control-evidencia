@@ -17,33 +17,23 @@
 
 @section('content')
 	<h1>REVISOR</h1>
-	<div class="row">
-        <div class="col-xs-12">
+
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Responsive Hover Table</h3>
-
-              <div class="box-tools">
-                <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-              </div>
+              <h3 class="box-title">Data Table With Full Features</h3>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                <tr>
-                  <th>Rut</th>
-                  <th>Nombre</th>
-                  <th>Carrera</th>
-                  <th>Tiulo</th>
-                  <th>Status</th>
-                  <th>Fecha</th>
-                </tr>
+            <div class="box-body">
+              <table id="evidencias" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Rut</th>
+                    <th>Nombre</th>
+                    <th>Carrera</th>
+                    <th>Tiulo</th>
+                    <th>Status</th>
+                    <th>Fecha</th>
+                  </tr>
+                </thead>
                 @if($evidencias->count())
                 @foreach($evidencias->sortBy('fecha_realizacion') as $evidencia)
 	                <tr>
@@ -56,11 +46,33 @@
 	                </tr>
 	      		@endforeach
 	      		@endif
+                <tfoot>
+                  <tr>
+                    <th>Rut</th>
+                    <th>Nombre</th>
+                    <th>Carrera</th>
+                    <th>Tiulo</th>
+                    <th>Status</th>
+                    <th>Fecha</th>
+                  </tr>                 
+                </tfoot>
               </table>
             </div>
-            <!-- /.box-body -->
           </div>
-          <!-- /.box -->
-        </div>
-      </div>
+
+
+@endsection
+
+@section('scripts')
+<!-- DataTables -->
+<script src="{{asset("assets/$theme/bower_components/datatables.net/js/jquery.dataTables.min.js")}}"></script>
+<script src="{{asset("assets/$theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js")}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{asset("assets/$theme/dist/js/demo.js")}}"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#evidencias').DataTable()
+  })
+</script>
 @endsection
