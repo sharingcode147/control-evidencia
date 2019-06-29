@@ -63,7 +63,9 @@
         @if(auth()->user()->hasRole('revisor'))
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">REVISOR</li>
-          <li><a href="#"><i class="fa fa-book"></i> <span>Opción</span></a></li>
+          <li><a href="{{route('revisorHome')}}"><i class="fa fa-home"></i> <span>Home</span></a></li>
+          <li><a href="{{route('revaprobadas')}}"><i class="fa fa-book"></i> <span>Evidencias aprobadas</span></a></li>
+          <li><a href="{{route('revnoaprobadas')}}"><i class="fa fa-book"></i> <span>Evidencias no aprobadas</span></a></li>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-pie-chart"></i>

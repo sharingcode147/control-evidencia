@@ -41,6 +41,12 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['authAdmin','auth'], 'pre
 Route::group(['namespace' => 'Revisor', 'middleware' => ['authRevisor','auth'], 'prefix' => 'revisor'], function()
 {
 	Route::get('home','HomeRevisorController@index')->name('revisorHome');
+	Route::get('evidenciasaprobadas','HomeRevisorController@getAp')->name('revaprobadas');
+	Route::get('evidenciasnoaprobadas','HomeRevisorController@getNoAp')->name('revnoaprobadas');
+	Route::get('evidencia/{id}',[
+		'as' => 'evidencia',
+		'uses' => 'HomeRevisorController@showAprobadas'
+	]);
 });
 //	Protección rutas DAC
 Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix' => 'dac'], function()

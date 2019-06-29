@@ -65,6 +65,64 @@ class HomeRevisorController extends Controller
         
     }
 
+    //Funcion para obtener las evidencias aprobadas
+    public function getAp()
+    {
+
+        //Evidencias Aprobadas por Dac
+        $evidencias = Evidencia::where([['estado','Finalizada'],['nivel',3],
+                        ])
+                        ->join('profesor','evidencias.user_id','=','profesor.user_id')
+                        ->join('formularios','evidencias.formulario_id','=','formularios.id')
+                        ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
+                        ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car','evidencias.estado')
+                        ->get();
+        return view('revisor.evidenciaAprobadasDacRev',["evidencias"=>$evidencias]);
+    }
+    //Funcion para obtener las evidencias no aprobadas
+    public function getNoAp()
+    {
+
+        //Evidencias Rechazadas
+        $evidencias = Evidencia::where([['estado','Pendiente'],['nivel',1],
+                        ])
+                        ->join('profesor','evidencias.user_id','=','profesor.user_id')
+                        ->join('formularios','evidencias.formulario_id','=','formularios.id')
+                        ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
+                        ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car')
+                        ->get();
+        return view('revisor.evidenciaNoAprobadas',["evidencias"=>$evidencias]);
+    }
+
+    //Funcion para mostrar las evidencias aprobadas y no aprobadas.
+    public function showAprobadas($id)
+    {
+        //
+        if (is_numeric($id)){
+            $id_form = Evidencia::where('id',$id)->select('formulario_id')->first();
+            if (empty($id_form))
+                $formulario_id = 0;
+            else
+                $formulario_id = $id_form->formulario_id;
+            $datos = Formulario::where('formularios.id',$formulario_id)
+                                ->join('ambito','ambito.id','=','formularios.ambito_id')
+                                ->join('alcance','alcance.id','=','formularios.alcance_id')
+                                ->join('tipo','tipo.id','=','formularios.tipo_id')
+                                ->join('evidencias','evidencias.formulario_id','=','formularios.id')
+                                ->join('profesor','evidencias.user_id','=','profesor.user_id')
+                                ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
+                                ->select('formularios.*','ambito.nombre as ambito','alcance.nombre as alcance','tipo.nombre as tipo','profesor.*','carreras.nombre_car','evidencias.id as evidencia_id','evidencias.nivel','evidencias.estado')
+                                ->get();
+
+            $observaciones = Observaciones::where('evidencia_id',$id)
+                                            ->join('users','users.id','=','observaciones.user_id')
+                                            ->select('observaciones.*','users.name','users.email')
+                                            ->orderBy('observaciones.created_at','desc')
+                                            ->get();
+            return view('revisor.evidenciaAprobada',["datos"=>$datos,"observaciones"=>$observaciones]);
+        }
+    }
+
     /**
      * Modificar campo nivel de la tabla evidencias.
      *
