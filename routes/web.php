@@ -43,6 +43,7 @@ Route::group(['namespace' => 'Revisor', 'middleware' => ['authRevisor','auth'], 
 	Route::get('home','HomeRevisorController@index')->name('revisorHome');
 	Route::get('evidenciasaprobadas','HomeRevisorController@getAp')->name('revaprobadas');
 	Route::get('evidenciasnoaprobadas','HomeRevisorController@getNoAp')->name('revnoaprobadas');
+	Route::get('evidenciasenvdac','HomeRevisorController@enviadasDAC')->name('evenviadas');
 	Route::get('evidencia/{id}',[
 		'as' => 'evidencia',
 		'uses' => 'HomeRevisorController@showAprobadas'

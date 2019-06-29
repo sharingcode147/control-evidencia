@@ -123,6 +123,18 @@ class HomeRevisorController extends Controller
         }
     }
 
+    public function enviadasDAC()
+    {
+        $evidencias = Evidencia::where([['estado','Pendiente'],['nivel',3],
+                                ])
+                                ->join('profesor','evidencias.user_id','=','profesor.user_id')
+                                ->join('formularios','evidencias.formulario_id','=','formularios.id')
+                                ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
+                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car')
+                                ->get();
+        return view('revisor.evidenciasEnviadasDac',["evidencias"=>$evidencias]);   
+    }
+
     /**
      * Modificar campo nivel de la tabla evidencias.
      *
