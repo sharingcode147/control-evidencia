@@ -32,6 +32,9 @@ Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'p
 	Route::get('evidenciasaprobadas','EvAprobController@index')->name('evaprobadas');
 	Route::get('evidenciasnoaprobadas','EvNoAprobController@index')->name('evnoaprobadas');
 });
+
+Route::post('/images-upload', 'prueba@upload');
+
 //	Protección rutas ADMINISTRADOR
 Route::group(['namespace' => 'Admin', 'middleware' => ['authAdmin','auth'], 'prefix' => 'admin'], function()
 {

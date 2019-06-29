@@ -190,6 +190,10 @@
                             </div>
                         </div>
 
+                        <div class="content" id="app">
+                            <app/>
+                        </div>
+
                         <!-- /.box-body -->
                         <div class="box-footer">
                                 @include('includes.boton-form-crear')
@@ -206,6 +210,8 @@
 <script src="{{asset("assets/$theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js")}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset("assets/$theme/dist/js/demo.js")}}"></script>
+
+<script src="{{ asset("js/app.js") }}"></script>
 <!-- page script -->
 
 @endsection

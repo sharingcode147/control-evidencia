@@ -1,6 +1,10 @@
 
 @extends('theme.LTE.layout')
 
+@section('styles')
+
+@endsection
+
 @section('content')
 	<h1>PROFESOR</h1>
 
@@ -10,6 +14,11 @@
                     <button  class="btn btn-light" onclick="addedSuccess2()">Aceptar</button>
                 </div>
     @endif
+
+  <div class="content" id="app">
+    <app/>
+  </div>
+
 @endsection
 
 
@@ -20,13 +29,14 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset("assets/$theme/dist/js/demo.js")}}"></script>
 <!-- page script -->
+<script src="{{ asset("js/app.js") }}"></script>
 
 <script type="text/javascript">
 	window.onload = addedSuccess;
 	function addedSuccess() {
        setTimeout(function() {
          document.getElementById("demod").style = "display:none";
-       }, 10000);
+       }, 5000);
      }
      function addedSuccess2(){
      
