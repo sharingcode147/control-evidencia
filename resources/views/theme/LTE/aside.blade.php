@@ -40,7 +40,7 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">PROFESOR</li>
           <li><a href="{{route('profeHome')}}"><i class="fa fa-home"></i> <span>Home</span></a></li>
-          <li><a href="{{route('nuevaevidencias')}}"><i class="fa fa-book"></i> <span>Nueva Evidencia</span></a></li>
+          <li><a href="{{route('get_carreras')}}"><i class="fa fa-book"></i> <span>Nueva Evidencia</span></a></li>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-pie-chart"></i>
@@ -54,8 +54,8 @@
               <li><a href="#"><i class="fa fa-circle-o"></i>En DAC</a></li>
             </ul>
           </li>
-          <li><a href="#"><i class="fa fa-check-circle"></i> <span>Evidencias aprobadas DAC</span></a></li>
-          <li><a href="#"><i class="fa fa-ban"></i> <span>Evidencias no aprobadas</span></a></li>
+          <li><a href="{{route('evaprobadas')}}"><i class="fa fa-check-circle"></i> <span>Evidencias aprobadas DAC</span></a></li>
+          <li><a href="{{route('evnoaprobadas')}}"><i class="fa fa-ban"></i> <span>Evidencias no aprobadas</span></a></li>
         </ul>
         @endif
 

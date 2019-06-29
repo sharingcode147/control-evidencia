@@ -17,19 +17,85 @@
             </div>
         
             <div class="box-body">
-			<form class="form-horizontal">
+			<form >
+
+
+			<div class="form-group">
+                  <label>Text</label>
+                  <input type="text" class="form-control" placeholder="Enter ...">
+             </div>
 
 			<h5>Nombre de usuario:</h5>
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                 <input type="text" class="form-control" placeholder="{{ Auth::user()->name }}" disabled>
             </div>
-
-              <div class="input-group">
+			<br>
+             
+            <div class="input-group">
                 <span class="input-group-addon">@</span>
                 <input type="text" class="form-control" placeholder="Username">
+            </div>
+            <br>
+
+
+            <div class="form-group">
+                  <label>Select</label>
+                  <select class="form-control">
+                  	 @foreach ($carreras as $carrera)
+			              <option>{{ $carrera->nombre_car }}</option>
+			            @endforeach                  
+                  </select>
+             </div>
+			<br>
+
+			<h5>Titulo:</h5>
+			 <div class="input-group">
+                <input type="text" class="form-control">
+                <span class="input-group-addon"><i class="fa fa-check"></i></span>
               </div>
               <br>
+
+			<h5>Descripción:</h5>
+             <div class="input-group">
+                  <label>Textarea</label>
+                  <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+              </div>
+
+			<div class="input-group">
+                  <label>Alcance</label>
+                  <select class="form-control">
+                  	 @foreach ($alcances as $alcance)
+			              <option>{{ $alcance->nombre }}</option>
+			            @endforeach                  
+                  </select>
+             </div>
+			<br>
+
+
+			<div class="input-group">
+                  <label>Ambito</label>
+                  <select class="form-control">
+                  	 @foreach ($ambitos as $ambito)
+			              <option>{{ $ambito->nombre }}</option>
+			            @endforeach                  
+                  </select>
+             </div>
+			<br>
+
+
+			<div class="input-group">
+                  <label>Tipo</label>
+                  <select class="form-control">
+                  	 @foreach ($tipos as $tipo)
+			              <option>{{ $tipo->nombre }}</option>
+			            @endforeach                  
+                  </select>
+             </div>
+			<br>
+
+
+
 
               <div class="input-group">
                 <input type="text" class="form-control">
@@ -64,6 +130,41 @@
               </div>
 
               <h4>With checkbox and radio inputs</h4>
+
+			
+			<div class="row">
+                <div class="col-lg-4">
+                  <div class="input-group">
+                        <span class="input-group-addon">
+                          <input type="checkbox">
+                        </span>
+                    <input type="text" class="form-control">
+                  </div>
+                  <!-- /input-group -->
+                </div>
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-4">
+                  <div class="input-group">
+                        <span class="input-group-addon">
+                          <input type="radio">
+                        </span>
+                    <input type="text" class="form-control">
+                  </div>
+                  <!-- /input-group -->
+                </div>
+
+                <div class="col-lg-4">
+                  <div class="input-group">
+                        <span class="input-group-addon">
+                          <input type="radio">
+                        </span>
+                    <input type="text" class="form-control">
+                  </div>
+                  <!-- /input-group -->
+                </div>
+                <!-- /.col-lg-6 -->
+            </div>
+
 
               <div class="row">
                 <div class="col-lg-6">

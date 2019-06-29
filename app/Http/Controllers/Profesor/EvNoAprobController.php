@@ -4,6 +4,7 @@ namespace App\Http\Controllers\profesor;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Evidencia;
 
 class EvNoAprobController extends Controller
 {
@@ -14,7 +15,14 @@ class EvNoAprobController extends Controller
      */
     public function index()
     {
-        //
+        $evidencias = Evidencia::where([['estado','Pendiente'],['nivel',1],
+                                ])
+                                ->join('profesor','evidencias.user_id','=','profesor.user_id')
+                                ->join('formularios','evidencias.formulario_id','=','formularios.id')
+                                ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
+                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car')
+                                ->get();
+        return view('profesor.evidenciasNoAprobadas',["evidencias"=>$evidencias]);   
     }
 
     /**
