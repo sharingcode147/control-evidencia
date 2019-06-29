@@ -14,7 +14,6 @@
 		        <th>Nombre</th>
 		        <th>Carrera</th>
 		        <th>Título</th>
-		        <th>Nivel</th>
 		        <th>Fecha</th>
 		      </tr>
 		    </thead>
@@ -25,15 +24,7 @@
 		        <td>{{$evidencia->nombre1}}</td>
 		        <td>{{$evidencia->nombre_car}}</td>
 		        <td>{{$evidencia->titulo}}</td>
-		        @if($evidencia->nivel == 1)
-		        	<td><span class="label label-danger">Profesor</span></td>
-		        @endif
-		        @if($evidencia->nivel == 2)
-		        	<td><span class="label label-warning">Revisor</span></td>
-		        @endif
-		        @if($evidencia->nivel == 3)
-		        	<td><span class="label label-primary">D.A.C.</span></td>
-		        @endif
+		      
 		        <td>{{$evidencia->fecha_realizacion}}</td>
 		      </tr>
 			@endforeach
@@ -50,7 +41,6 @@
 		        <th>Nombre</th>
 		        <th>Carrera</th>
 		        <th>Título</th>
-		        <th>Nivel</th>
 		        <th>Fecha</th>
 		      </tr>                 
 		    </tfoot>

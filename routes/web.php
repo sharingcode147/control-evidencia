@@ -27,8 +27,8 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('guest');
 Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'prefix' => 'profesor'], function()
 {
 	Route::get('home','HomeProfesorController@index')->name('profeHome');
-	// Route::get('nuevaevidencia', 'NuevEvController@index')->name('nuevaevidencias');
 	Route::get('nuevaevidencia', 'NuevEvController@get_carreras')->name('get_carreras');
+	Route::post('nuevaevidenciasdd', 'NuevEvController@nuevaEvidenciast')->name('nuevaEvidenciast');
 	Route::get('evidenciasaprobadas','EvAprobController@index')->name('evaprobadas');
 	Route::get('evidenciasnoaprobadas','EvNoAprobController@index')->name('evnoaprobadas');
 });
