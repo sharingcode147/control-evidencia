@@ -17,10 +17,11 @@
 
 
 Route::get('/', function () {
-    return view('auth/login');
-});
+    return view('home');
+})->middleware('guest');
 Auth::routes(['register'=>false]);
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('guest');
 
 //	Protección rutas PROFESOR
 Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'prefix' => 'profesor'], function()
