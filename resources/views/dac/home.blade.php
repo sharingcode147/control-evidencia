@@ -18,6 +18,7 @@
 		        <th>Título</th>
 		        <th>Estado</th>
 		        <th>Fecha</th>
+		        <th>Fecha</th>
 		      </tr>
 		    </thead>
 		    @if($evidencias->count())
@@ -29,6 +30,7 @@
 		        <td>{{$evidencia->titulo}}</td>
 		        <td><span class="label label-warning">Pendiente</span></td>
 		        <td>{{$evidencia->fecha_realizacion}}</td>
+		        <td><a class="btn btn-info"><i class="fa fa-file"></i></a></td>
 		      </tr>
 			@endforeach
 			@endif
