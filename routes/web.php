@@ -26,6 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'prefix' => 'profesor'], function()
 {
 	Route::get('home','HomeProfesorController@index')->name('profeHome');
+	Route::get('nuevaevidencia', 'NuevEvController@index')->name('nuevaevidencias');
 });
 //	Protección rutas ADMINISTRADOR
 Route::group(['namespace' => 'Admin', 'middleware' => ['authAdmin','auth'], 'prefix' => 'admin'], function()
