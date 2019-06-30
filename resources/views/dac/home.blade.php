@@ -3,6 +3,14 @@
 
 @section('content')
 	<h1>DAC</h1>
+	@if(Session::has('success'))
+        <div class="col-md-12 alert alert-success" role="alert">
+            <button class='close' data-dismiss="alert">
+                &times;
+            </button>
+            {{Session::get('success')}}
+        </div>
+    @endif
 		
 	<div class="row">
 	  	<div class="col-xs-12">

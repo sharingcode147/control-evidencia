@@ -160,7 +160,7 @@ class HomeDacController extends Controller
         $evidencia->nivel = 1;  //Cambiando el nivel a profesor.
         $evidencia->save();
 
-        return redirect()->route('dacHome');
+        return redirect()->route('dacHome')->with('success','Observación agregada correctamente. La evidencia volvió al profesor.');
     }
 }
 

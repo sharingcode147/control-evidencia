@@ -2,6 +2,17 @@
 
 @section('content')
 
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <div class="col-md-12 alert alert-danger" role="alert">
+            <button class='close' data-dismiss="alert">
+                &times;
+            </button>
+            {{ $error }}
+        </div>
+    @endforeach
+@endif
+
 <div class="row">
   <div class="col-md-12">
     <div class="nav-tabs-custom">
