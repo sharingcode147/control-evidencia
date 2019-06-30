@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'authRevisor' => \App\Http\Middleware\authRevisor::class,
         'authDac' => \App\Http\Middleware\authDac::class,
         'authAdmin' => \App\Http\Middleware\authAdmin::class,
+        'authConsultas' => \App\Http\Middleware\authConsultas::class,
     ];
 
     /**

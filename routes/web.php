@@ -95,8 +95,8 @@ Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix'
 });
 
 //	Protección rutas CONSULTAS
-Route::get('/consultas/consulta1',function(){
-	return view('consultas.consulta1');
-})->name('consulta1');
-
+Route::group(['namespace' => 'Consultas', 'middleware' => ['authConsultas','auth'], 'prefix' => 'consultas'], function()
+{
+	Route::get('consulta1','Consulta1@index')->name('consulta1');
+});
 
