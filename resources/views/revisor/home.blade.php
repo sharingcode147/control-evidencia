@@ -81,6 +81,7 @@
                     <th>Título</th>
                     <th>Estado</th>
                     <th>Fecha</th>
+                    <th>Ver</th>
                   </tr>
                 </thead>
                 @if($evidencias->count())
@@ -93,6 +94,7 @@
                     <td>{{$evidencia->titulo}}</td>
                     <td><span class="label label-warning">Pendiente</span></td>
                     <td>{{$evidencia->fecha_realizacion}}</td>
+                    <td><a class="btn btn-info"><i class="fa fa-file"></i></a></td>
                   </tr>
             @endforeach
             @endif
@@ -105,6 +107,7 @@
                     <th>Título</th>
                     <th>Estado</th>
                     <th>Fecha</th>
+                    <th>Ver</th>
                   </tr>                 
                 </tfoot>
               </table>
@@ -130,6 +133,7 @@
                     <th>Título</th>
                     <th>Estado</th>
                     <th>Fecha</th>
+                    <th>Ver</th> 
                   </tr>
                 </thead>
                 @if($evidencias->count())
@@ -142,10 +146,10 @@
                     <td>{{$evidencia->titulo}}</td>
                     <td><span class="label label-warning">Pendiente</span></td>
                     <td>{{$evidencia->fecha_realizacion}}</td>
+                    <td><a class="btn btn-info"><i class="fa fa-file"></i></a></td>
                   </tr>
-            @endforeach
-            @endif
->>>>>>> 525e9d3ef0a403a96110df57a7bb0a7e7acf135e
+                @endforeach
+                @endif
                 <tfoot>
                   <tr>
                     <th></th>
