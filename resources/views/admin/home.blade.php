@@ -27,13 +27,13 @@
 		        <td>{{$evidencia->nombre_car}}</td>
 		        <td>{{$evidencia->titulo}}</td>
 		        @if($evidencia->nivel == 1)
-		        	<td><span class="label label-danger">Profesor</span></td>
+		        	<td><span class="label label-primary">Profesor</span></td>
 		        @endif
 		        @if($evidencia->nivel == 2)
 		        	<td><span class="label label-warning">Revisor</span></td>
 		        @endif
 		        @if($evidencia->nivel == 3)
-		        	<td><span class="label label-primary">D.A.C.</span></td>
+		        	<td><span class="label label-danger">D.A.C.</span></td>
 		        @endif
 		        <td>{{$evidencia->fecha_realizacion}}</td>
 		      </tr>

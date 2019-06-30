@@ -31,6 +31,9 @@ Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'p
 	Route::post('nuevaevidenciasdd', 'NuevEvController@nuevaEvidenciast')->name('nuevaEvidenciast');
 	Route::get('evidenciasaprobadas','EvAprobController@index')->name('evaprobadas');
 	Route::get('evidenciasnoaprobadas','EvNoAprobController@index')->name('evnoaprobadas');
+
+	Route::get('evidenciasCursoRevisor', 'HomeProfesorController@EvidenciaRevisor')->name('evidenciasC_revisor');
+	Route::get('evidenciasCursoDac', 'HomeProfesorController@EvidenciaDac')->name('evidenciasC_Dac');
 });
 
 Route::post('/images-upload', 'prueba@upload');
@@ -56,8 +59,13 @@ Route::group(['namespace' => 'Revisor', 'middleware' => ['authRevisor','auth'], 
 Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix' => 'dac'], function()
 {
 	Route::get('home','HomeDacController@index')->name('dacHome');
+
 	Route::get('evidenciasaprobadasdac','EvAprobadasDacController@index')->name('evaprobadasdac');
 	Route::get('evidenciadac/{id}','EvAprobadasDacController@showAprobadasDac')->name('evidenciaaprobdac');
+	Route::get('formularioDac/{id}',[
+		'as' => 'formularioDac-show',
+		'uses' => 'HomeDacController@show'
+	]);
 });
 
 
