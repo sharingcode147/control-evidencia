@@ -54,6 +54,18 @@ Route::group(['namespace' => 'Revisor', 'middleware' => ['authRevisor','auth'], 
 		'as' => 'evidencia',
 		'uses' => 'HomeRevisorController@showAprobadas'
 	]);
+	Route::get('formularioEvidencia/{id}',[
+		'as' => 'formularioEvidencia-show',
+		'uses' => 'HomeRevisorController@show'
+	]);
+	Route::get('/aprobarEvidenciaRevisor/{id}',[
+		'as' => 'aprobarEvidenciaRevisor',
+		'uses' => 'HomeRevisorController@aprobarEvidenciaRevisor'
+	]);
+	Route::post('/observacionRevisor/{id}',[
+		'as' => 'observacionRevisor',
+		'uses' => 'HomeRevisorController@observacionRevisor'
+	]);
 });
 //	Protección rutas DAC
 Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix' => 'dac'], function()
@@ -65,6 +77,20 @@ Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix'
 	Route::get('formularioDac/{id}',[
 		'as' => 'formularioDac-show',
 		'uses' => 'HomeDacController@show'
+	]);
+
+	Route::get('evidenciaFormulario/{id}',[
+		'as' => 'evidenciaHisAprobada',
+		'uses' => 'HomeDacController@showHisAprob'
+	]);
+
+	Route::get('/aprobarEvidenciaDac/{id}',[
+		'as' => 'aprobarEvidenciaDac',
+		'uses' => 'HomeDacController@aprobarEvidenciaDac'
+	]);
+	Route::post('/observacionDac/{id}',[
+		'as' => 'observacionDac',
+		'uses' => 'HomeDacController@observacionDac'
 	]);
 });
 

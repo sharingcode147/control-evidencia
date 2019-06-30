@@ -129,8 +129,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'observacionRevisor' => [
+            'required' => '¡Por favor ingresa una observación!',
+        ],
+        'observacionDac' => [
+            'required' => '¡Por favor ingresa una observación!',
         ],
     ],
 
