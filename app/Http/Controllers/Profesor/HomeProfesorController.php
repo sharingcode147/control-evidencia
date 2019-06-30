@@ -26,7 +26,10 @@ class HomeProfesorController extends Controller
     public function EvidenciaRevisor()
     {
         //
-        $evidencias = Evidencia::where('estado','Pendiente')
+        $userID =  auth()->user()->id;  
+
+        $evidencias = Evidencia::where([['estado','Pendiente'],['evidencias.user_id',$userID],
+                                ])
                                 ->where('nivel',2)
                                 ->join('profesor','evidencias.user_id','=','profesor.user_id')
                                 ->join('formularios','evidencias.formulario_id','=','formularios.id')
@@ -38,8 +41,10 @@ class HomeProfesorController extends Controller
     public function EvidenciaDac()
     {
         //
+        $userID =  auth()->user()->id;  
         $evidencias = Evidencia::where('estado','Pendiente')
                                 ->where('nivel',3)
+                                ->where('evidencias.user_id',$userID)
                                 ->join('profesor','evidencias.user_id','=','profesor.user_id')
                                 ->join('formularios','evidencias.formulario_id','=','formularios.id')
                                 ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
