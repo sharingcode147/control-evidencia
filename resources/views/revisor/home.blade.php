@@ -83,7 +83,7 @@
                 @if($evidencias->count())
                 @foreach($evidencias->sortBy('fecha_realizacion') as $evidencia)
                   <tr>
-                    <td><center><span class="label label-primary">12</span></center></td>
+                    <td><center><span class="label label-primary">{{$evidencia->revisiones}}</span></center></td>
                     <td>{{$evidencia->run}}</td>
                     <td>{{$evidencia->nombre1}}</td>
                     <td>{{$evidencia->nombre_car}}</td>
@@ -132,7 +132,7 @@
                 @if($evidencias->count())
                 @foreach($evidencias->sortBy('fecha_realizacion') as $evidencia)
                   <tr>
-                    <td><center><span class="label label-primary">15</span></center></td>
+                    <td><center><span class="label label-primary">{{$evidencia->dias}}</span></center></td>
                     <td>{{$evidencia->run}}</td>
                     <td>{{$evidencia->nombre1}}</td>
                     <td>{{$evidencia->nombre_car}}</td>
