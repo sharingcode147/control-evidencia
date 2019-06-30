@@ -88,7 +88,7 @@
         @if(auth()->user()->hasRole('dac'))
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">DAC</li>
-          <li><a href="#"><i class="fa fa-book"></i> <span>Opción</span></a></li>
+          <li><a href="{{route('dacHome')}}"><i class="fa fa-home"></i> <span>Home</span></a></li>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-pie-chart"></i>

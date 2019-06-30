@@ -53,6 +53,10 @@ Route::group(['namespace' => 'Revisor', 'middleware' => ['authRevisor','auth'], 
 Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix' => 'dac'], function()
 {
 	Route::get('home','HomeDacController@index')->name('dacHome');
+	Route::get('formularioDac/{id}',[
+		'as' => 'formularioDac-show',
+		'uses' => 'HomeDacController@show'
+	]);
 });
 
 

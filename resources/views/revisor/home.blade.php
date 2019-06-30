@@ -18,7 +18,7 @@
                     <th>Título</th>
                     <th>Estado</th>
                     <th>Fecha</th>
-                    <th>B</th>
+                    <th>Ver</th>
                   </tr>
                 </thead>
                 @if($evidencias->count())
@@ -42,7 +42,7 @@
                     <th>Título</th>
                     <th>Estado</th>
                     <th>Fecha</th>
-                    <th>VER FORMULARIO</th> 
+                    <th>Ver</th> 
                   </tr>                 
                 </tfoot>
               </table>
