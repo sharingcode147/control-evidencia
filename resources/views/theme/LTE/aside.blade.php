@@ -110,6 +110,33 @@
           </li>
         </ul>
         @endif
+
+        <!-- GRÁFICOS E INFORMES -->
+        @if(!auth()->user()->hasRole('profesor') && !auth()->user()->hasRole('admin'))
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="header">GRÁFICOS E INFORMES</li>
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-pie-chart"></i>
+              <span>Consultas</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{route('consulta1')}}"><i class="fa fa-circle-o"></i> Número de asistentes</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> sub op2</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> sub op3</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> sub op2</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> sub op3</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> sub op2</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> sub op3</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> sub op2</a></li>
+            </ul>
+          </li>
+        </ul>
+        @endif
       @endif
 
     </section>
