@@ -98,5 +98,6 @@ Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix'
 Route::group(['namespace' => 'Consultas', 'middleware' => ['authConsultas','auth'], 'prefix' => 'consultas'], function()
 {
 	Route::get('consulta1','Consulta1@index')->name('consulta1');
+	Route::get('obtenerDatos/{anio1}/{anio2}/{mes1}/{mes2}/{dia1}/{dia2}', 'Consulta1@obtenerDatos');
 });
 
