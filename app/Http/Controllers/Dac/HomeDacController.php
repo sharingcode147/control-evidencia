@@ -8,6 +8,9 @@ use App\Observaciones;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
+
 class HomeDacController extends Controller
 {
     /**
@@ -17,13 +20,34 @@ class HomeDacController extends Controller
      */
     public function index()
     {
+        //Obteniendo los datos sobre evidencias.
         $evidencias = Evidencia::where('estado','Pendiente')
-                                ->where('nivel',3)
+                                ->where('nivel','3')
                                 ->join('profesor','evidencias.user_id','=','profesor.user_id')
                                 ->join('formularios','evidencias.formulario_id','=','formularios.id')
                                 ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
-                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.created_at as fecha_creacion')
+                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.created_at as fecha_creacion','evidencias.id as evidencia_id')
                                 ->paginate(8);
+
+        //  Obteniendo la cantidad de observaciones que tienen las evidencias.
+        $num_observaciones = Observaciones::select(DB::raw('count(*) as revisiones, evidencia_id'))
+                                            ->groupBy('evidencia_id')
+                                            ->get();
+
+
+        //  Recorriendo las evidencias
+        foreach ($evidencias as $evidencia) {
+            $evidencia->revisiones = 0; //Asumo que la evidencia no tiene observaciones.
+            foreach ($num_observaciones as $obs) {
+                //  Revisando si la evidencia tiene observaciones y asignandolas en caso de ser asi.
+                if($obs->evidencia_id == $evidencia->id){
+                    $evidencia->revisiones = $obs->revisiones;
+                }
+            }
+            $fecha_actual = new Carbon;
+            $fecha = Carbon::parse($evidencia->fecha_creacion);
+            $evidencia->dias = $fecha_actual->diffInDays($fecha);;
+        }
         return view('dac.home',["evidencias"=>$evidencias]);
     }
     /**
