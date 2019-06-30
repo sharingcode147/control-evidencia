@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\profesor;
+namespace App\Http\Controllers\dac;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Evidencia;
-
-class EvAprobController extends Controller
+use App\Formulario;
+use App\Observaciones;
+class EvAprobadasDacController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,16 +16,14 @@ class EvAprobController extends Controller
      */
     public function index()
     {
-        $userID =  auth()->user()->id;  
-
-        $evidencias = Evidencia::where([['estado','Finalizada'],['nivel',3],['evidencias.user_id',$userID],
+        $evidencias = Evidencia::where([['estado','Finalizada'],['nivel',3],
                                 ])
                                 ->join('profesor','evidencias.user_id','=','profesor.user_id')
                                 ->join('formularios','evidencias.formulario_id','=','formularios.id')
                                 ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
                                 ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car','evidencias.estado')
                                 ->get();
-        return view('profesor.evidenciasAprobadasDac',["evidencias"=>$evidencias]);   
+        return view('dac.evidenciasAprobadasDac',["evidencias"=>$evidencias]);  
     }
 
     /**
@@ -54,9 +53,25 @@ class EvAprobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showAprobadasDac($id)
     {
-        //
+         if (is_numeric($id)){
+            $id_form = Evidencia::where('id',$id)->select('formulario_id')->first();
+            if (empty($id_form))
+                $formulario_id = 0;
+            else
+                $formulario_id = $id_form->formulario_id;
+            $datos = Formulario::where('formularios.id',$formulario_id)
+                                ->join('ambito','ambito.id','=','formularios.ambito_id')
+                                ->join('alcance','alcance.id','=','formularios.alcance_id')
+                                ->join('tipo','tipo.id','=','formularios.tipo_id')
+                                ->join('evidencias','evidencias.formulario_id','=','formularios.id')
+                                ->join('profesor','evidencias.user_id','=','profesor.user_id')
+                                ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
+                                ->select('formularios.*','ambito.nombre as ambito','alcance.nombre as alcance','tipo.nombre as tipo','profesor.*','carreras.nombre_car','evidencias.id as evidencia_id','evidencias.nivel','evidencias.estado')
+                                ->get();
+            return view('revisor.evidenciaAprobada',["datos"=>$datos]);
+        }
     }
 
     /**

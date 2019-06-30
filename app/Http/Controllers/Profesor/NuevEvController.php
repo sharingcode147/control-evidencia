@@ -102,6 +102,15 @@ class NuevEvController extends Controller
         $evidencia->save();
 
 
+        if(count($request->images))
+        {
+            foreach($request->images as $image)
+            {
+                $image->store('images');
+            }
+        }
+
+
          return redirect('profesor/home')->with('success', 'Book is successfully saved');
     }
 

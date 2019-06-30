@@ -89,6 +89,7 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">DAC</li>
           <li><a href="#"><i class="fa fa-book"></i> <span>Opción</span></a></li>
+          <li><a href="{{route('evaprobadasdac')}}"><i class="fa fa-book"></i> <span>Evidencias aprobadas</span></a></li>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-pie-chart"></i>

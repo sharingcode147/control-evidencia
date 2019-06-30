@@ -56,6 +56,8 @@ Route::group(['namespace' => 'Revisor', 'middleware' => ['authRevisor','auth'], 
 Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix' => 'dac'], function()
 {
 	Route::get('home','HomeDacController@index')->name('dacHome');
+	Route::get('evidenciasaprobadasdac','EvAprobadasDacController@index')->name('evaprobadasdac');
+	Route::get('evidenciadac/{id}','EvAprobadasDacController@showAprobadasDac')->name('evidenciaaprobdac');
 });
 
 

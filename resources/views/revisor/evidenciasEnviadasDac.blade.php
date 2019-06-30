@@ -27,7 +27,7 @@
 	                  <td>{{$evidencia->nombre1}} {{$evidencia->nombre2}} {{$evidencia->apellido1}} {{$evidencia->apellido2}}</td>
 	                  <td>{{$evidencia->nombre_car}}</td>
 	                  <td>{{$evidencia->fecha_realizacion}}</td>
-	                  <td><a class="signup" href="{{route('evidencia',$evidencia->id)}}">Ver Evidencia</a></td>
+                    <td  align="center"><a href="{{route('evidencia',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
 	                </tr>
 	      		@endforeach
 	      		@endif

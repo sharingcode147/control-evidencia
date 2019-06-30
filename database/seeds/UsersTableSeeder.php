@@ -47,5 +47,15 @@ class UsersTableSeeder extends Seeder
         $user->profesor_carrera('19696122-4','EICI'); 
         $user->profesor_carrera('19696122-4','IND'); 
         $user->profesor_carrera('19696122-4','ICE'); 
+
+        $user = new User();
+        $user->name = 'profe2';
+        $user->email = 'profe2@gmail.com';
+        $user->password = Hash::make('profe12345');
+        $user->save();
+        $user->roles()->attach(Role::where('name', 'profesor')->first());
+        $user->datos_profesor('11123112-3','Joaquin','Esteban','Perez','Perez',$user->id);
+        $user->profesor_carrera('11123112-3','ICI');     
+        $user->profesor_carrera('11123112-3','EICI');     
     }
 }
