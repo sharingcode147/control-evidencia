@@ -31,7 +31,13 @@ Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'p
 	Route::post('nuevaevidenciasdd', 'NuevEvController@nuevaEvidenciast')->name('nuevaEvidenciast');
 	Route::get('evidenciasaprobadas','EvAprobController@index')->name('evaprobadas');
 	Route::get('evidenciasnoaprobadas','EvNoAprobController@index')->name('evnoaprobadas');
+
+	Route::get('evidenciasCursoRevisor', 'HomeProfesorController@EvidenciaRevisor')->name('evidenciasC_revisor');
+	Route::get('evidenciasCursoDac', 'HomeProfesorController@EvidenciaDac')->name('evidenciasC_Dac');
 });
+
+Route::post('/images-upload', 'prueba@upload');
+
 //	Protección rutas ADMINISTRADOR
 Route::group(['namespace' => 'Admin', 'middleware' => ['authAdmin','auth'], 'prefix' => 'admin'], function()
 {
