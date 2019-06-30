@@ -15,7 +15,8 @@ class EvNoAprobController extends Controller
      */
     public function index()
     {
-        $evidencias = Evidencia::where([['estado','Pendiente'],['nivel',1],
+        $userID =  auth()->user()->id;  
+        $evidencias = Evidencia::where([['estado','Pendiente'],['nivel',1],['evidencias.user_id',$userID],
                                 ])
                                 ->join('profesor','evidencias.user_id','=','profesor.user_id')
                                 ->join('formularios','evidencias.formulario_id','=','formularios.id')
