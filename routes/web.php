@@ -42,6 +42,7 @@ Route::post('/images-upload', 'prueba@upload');
 Route::group(['namespace' => 'Admin', 'middleware' => ['authAdmin','auth'], 'prefix' => 'admin'], function()
 {
 	Route::get('home','HomeAdminController@index')->name('adminHome');
+	Route::resource('users','UsersController');
 });
 //	Protección rutas REVISOR
 Route::group(['namespace' => 'Revisor', 'middleware' => ['authRevisor','auth'], 'prefix' => 'revisor'], function()
