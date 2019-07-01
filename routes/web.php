@@ -100,6 +100,7 @@ Route::group(['namespace' => 'Consultas', 'middleware' => ['authConsultas','auth
 	Route::get('consulta1','Consulta1@index')->name('consulta1');
 
 	Route::get('obtenerDatos/{anio1}/{anio2}/{mes1}/{mes2}/{dia1}/{dia2}', 'Consulta1@obtenerDatos');
+	Route::get('obtenerDatos1/{anio1}/{anio2}/{mes1}/{mes2}/{dia1}/{dia2}', 'consulta3Controller@obtenerDatos1');
 	
 	Route::get('consulta2','Consulta2Controller@index')->name('consulta2');
 	Route::get('consulta3','consulta3Controller@index')->name('consulta3');
