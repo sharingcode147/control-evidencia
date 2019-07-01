@@ -10,12 +10,25 @@ use App\Evidencia;
 class Consulta2Controller extends Controller
 {
 	 public function index(){
-    	$evidencias = DB::table('evidencias')
+
+		$evidencias = DB::table('evidencias')
+		    							->join('profesor','evidencias.user_id','=','profesor.user_id')
+		    							->select(DB::raw('evidencias.user_id, run, count(*) as num_ev,nombre1, nombre2, apellido1, apellido2'))
+										->groupBy('evidencias.user_id','run','nombre1','nombre2','apellido1','apellido2')
+		                                ->get();
+				return view('consultas.consulta2',["evidencias"=>$evidencias]);   
+		return view('consultas.consulta2');   
+    }
+
+    public function obtenerDatoss(){
+    	$dato = DB::table('evidencias')
     							->join('profesor','evidencias.user_id','=','profesor.user_id')
-    							->select(DB::raw('evidencias.user_id, run, count(*) as num_ev,nombre1, nombre2, apellido1, apellido2'))
-								->groupBy('evidencias.user_id','run','nombre1','nombre2','apellido1','apellido2')
+    							->select(DB::raw('run, count(*) as num_ev'))
+								->groupBy('evidencias.user_id','run')
                                 ->get();
-		return view('consultas.consulta2',["evidencias"=>$evidencias]);   
+
+        return json_encode($dato);
+
     }
 
 }
