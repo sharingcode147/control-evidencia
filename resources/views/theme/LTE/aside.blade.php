@@ -17,7 +17,7 @@
         @if(auth()->user()->hasRole('admin'))
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">ADMINISTRADOR</li>
-          <li><a href="#"><i class="fa fa-book"></i> <span>Opción</span></a></li>
+          <li><a href="{{route('adminHome')}}"><i class="fa fa-home"></i> <span>Home</span></a></li>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-pie-chart"></i>
@@ -27,7 +27,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> sub op1</a></li>
+              <li><a href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> sub op2</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> sub op3</a></li>
             </ul>
