@@ -16,10 +16,12 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css")}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset("assets/$theme/dist/css/AdminLTE.min.css")}}">
+  <!-- <link rel="stylesheet" href="{{asset("assets/$theme/dist/css/AdminLTE.min.css")}}"> -->
+   <link rel="stylesheet" href="{{asset("assets/$theme/dist/css/AdminLTE.css")}}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{{asset("assets/$theme/dist/css/skins/_all-skins.min.css")}}">
+  <link rel="stylesheet" href="{{asset("assets/$theme/dist/css/skins/_all-skins.css")}}">
+  <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
   @yield("styles")
 

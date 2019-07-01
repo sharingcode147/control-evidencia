@@ -414,7 +414,7 @@ a:focus {
   top: 0;
   left: 0;
   padding-top: 50px;
-  min-height: 100%;
+  max-height: 1026px;
   width: 230px;
   z-index: 810;
   -webkit-transition: -webkit-transform 0.3s ease-in-out, width 0.3s ease-in-out;
@@ -503,6 +503,7 @@ a:focus {
   padding: 0;
 }
 .sidebar-menu > li {
+  background-color: #001740;
   position: relative;
   margin: 0;
   padding: 0;
