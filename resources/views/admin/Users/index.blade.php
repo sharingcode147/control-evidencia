@@ -22,7 +22,12 @@
 						<div class="box">
 							<div class="box-header">
 							  <h3 class="box-title">Usuarios</h3>
-							</div>
+							  <div class="pull-right">
+				                <div class="btn-group">
+				                  <a href="{{ route('users.create') }}" class="btn btn-info" >Añadir Usuario</a>
+				                </div>
+				              	</div>
+								</div>
 							<div class="box-body">
 							  <table id="evidencias1" class="table table-bordered table-striped">
 							    <thead>
