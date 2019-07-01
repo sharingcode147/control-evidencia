@@ -125,7 +125,7 @@
 $(function () {
 	"use strict";
 	$("#consultar").on("click",function(){
-		var url = "obtenerDatoss";
+		var url = "obtenerDatos2";
 		$.get(url,function(resul){
 			var datos= jQuery.parseJSON(resul);
 
