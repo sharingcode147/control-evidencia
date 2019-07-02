@@ -46,7 +46,7 @@
 							        <td>{{$user->id}}</td>
                     				<td>{{$user->name}}</td>
                     				<td>{{$user->email}}</td>
-							        <td><a class="btn btn-success"><i class="fa  fa-cog"></i></a></td>
+							        <td><a class="btn btn-success" href="{{action('Admin\UsersController@edit', $user->id)}}" ><i class="fa  fa-cog"></i></a></td>
 							        <td>
 				                    	<form action="{{action('Admin\UsersController@destroy', $user->id)}}" method="post">
 				                       	{{csrf_field()}}

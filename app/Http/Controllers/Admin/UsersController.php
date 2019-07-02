@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use App\Role;
 use App\Profesor;
+use App\Carrera;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +20,7 @@ class UsersController extends Controller
     public function index()
     {
         //
-        $users=User::orderBy('id','DESC')->paginate(5);
+        $users=User::orderBy('id','DESC')->get();
         return view('admin\Users.index',["users"=>$users]); 
     }
 
@@ -31,7 +32,9 @@ class UsersController extends Controller
     public function create()
     {
         //
-        return view('admin\Users.create');
+        $carreras = Carrera::all();                  
+      
+        return view('admin\Users.create',["carreras"=>$carreras]);
     }
 
     /**
@@ -60,6 +63,7 @@ class UsersController extends Controller
         $user->save();
         $user->roles()->attach(Role::where('name', 'profesor')->first());
         $user-> datos_profesor($request->run,$request->name1,$request->name2,$request->paterno,$request->materno,$user->id);
+
         $user->profesor_carrera($request->run,$request->codigo_car); 
         return redirect()->route('users.index')->with('success','Registro creado satisfactoriamente'); 
     }
@@ -84,9 +88,11 @@ class UsersController extends Controller
     public function edit($id)
     {
         //
+        $carreras = Carrera::all();                  
+      
         $user=User::find($id);
         $profe = Profesor::where('user_id', $id)->first();
-        return view('admin\Users.edit',["user"=>$user,"profe"=>$profe]);
+        return view('admin\Users.edit',["user"=>$user,"profe"=>$profe,"carreras"=>$carreras]);
     }
 
     /**
