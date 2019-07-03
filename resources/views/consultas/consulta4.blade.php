@@ -63,9 +63,7 @@
     "use strict";
     $("#consul").on("click",function(){
       var url = "PendientesCarrera";
-      alert('hi1');
       $.get(url,function(resul){
-        alert('hi2');
         var datos= jQuery.parseJSON(resul);
         var ICI =datos.ICI;
         var INC=datos.INC;
