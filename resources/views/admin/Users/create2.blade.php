@@ -20,7 +20,7 @@
                 <form method="POST" action="{{ route('users2.store') }}">
                     @csrf
                         <div class="form-group">
-					    <label for="formGroupExampleInput">Carrera</label>
+					    <label for="formGroupExampleInput">Tipo de usuario</label>
 					    <select class="form-control" name="name">
 							<option value="admin">admin</option>
 							<option value="dac">dac</option>

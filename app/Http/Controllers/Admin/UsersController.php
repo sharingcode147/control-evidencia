@@ -151,7 +151,8 @@ class UsersController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->pass);
         $user->save();
-        $profe = Profesor::find('user_id',$id);
+        $p = Profesor::where('user_id', $id)->first();
+        $profe = Profesor::find($p->run);
         $profe->run = $request->run;
         $profe->nombre1 = $request->name1;
         $profe->nombre2 = $request->name2;

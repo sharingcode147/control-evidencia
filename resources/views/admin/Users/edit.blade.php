@@ -53,11 +53,11 @@
 					</div>
 					<div class="form-group">
 					    <label for="exampleFormControlTextarea1">Email</label>
-					    <input type="text" class="form-control" id="formGroupExampleInput" name="email" value="{{$user->name}}"></input>
+					    <input type="text" class="form-control" id="formGroupExampleInput" name="email" value="{{$user->email}}"></input>
 					</div>
 					<div class="form-group">
 					    <label for="exampleFormControlTextarea1">Contraseña</label>
-					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese password" name="pass" value="Nueva contraseña"></input>
+					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese password" name="pass"></input>
 					</div>
 					<button type="submit" href="{{ route('users.index') }}" class="btn btn-info btn-block">Actualizar</button>
 					<a href="{{ route('users.index') }}" class="btn btn-info btn-block" >Atrás</a>
