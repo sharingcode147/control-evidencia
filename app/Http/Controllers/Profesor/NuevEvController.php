@@ -87,17 +87,11 @@ class NuevEvController extends Controller
         $formulari->ext_profesionales = $request->ext_profesionales;
         $formulari->save();
 
-        $foli = new Folio();
-        $foli->codigo = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWYXZ"),0,5);
-        $foli->numero = $formulari->id;
-        $foli->save();
-
         $evidencia = new Evidencia;
         $evidencia->user_id = Auth::user()->id;
         $evidencia->formulario_id = $formulari->id;
         $evidencia->estado = 'Pendiente';
         $evidencia->nivel = 2;
-        $evidencia->folio_id = $foli->id;
         $evidencia->codigo_car = $cod_carrera->codigo_car;
         $evidencia->save();
 
