@@ -55,7 +55,8 @@ class EvAprobadasDacController extends Controller
      */
     public function showAprobadasDac($id)
     {
-         if (is_numeric($id)){
+        //
+        if (is_numeric($id)){
             $id_form = Evidencia::where('id',$id)->select('formulario_id')->first();
             if (empty($id_form))
                 $formulario_id = 0;
@@ -70,7 +71,13 @@ class EvAprobadasDacController extends Controller
                                 ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
                                 ->select('formularios.*','ambito.nombre as ambito','alcance.nombre as alcance','tipo.nombre as tipo','profesor.*','carreras.nombre_car','evidencias.id as evidencia_id','evidencias.nivel','evidencias.estado')
                                 ->get();
-            return view('revisor.evidenciaAprobada',["datos"=>$datos]);
+
+            $observaciones = Observaciones::where('evidencia_id',$id)
+                                            ->join('users','users.id','=','observaciones.user_id')
+                                            ->select('observaciones.*','users.name','users.email')
+                                            ->orderBy('observaciones.created_at','desc')
+                                            ->get();
+            return view('Dac.evidenciaAprobadaNum',["datos"=>$datos,"observaciones"=>$observaciones]);
         }
     }
 
