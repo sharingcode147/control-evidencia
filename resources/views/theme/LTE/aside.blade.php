@@ -128,7 +128,7 @@
               <li><a href="{{route('consulta1')}}"><i class="fa fa-circle-o"></i> Número de asistentes</a></li>
               <li><a href="{{route('consulta2')}}"><i class="fa fa-circle-o"></i>Número solicitudes profesor</a></li>
               <li><a href="{{route('consulta3')}}"><i class="fa fa-circle-o"></i>Número de evidencias por carrera</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> sub op2</a></li>
+              <li><a href="{{route('consulta4')}}"><i class="fa fa-circle-o"></i>Pendientes por carrera</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> sub op3</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> sub op2</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> sub op3</a></li>

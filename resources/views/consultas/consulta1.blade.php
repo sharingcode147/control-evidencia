@@ -65,9 +65,7 @@
   </div>
 
   <div class="col-md-12" id="generar_informe">
-    <button class="btn btn-block btn-success btn-flat" type="button">
-      Generar informe
-    </button>
+    <a class="btn btn-block btn-success btn-flat" href="{{route('informeConsulta1')}}">Generar informe</a> 
   </div>
 
 </div>
@@ -141,7 +139,7 @@
       
         //CHART 1 - EXTERNOS
         var chart1 = new Morris.Donut({
-          element: 'chart2',
+          element: 'chart1',
           resize: true,
           colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
           data: [
@@ -155,7 +153,7 @@
         });
         //CHART 2 - INTERNOS
         var chart2 = new Morris.Donut({
-          element: 'chart1',
+          element: 'chart2',
           resize: true,
           colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
           data: [
@@ -175,8 +173,6 @@
 
     
   });
-
-
 </script>
 
 <script>

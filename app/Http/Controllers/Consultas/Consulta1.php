@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Evidencia;
 use App\Formulario;
+use Fpdf;
 
 class Consulta1 extends Controller
 {
@@ -64,5 +65,36 @@ class Consulta1 extends Controller
     	);
     	//	Retornando los datos.
         return json_encode($datos);
+    }
+
+    public function generarInforme1(){
+
+        Fpdf::AddPage();
+
+        Fpdf::Image('img/logo_ucm_color.png',10,8,40);
+        Fpdf::Image('img/logo_dac.png',160,8,40);
+        Fpdf::SetFont('Arial','B',13);
+        Fpdf::Cell(30);
+        Fpdf::Cell(120,10,utf8_decode('Universidad Católica del Maule'),0,0,'C');
+        Fpdf::Ln('5');
+        Fpdf::SetFont('Arial','B',8);
+        Fpdf::Cell(30);
+        Fpdf::Cell(120,10,utf8_decode('Departamento de Aseguramiento de la Calidad'),0,0,'C');
+        Fpdf::Ln(20);
+
+        Fpdf::SetFont('Arial','B',13);
+        Fpdf::Cell(175,10,utf8_decode('Documento del Sistema de Gestión de Calidad'),0,0,'C');
+        Fpdf::Ln(5);
+        Fpdf::SetFont('Arial','B',11);
+        Fpdf::Cell(180,10,utf8_decode('Registros del Sistema de Gestión de Calidad'),0,0,'C');
+        Fpdf::Ln(5);
+        Fpdf::Cell(180,10,utf8_decode('Identificación de Registros'),0,0,'C');
+        Fpdf::Ln(15);
+        Fpdf::Ln();
+        
+       
+        Fpdf::Output();
+        exit;
+
     }
 }

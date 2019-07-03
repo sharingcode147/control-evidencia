@@ -7,6 +7,7 @@ use App\Formulario;
 use App\Observaciones;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Folio;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
@@ -129,7 +130,13 @@ class HomeDacController extends Controller
         //   Cambiando los datos antiguos por los nuevos.
         $evidencia->estado = 'Finalizada';
         //   Guardando los cambios.
+        $foli = new Folio();
+        $foli->codigo = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWYXZ"),0,5);
+        $foli->numero = $evidencia->id;
+        $foli->save();
+        $evidencia->folio_id = $foli->id;
         $evidencia->save();
+
         return redirect()->route('dacHome')->with('success','Evidencia aprobada correctamente.');
     }
 
