@@ -23,6 +23,11 @@ class Consulta4Controller extends Controller
     	$INC = 0; 
     	$ICE = 0;
     	$IND = 0;
+        $FICI = 0;                   
+        $FINC = 0; 
+        $FICE = 0;
+        $FIND = 0;
+        
 
     	//	Recorriendo la respuesta.
         foreach($cpendiente as $form){
@@ -42,6 +47,21 @@ class Consulta4Controller extends Controller
             		$IND=$IND+1;
             	}
             }
+            if($form->estado=="Finalizada"){
+                
+                if($form->codigo_car=="ICI"){
+                    $FICI=$FICI+1;
+                }
+                if($form->codigo_car=="INC"){
+                    $FINC=$FINC+1;
+                }
+                if($form->codigo_car=="ICE"){
+                    $FICE=$FICE+1;
+                }
+                if($form->codigo_car=="IND"){
+                    $FIND=$FIND+1;
+                }
+            }
         }
 
         //	Preparando los datos para enviar.
@@ -49,7 +69,11 @@ class Consulta4Controller extends Controller
 	        "ICI" => $ICI,					
 	    	"INC" => $INC,
 	    	"ICE" => $ICE,
-	    	"IND" => $IND
+	    	"IND" => $IND,
+            "FICI" => $FICI,                  
+            "FINC" => $FINC,
+            "FICE" => $FICE,
+            "FIND" => $FIND
     	);
     	//	Retornando los datos.
         return json_encode($datos);

@@ -37,6 +37,10 @@ class Consulta1 extends Controller
     	$ext_estudiantes = 0;
     	$ext_autoridades = 0;
 
+        $total_int = 0;
+        $total_ext = 0;
+        $total = 0;
+
     	//	Recorriendo la respuesta.
         foreach($formularios as $form){
         	//	Sumando los participantes internos.
@@ -44,12 +48,18 @@ class Consulta1 extends Controller
 	    	$int_profesionales = $int_profesionales + $form->int_profesionales;
 	    	$int_estudiantes = $int_estudiantes + $form->int_estudiantes;
 	    	$int_autoridades = $int_autoridades + $form->int_autoridades;
+
 	    	//	Sumando los participantes externos.
 	    	$ext_profesores = $ext_profesores + $form->ext_profesores;
 	    	$ext_profesionales = $ext_profesionales + $form->ext_profesionales;
 	    	$ext_estudiantes = $ext_estudiantes + $form->ext_estudiantes;
 	    	$ext_autoridades = $ext_autoridades + $form->ext_autoridades;
         }
+
+        //  Calculando totales.
+        $total_int = $int_profesores + $int_profesionales + $int_estudiantes + $int_autoridades;
+        $total_ext = $ext_profesores + $ext_profesionales + $ext_estudiantes + $ext_autoridades;
+        $total = $total_int + $total_ext;
 
         //	Preparando los datos para enviar.
         $datos = array(
@@ -60,15 +70,20 @@ class Consulta1 extends Controller
 	    	"ext_profesores" => $ext_profesores,
 	    	"ext_profesionales" => $ext_profesionales,
 	    	"ext_estudiantes" => $ext_estudiantes,
-	    	"ext_autoridades" => $ext_autoridades
-
+	    	"ext_autoridades" => $ext_autoridades,
+            "total_int" => $total_int,
+            "total_ext" => $total_ext,
+            "total" => $total
     	);
     	//	Retornando los datos.
         return json_encode($datos);
     }
 
-    public function generarInforme1(){
+    public function generarInforme1($anio1,$anio2,$mes1,$mes2,$dia1,$dia2){
+        $datos = $this->obtenerDatos($anio1,$anio2,$mes1,$mes2,$dia1,$dia2);
+        $datos = json_decode($datos);
 
+        $rango = " ".$dia1."-".$mes1."-".$anio1." y ".$dia2."-".$mes2."-".$anio2;
         Fpdf::AddPage();
 
         Fpdf::Image('img/logo_ucm_color.png',10,8,40);
@@ -90,11 +105,48 @@ class Consulta1 extends Controller
         Fpdf::Ln(5);
         Fpdf::Cell(180,10,utf8_decode('Identificación de Registros'),0,0,'C');
         Fpdf::Ln(15);
-        Fpdf::Ln();
-        
-       
+
+        Fpdf::Cell(0,7,utf8_decode('Asistentes internos/externos entre'.$rango),1,1,'C',FALSE);
+        Fpdf::Ln(7);
+        Fpdf::Cell(95,7,utf8_decode('Internos'),1,0,'C',FALSE);
+        Fpdf::Cell(95,7,utf8_decode('Externos'),1,1,'C',FALSE);
+
+        Fpdf::Cell(47.5,7,utf8_decode('Autoridades'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->int_autoridades),0,0,'L',FALSE);
+
+        Fpdf::Cell(47.5,7,utf8_decode('Autoridades'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->ext_autoridades),0,1,'L',FALSE);
+
+        Fpdf::Cell(47.5,7,utf8_decode('Estudiantes'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->int_estudiantes),0,0,'L',FALSE);
+
+        Fpdf::Cell(47.5,7,utf8_decode('Estudiantes'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->ext_estudiantes),0,1,'L',FALSE);
+
+        Fpdf::Cell(47.5,7,utf8_decode('Profesionales'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->int_profesionales),0,0,'L',FALSE);
+
+        Fpdf::Cell(47.5,7,utf8_decode('Profesionales'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->ext_profesionales),0,1,'L',FALSE);
+
+        Fpdf::Cell(47.5,7,utf8_decode('Profesores'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->int_profesores),0,0,'L',FALSE);
+
+        Fpdf::Cell(47.5,7,utf8_decode('Profesores'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->ext_profesores),0,1,'L',FALSE);
+
+        Fpdf::Cell(47.5,7,utf8_decode('Total: '),1,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->total_int),1,0,'L',FALSE);
+
+        Fpdf::Cell(47.5,7,utf8_decode('Total: '),1,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->total_ext),1,1,'L',FALSE);
+
+        Fpdf::Ln(7);
+        Fpdf::Cell(95,7,utf8_decode('Total asistentes'),1,0,'C',FALSE);
+        Fpdf::Cell(95,7,utf8_decode($datos->total),1,1,'C',FALSE);
+
+        Fpdf::Ln();       
         Fpdf::Output();
         exit;
-
     }
 }
