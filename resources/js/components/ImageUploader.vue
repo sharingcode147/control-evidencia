@@ -102,7 +102,7 @@
 					formData.append(`images[]`,file, file.name);
 				});
 
-				axios.post('/images-upload',formData)
+				axios.post('/profesor/images-upload',formData)
 					.then(response=>{
 						alert("Imagenes subidas exitosamente");
 						this.images=[];
