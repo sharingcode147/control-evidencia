@@ -34,9 +34,11 @@ Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'p
 
 	Route::get('evidenciasCursoRevisor', 'HomeProfesorController@EvidenciaRevisor')->name('evidenciasC_revisor');
 	Route::get('evidenciasCursoDac', 'HomeProfesorController@EvidenciaDac')->name('evidenciasC_Dac');
+
+	Route::post('images-upload', 'prueba@upload');
 });
 
-Route::post('/images-upload', 'prueba@upload');
+
 
 //	Protección rutas ADMINISTRADOR
 Route::group(['namespace' => 'Admin', 'middleware' => ['authAdmin','auth'], 'prefix' => 'admin'], function()
