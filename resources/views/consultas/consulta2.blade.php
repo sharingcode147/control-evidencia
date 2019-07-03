@@ -131,9 +131,8 @@ $(function () {
 
 			var num_ev = datos[0].num_ev;
 			var runprof = datos[0].run;
-			var num_ev1 = datos[1].num_ev;
-			var runprof1 = datos[1].run;
-
+			var num_ev1 = 10;//datos[1].num_ev;
+			//var runprof1 = datos[1].run;
 			//CHART 1
 			var chart1 = new Morris.Donut({
 			  element: 'chart1',
@@ -141,7 +140,7 @@ $(function () {
 			  colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
 			  data: [
 				{label: runprof, value: num_ev},
-				{label: runprof1, value: num_ev1}
+				{label: "runprof1", value: num_ev1}
 			  ],
 			  hideHover: 'auto'
 			});

@@ -108,5 +108,9 @@ Route::group(['namespace' => 'Consultas', 'middleware' => ['authConsultas','auth
 	Route::get('consulta3','consulta3Controller@index')->name('consulta3');
 	Route::get('obtenerDatos1/{anio1}/{anio2}/{mes1}/{mes2}/{dia1}/{dia2}', 'consulta3Controller@obtenerDatos1');
 
+	Route::get('consulta4','Consulta4Controller@index')->name('consulta4');
+	Route::get('PendientesCarrera', 'Consulta4Controller@consultaPendientes');
+
+
 });
 
