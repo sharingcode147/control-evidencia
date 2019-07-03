@@ -112,13 +112,14 @@
 	                    				<td>{{$user->name}}</td>
 	                    				<td>{{$user->email}}</td>
 								        <td><a class="btn btn-success" href="{{action('Admin\UsersController@edit', $user->id)}}" ><i class="fa  fa-cog"></i></a></td>
-								        <td>
-					                    	<form action="{{action('Admin\UsersController@destroy', $user->id)}}" method="post">
-					                       	{{csrf_field()}}
-					                       	<input name="_method" type="hidden" value="DELETE">
-					     
-					                       	<button class="btn btn-danger" type="submit"><span class="fa fa-trash-o"></span></button>
-					                    </td>
+								         <td>
+				                    	<form action="{{action('Admin\UsersController@destroy', $user->id)}}" method="post">
+				                       	{{csrf_field()}}
+				                       	
+				                       	<input name="_method" type="hidden" value="DELETE">
+				     
+				                       	<button class="btn btn-danger" type="submit"><span class="fa fa-trash-o"></span></button>
+				                    </td>
 								        
 								      </tr>
 									@endforeach
@@ -170,7 +171,7 @@
                     				<td>{{$user->email}}</td>
 							        <td><a class="btn btn-success" href="{{action('Admin\Users2Controller@edit', $user->id)}}" ><i class="fa  fa-cog"></i></a></td>
 							        <td>
-				                    	<form action="{{action('Admin\UsersController@destroy', $user->id)}}" method="post">
+				                    	<form action="{{action('Admin\Users2Controller@destroy', $user->id)}}" method="post">
 				                       	{{csrf_field()}}
 				                       	<input name="_method" type="hidden" value="DELETE">
 				     
@@ -225,7 +226,7 @@
                     				<td>{{$user->email}}</td>
 							        <td><a class="btn btn-success" href="{{action('Admin\Users2Controller@edit', $user->id)}}" ><i class="fa  fa-cog"></i></a></td>
 							        <td>
-				                    	<form action="{{action('Admin\UsersController@destroy', $user->id)}}" method="post">
+				                    	<form action="{{action('Admin\Users2Controller@destroy', $user->id)}}" method="post">
 				                       	{{csrf_field()}}
 				                       	<input name="_method" type="hidden" value="DELETE">
 				     

@@ -39,19 +39,6 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create2()
-    {
-        //
-        $carreras = Carrera::all();                  
-      
-        return view('admin\Users.create',["carreras"=>$carreras]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -118,13 +105,6 @@ class UsersController extends Controller
         $profe = Profesor::where('user_id', $id)->first();
         return view('admin\Users.edit',["user"=>$user,"profe"=>$profe,"carreras"=>$carreras]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
     /**
      * Update the specified resource in storage.
