@@ -9,15 +9,25 @@
 	<h1>PROFESOR</h1>
 
 	@if(session()->get('success'))
-                <div class="demo" id="demod">
-                    <p>¡Tu formulario ha sido enviado con exito!</p> 
-                    <button  class="btn btn-light" onclick="addedSuccess2()">Aceptar</button>
-                </div>
-    @endif
+	<div class="box box-success box-solid"  id="demod">
+            <div class="box-header with-border">
+              <h3 class="box-title">Removable</h3>
 
-  <div class="content" id="app">
-    <app/>
-  </div>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+				<p>¡Tu formulario ha sido enviado con exito!</p> 
+				<button  class="btn btn-light" onclick="addedSuccess2()">Aceptar</button>
+            </div>
+            <!-- /.box-body -->
+    </div>
+
+	@endif
+
 
 @endsection
 
@@ -34,12 +44,12 @@
 <script type="text/javascript">
 	window.onload = addedSuccess;
 	function addedSuccess() {
-       setTimeout(function() {
-         document.getElementById("demod").style = "display:none";
-       }, 5000);
-     }
-     function addedSuccess2(){
-     
+	   setTimeout(function() {
+		 document.getElementById("demod").style = "display:none";
+	   }, 5000);
+	 }
+	 function addedSuccess2(){
+	 
    document.getElementById("demod").style = "display:none";
 }
 </script>
