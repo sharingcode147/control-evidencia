@@ -95,16 +95,6 @@ class NuevEvController extends Controller
         $evidencia->codigo_car = $cod_carrera->codigo_car;
         $evidencia->save();
 
-
-        if(count($request->images))
-        {
-            foreach($request->images as $image)
-            {
-                $image->store('images');
-            }
-        }
-
-
          return redirect('profesor/home')->with('success', 'Book is successfully saved');
     }
 
