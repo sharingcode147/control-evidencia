@@ -141,7 +141,7 @@
       
         //CHART 1 - EXTERNOS
         var chart1 = new Morris.Donut({
-          element: 'chart2',
+          element: 'chart1',
           resize: true,
           colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
           data: [
@@ -155,7 +155,7 @@
         });
         //CHART 2 - INTERNOS
         var chart2 = new Morris.Donut({
-          element: 'chart1',
+          element: 'chart2',
           resize: true,
           colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
           data: [
@@ -175,8 +175,6 @@
 
     
   });
-
-
 </script>
 
 <script>
