@@ -45,7 +45,7 @@
   <div class="col-md-6">
     <div class="box box-danger">
       <div class="box-header with-border">
-        <h3 class="box-title">Asistentes externos</h3>
+        <h3 class="box-title">Asistentes internos</h3>
       </div>
       <div class="box-body chart-responsive">
         <div class="chart" id="chart1" style="height: 300px; position: relative;"></div>
@@ -56,7 +56,7 @@
   <div class="col-md-6">
     <div class="box box-danger">
       <div class="box-header with-border">
-        <h3 class="box-title">Asistentes internos</h3>
+        <h3 class="box-title">Asistentes externos</h3>
       </div>
       <div class="box-body chart-responsive">
         <div class="chart" id="chart2" style="height: 300px; position: relative;"></div>
@@ -64,8 +64,10 @@
     </div>    
   </div>
 
-  <div class="col-md-12" id="generar_informe">
-    <a class="btn btn-block btn-success btn-flat" href="{{route('informeConsulta1')}}">Generar informe</a> 
+  <div class="col-md-12">
+    <a class="btn btn-block btn-success btn-flat" href="{{url('/consultas/informe1')}}" id="generar_informe">
+      Generar informe
+    </a> 
   </div>
 
 </div>
@@ -137,9 +139,23 @@
         var ext_autoridades=datos.ext_autoridades;
         
       
-        //CHART 1 - EXTERNOS
-        var chart1 = new Morris.Donut({
+        //CHART 1 - INTERNOS
+        var chart2 = new Morris.Donut({
           element: 'chart1',
+          resize: true,
+          colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
+          data: [
+            {label: "Profesores", value: int_profesores},
+            {label: "Estudiantes", value: int_estudiantes},
+            {label: "Profesionales", value: int_profesionales},
+            {label: "Autoridades", value: int_autoridades}
+          ],
+          hideHover: 'auto'
+        });
+        
+        //CHART 2 - EXTERNOS
+        var chart1 = new Morris.Donut({
+          element: 'chart2',
           resize: true,
           colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
           data: [
@@ -151,26 +167,29 @@
           hideHover: 'auto'
 
         });
-        //CHART 2 - INTERNOS
-        var chart2 = new Morris.Donut({
-          element: 'chart2',
-          resize: true,
-          colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
-          data: [
-            {label: "Profesores", value: int_profesores},
-            {label: "Estudiantes", value: int_estudiantes},
-            {label: "Profesionales", value: int_profesionales},
-            {label: "Autoridades", value: int_autoridades}
-          ],
-          hideHover: 'auto'
-        });
-        var int_sum = int_profesores+int_estudiantes+int_autoridades+int_profesionales;
-        var ext_sum = ext_profesores+ext_estudiantes+ext_autoridades+ext_profesionales;
 
       })
       
     });
 
+    $("#generar_informe").on("click",function(){
+      var rango=$("#reservation").val();
+      var array = rango.split("-");
+      var inicio = array[0].split("/");
+      var fin = array[1].split("/");
+
+      var mes1 = inicio[0].replace(" ","");
+      var dia1 = inicio[1].replace(" ","");
+      var anio1 = inicio[2].replace(" ","");
+
+      var mes2 = fin[0].replace(" ","");
+      var dia2 = fin[1].replace(" ","");
+      var anio2 = fin[2].replace(" ","");
+      
+      var url = "/"+anio1+"/"+anio2+"/"+mes1+"/"+mes2+"/"+dia1+"/"+dia2;
+      this.href = this.href+url;
+      
+    });
     
   });
 </script>
