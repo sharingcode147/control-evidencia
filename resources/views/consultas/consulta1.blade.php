@@ -65,9 +65,7 @@
   </div>
 
   <div class="col-md-12" id="generar_informe">
-    <button class="btn btn-block btn-success btn-flat" type="button">
-      Generar informe
-    </button>
+    <a class="btn btn-block btn-success btn-flat" href="{{route('informeConsulta1')}}">Generar informe</a> 
   </div>
 
 </div>
