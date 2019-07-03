@@ -59,7 +59,7 @@
 				                       	{{csrf_field()}}
 				                       	<input name="_method" type="hidden" value="DELETE">
 				     
-				                       	<button class="btn btn-danger" type="submit"><span class="fa fa-trash-o"></span></button>
+				                       	<button class="btn btn-danger" type="submit"><span class="fa fa-trash-o"></span></button></form>
 				                    </td>
 							        
 							      </tr>
@@ -115,10 +115,10 @@
 								         <td>
 				                    	<form action="{{action('Admin\UsersController@destroy', $user->id)}}" method="post">
 				                       	{{csrf_field()}}
-				                       	
+
 				                       	<input name="_method" type="hidden" value="DELETE">
 				     
-				                       	<button class="btn btn-danger" type="submit"><span class="fa fa-trash-o"></span></button>
+				                       	<button class="btn btn-danger" type="submit"><span class="fa fa-trash-o"></span></button></form>
 				                    </td>
 								        
 								      </tr>
@@ -175,7 +175,7 @@
 				                       	{{csrf_field()}}
 				                       	<input name="_method" type="hidden" value="DELETE">
 				     
-				                       	<button class="btn btn-danger" type="submit"><span class="fa fa-trash-o"></span></button>
+				                       	<button class="btn btn-danger" type="submit"><span class="fa fa-trash-o"></span></button></form>
 				                    </td>
 							        
 							      </tr>
@@ -230,7 +230,7 @@
 				                       	{{csrf_field()}}
 				                       	<input name="_method" type="hidden" value="DELETE">
 				     
-				                       	<button class="btn btn-danger" type="submit"><span class="fa fa-trash-o"></span></button>
+				                       	<button class="btn btn-danger" type="submit"><span class="fa fa-trash-o"></span></button></form>
 				                    </td>
 							        
 							      </tr>
