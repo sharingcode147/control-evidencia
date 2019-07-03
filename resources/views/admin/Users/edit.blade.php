@@ -18,8 +18,9 @@
 
                         <div class="box-body">
 
-                <form method="POST" action="{{ route('users.store') }}">
+                <form method="POST" action="{{ route('users.update',$user->id) }}">
                     @csrf
+                    @method('PUT')
                         <div class="form-group">
 					    <label for="formGroupExampleInput">Carrera</label>
 					    <select class="form-control" name="codigo_car">
