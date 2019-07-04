@@ -52,6 +52,11 @@
                 <label class="form-control">{{$dato->nombre1}} {{$dato->nombre2}} {{$dato->apellido1}} {{$dato->apellido2}}</label>
             </div>
           </div>
+          <!-- Departamento -->
+          <div class="form-group">
+            <label>Departamento</label>
+            <label class="form-control">{{$dato->nombre_dep}}</label>
+          </div>
           <!-- Carrera -->
           <div class="form-group">
             <label>Carrera</label>
