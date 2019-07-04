@@ -13,7 +13,7 @@
 
 		<div v-show="!images.length">
 			<i class="fa fa-cloud-upload"> </i>
-			<p>Arrastra tus imgenes aqui</p>
+			<p>Arrastra tus imágenes aquí</p>
 			<div>O</div>
 			<div class="file-input">
 				<label for="file">Seleccinona un archivo</label>
