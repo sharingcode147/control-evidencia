@@ -8,6 +8,7 @@ use App\Profesor;
 use App\Carrera;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class Users2Controller extends Controller
@@ -20,18 +21,26 @@ class Users2Controller extends Controller
     public function index()
     {
         //
-        $useradmin=User::where('name','admin')   
-                    ->orderBy('id','DESC')            
-                    ->get();
-        $userrevisor=User::where('name','revisor')   
-                    ->orderBy('id','DESC')            
-                    ->get();
-        $userprofe=User::where('name','profe')   
-                    ->orderBy('id','DESC')            
-                    ->get();
-        $userdac=User::where('name','dac')   
-                    ->orderBy('id','DESC')            
-                    ->get();
+        $useradmin=DB::table('role_user')
+                            ->where('role_id',1)
+                            ->join('users','users.id','=','role_user.user_id')
+                            ->orderBy('user_id','DESC')  
+                            ->get();
+        $userrevisor=DB::table('role_user')
+                            ->where('role_id',3)
+                            ->join('users','users.id','=','role_user.user_id')
+                            ->orderBy('user_id','DESC')  
+                            ->get();
+        $userprofe=DB::table('role_user')
+                            ->where('role_id',4)
+                            ->join('users','users.id','=','role_user.user_id')
+                            ->orderBy('user_id','DESC')  
+                            ->get();
+        $userdac=DB::table('role_user')
+                            ->where('role_id',2)
+                            ->join('users','users.id','=','role_user.user_id')
+                            ->orderBy('user_id','DESC')  
+                            ->get();
         return view('admin\Users.index',["useradmin"=>$useradmin,"userrevisor"=>$userrevisor,"userprofe"=>$userprofe,"userdac"=>$userdac]); 
     }
 
@@ -67,6 +76,7 @@ class Users2Controller extends Controller
         $user->email = $request->email;
         $user->password =Hash::make($request->pass);
         $user->save();
+        $user->roles()->attach(Role::where('name',$request->name )->first());
         return redirect()->route('users2.index')->with('success','Registro creado satisfactoriamente'); 
     }
     /**

@@ -1,7 +1,7 @@
 @extends('theme.LTE.layout')
 
 @section('content')
-<h1>REVISOR</h1>
+<h1>ADMIN</h1>
 
 @if(Session::has('success'))
     <div class="col-md-12 alert alert-success" role="alert">
