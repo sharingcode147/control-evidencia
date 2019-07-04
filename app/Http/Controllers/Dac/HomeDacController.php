@@ -21,6 +21,10 @@ class HomeDacController extends Controller
      */
     public function index()
     {
+        return view('dac.home');
+    }
+
+    public function colaDac(){
         //Obteniendo los datos sobre evidencias.
         $evidencias = Evidencia::where('estado','Pendiente')
                                 ->where('nivel','3')
@@ -47,10 +51,12 @@ class HomeDacController extends Controller
             }
             $fecha_actual = new Carbon;
             $fecha = Carbon::parse($evidencia->fecha_creacion);
-            $evidencia->dias = $fecha_actual->diffInDays($fecha);;
+            $evidencia->dias = $fecha_actual->diffInDays($fecha);
         }
-        return view('dac.home',["evidencias"=>$evidencias]);
+        return view('dac.evCursoDac',["evidencias"=>$evidencias]);
+
     }
+
     /**
      * Display the specified resource.
      *
@@ -137,7 +143,7 @@ class HomeDacController extends Controller
         $evidencia->folio_id = $foli->id;
         $evidencia->save();
 
-        return redirect()->route('dacHome')->with('success','Evidencia aprobada correctamente.');
+        return redirect()->route('colaDac')->with('success','Evidencia aprobada correctamente.');
     }
 
     /**
@@ -167,7 +173,7 @@ class HomeDacController extends Controller
         $evidencia->nivel = 1;  //Cambiando el nivel a profesor.
         $evidencia->save();
 
-        return redirect()->route('dacHome')->with('success','Observación agregada correctamente. La evidencia volvió al profesor.');
+        return redirect()->route('colaDac')->with('success','Observación agregada correctamente. La evidencia volvió al profesor.');
     }
 }
 
