@@ -48,21 +48,21 @@
 								<div class="box highlight">
 									<i class="icon solid major fa-paper-plane"></i>
 									<h3>D A C</h3>
-									<p>Revisa - Comenta - Informa - Optimiza. <br><br> Son las principales funciones que encontraras para gestionar tus evidencias.</p>
+									<p>Revisa - Comenta - Informa - Optimiza. <br><br> Son las principales funciones que encontrarás para gestionar tus evidencias.</p>
 								</div>
 							</section>
 							<section class="col-4 col-12-narrower">
 								<div class="box highlight">
 									<i class="icon solid major fa-pencil-alt"></i>
 									<h3>PROFESOR</h3>
-									<p>Crea - Sigue - Edita.<br><br>Todas estas herramientas para gestionar tus evidencias en solo una pantalla, facil y rapido de utilizar.</p>
+									<p>Crea - Sigue - Edita.<br><br>Todas estas herramientas para gestionar tus evidencias en solo una pantalla, fácil y rápido de utilizar.</p>
 								</div>
 							</section>
 							<section class="col-4 col-12-narrower">
 								<div class="box highlight">
 									<i class="icon solid major fa-wrench"></i>
 									<h3>REVISOR</h3>
-									<p>Revisa - Comenta - Envía - Controla. <br><br> Tu tiempo es importante, con la ayuda de SISGEV ya no tendras toneladas de trabajo sobre tu escritorio.</p>
+									<p>Revisa - Comenta - Envía - Controla. <br><br> Tu tiempo es importante, con la ayuda de SISGEV ya no tendrás toneladas de trabajo sobre tu escritorio.</p>
 								</div>
 							</section>
 						</div>
