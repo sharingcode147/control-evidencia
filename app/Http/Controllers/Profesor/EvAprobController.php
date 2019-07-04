@@ -120,4 +120,10 @@ class EvAprobController extends Controller
     {
         //
     }
+
+    public function pdf_evidencia_aprobada($id){
+
+        
+        return "hola";
+    }
 }

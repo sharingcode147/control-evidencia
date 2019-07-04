@@ -194,7 +194,7 @@
                             <div class="form-group">
                                 <label>Fecha realización:</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="date" id="example-date-input" name="fecha_realizacion">
+                                    <input class="form-control" type="date" id="example-date-input" value="$datos->fecha_realizacion" name="fecha_realizacion">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>

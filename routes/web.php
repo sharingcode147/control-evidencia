@@ -58,6 +58,8 @@ Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'p
 		'as' => 'nuevaEvidenciaEdit',
 		'uses' => 'EditEvController@storeeditanoAprob'
 	]);
+
+	Route::get('pdf_evidencia_aprobada_prof/{id}','EvAprobController@pdf_evidencia_aprobada')->name('pdf_prof_evap');
 });
 
 
