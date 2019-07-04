@@ -96,26 +96,32 @@ class HomeRevisorController extends Controller
 
         //Evidencias Aprobadas por Dac
         $evidencias = Evidencia::where([['estado','Finalizada'],['nivel',3],
-                        ])
-                        ->join('profesor','evidencias.user_id','=','profesor.user_id')
-                        ->join('formularios','evidencias.formulario_id','=','formularios.id')
-                        ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
-                        ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car','evidencias.estado')
-                        ->get();
+                                ])
+                                ->join('profesor','evidencias.user_id','=','profesor.user_id')
+                                ->join('formularios','evidencias.formulario_id','=','formularios.id')
+                                ->join('alcance','formularios.alcance_id','=','alcance.id')
+                                ->join('ambito','formularios.ambito_id','=','ambito.id')
+                                ->join('tipo','formularios.tipo_id','=','tipo.id')
+                                ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
+                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car','alcance.nombre as alcance','ambito.nombre as ambito','tipo.nombre as tipo')
+                                ->get();
         return view('revisor.evidenciaAprobadasDacRev',["evidencias"=>$evidencias]);
     }
     //Funcion para obtener las evidencias no aprobadas
     public function getNoAp()
     {
-
         //Evidencias Rechazadas
         $evidencias = Evidencia::where([['estado','Pendiente'],['nivel',1],
-                        ])
-                        ->join('profesor','evidencias.user_id','=','profesor.user_id')
-                        ->join('formularios','evidencias.formulario_id','=','formularios.id')
-                        ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
-                        ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car')
-                        ->get();
+                                ])
+                                ->join('profesor','evidencias.user_id','=','profesor.user_id')
+                                ->join('formularios','evidencias.formulario_id','=','formularios.id')
+                                ->join('alcance','formularios.alcance_id','=','alcance.id')
+                                ->join('ambito','formularios.ambito_id','=','ambito.id')
+                                ->join('tipo','formularios.tipo_id','=','tipo.id')
+                                ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
+                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car','alcance.nombre as alcance','ambito.nombre as ambito','tipo.nombre as tipo')
+                                ->get();
+
         return view('revisor.evidenciaNoAprobadas',["evidencias"=>$evidencias]);
     }
 

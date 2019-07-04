@@ -1,12 +1,24 @@
 @extends('theme.LTE.layout')
 
 @section('content')
- <div class="box">
+ <div class="row">
+  <div class="col-xs-12">
+    <div>Vista por:</div>
+    <div class="nav-tabs-custom">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#general" data-toggle="tab">Vista general</a></li>
+        <li><a href="#datos2" data-toggle="tab">Ver por alcance/ámbito/tipo</a></li>
+      </ul>
+      <div class="tab-content">
+
+        <!-- GENERAL -->
+        <div class="tab-pane active" id="general">
+          <div class="box">
             <div class="box-header">
               <h3 class="box-title">Evidencias aprobadas por DAC</h3>
             </div>
             <div class="box-body">
-              <table id="evidencias" class="table table-bordered table-striped">
+              <table id="evidencias1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -20,17 +32,17 @@
                 </thead>
                 @if($evidencias->count())
                 @foreach($evidencias->sortBy('fecha_realizacion') as $evidencia)
-	                <tr>
-	                  <td>EVID-{{$evidencia->id}}-{{$evidencia->codigo_car}}</td>
-	                  <td>{{$evidencia->titulo}}</td>
-	                  <td>{{$evidencia->run}}</td>
-	                  <td>{{$evidencia->nombre1}} {{$evidencia->nombre2}} {{$evidencia->apellido1}} {{$evidencia->apellido2}}</td>
-	                  <td>{{$evidencia->nombre_car}}</td>
-	                  <td>{{$evidencia->fecha_realizacion}}</td>
-	                  <td><a class="signup" href="{{route('evidencia',$evidencia->id)}}">Ver Evidencia</a></td>
-	                </tr>
-	      		@endforeach
-	      		@endif
+                  <tr>
+                    <td>EVID-{{$evidencia->id}}-{{$evidencia->codigo_car}}</td>
+                    <td>{{$evidencia->titulo}}</td>
+                    <td>{{$evidencia->run}}</td>
+                    <td>{{$evidencia->nombre1}} {{$evidencia->nombre2}} {{$evidencia->apellido1}} {{$evidencia->apellido2}}</td>
+                    <td>{{$evidencia->nombre_car}}</td>
+                    <td>{{$evidencia->fecha_realizacion}}</td>
+                    <td  align="center"><a href="{{route('evidencia',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+                  </tr>
+                @endforeach
+                @endif
                 <tfoot>
                   <tr>
                     <th>ID</th>
@@ -45,7 +57,60 @@
               </table>
             </div>
           </div>
+        </div>
 
+        <!-- ALCANCE/AMBITO/TIPO -->
+        <div class="tab-pane" id="datos2">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Evidencias aprobadas por DAC</h3>
+            </div>
+            <div class="box-body">
+              <table id="evidencias2" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Alcance</th>
+                    <th>Ámbito</th>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                    <th>Ver</th>
+                  </tr>
+                </thead>
+                @if($evidencias->count())
+                @foreach($evidencias->sortBy('fecha_realizacion') as $evidencia)
+                  <tr>
+                    <td>EVID-{{$evidencia->id}}-{{$evidencia->codigo_car}}</td>
+                    <td>{{$evidencia->titulo}}</td>
+                    <td>{{$evidencia->alcance}}</td>
+                    <td>{{$evidencia->ambito}}</td>
+                    <td>{{$evidencia->tipo}}</td>
+                    <td>{{$evidencia->fecha_realizacion}}</td>
+                    <td  align="center"><a href="{{route('evidencia',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+                  </tr>
+                @endforeach
+                @endif
+                <tfoot>
+                  <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Alcance</th>
+                    <th>Ámbito</th>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                    <th>Ver</th>
+                  </tr>                 
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('scripts')
@@ -57,7 +122,8 @@
 <!-- page script -->
 <script>
   $(function () {
-    $('#evidencias').DataTable()
+    $('#evidencias1').DataTable()
+    $('#evidencias2').DataTable()
   })
 </script>
 @endsection

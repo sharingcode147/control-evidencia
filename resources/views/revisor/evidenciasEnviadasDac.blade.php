@@ -59,7 +59,7 @@
           </div>
         </div>
 
-        <!-- ALCANCE -->
+        <!-- ALCANCE/AMBITO/TIPO -->
         <div class="tab-pane" id="datos2">
           <div class="box">
             <div class="box-header">
