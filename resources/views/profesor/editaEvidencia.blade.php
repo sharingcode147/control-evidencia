@@ -17,7 +17,13 @@
 
                 <div class="box-body">
 
-                    <form method="POST" action="{{ route('nuevaEvidenciaEdit') }}" enctype="multipart/form-data">
+                    <center>
+                        <h2>Documento del Sistema de Gestión de Calidad</h2>
+                        <h4>Registros del Sistema de Gestión de Calidad</h4>
+                        <h4>Identificación de Registros</h4>
+                    </center>
+
+                    <form method="POST" action="{{ route('nuevaEvidenciaEdit',$datos->id) }}" enctype="multipart/form-data">
                         @csrf
                          <!--Nombre usuario -->
                              <div class="form-group">
@@ -114,7 +120,7 @@
                                             <div class="form-group">
                                                 <label>Estudiantes</label>
                                                 <div class="input-largo">
-                                                    <input type="number"  min="0" max="99999" value="0" name="int_estudiantes">
+                                                    <input type="number"  min="0" max="99999" value="{{ $datos->int_estudiantes }}" name="int_estudiantes">
                                                 </div>
                                             </div>
                                         </div>
@@ -123,7 +129,7 @@
                                             <div class="form-group">
                                                 <label for="example-date-input">Profesores</label>
                                                 <div class="input-largo">
-                                                    <input type="number" min="0" max="99999" value="0" name="int_profesores">
+                                                    <input type="number" min="0" max="99999" value="{{ $datos->int_profesores }}" name="int_profesores">
                                                 </div>
                                             </div>
                                         </div>
@@ -132,7 +138,7 @@
                                             <div class="form-group">
                                                 <label for="example-date-input">Autoridades</label>
                                                 <div class="input-largo">
-                                                    <input type="number"  min="0" max="99999" value="0" name="int_autoridades">
+                                                    <input type="number"  min="0" max="99999" value="{{ $datos->int_autoridades }}" name="int_autoridades">
                                                 </div>
                                             </div>
                                         </div>
@@ -141,7 +147,7 @@
                                             <div class="form-group">
                                                 <label for="example-date-input">Profesionales</label>
                                                 <div class="input-largo">
-                                                    <input type="number"  min="0" max="99999" value="0" name="int_profesionales">
+                                                    <input type="number"  min="0" max="99999" value="{{ $datos->int_profesionales }}" name="int_profesionales">
                                                 </div>
                                             </div>
                                         </div>
@@ -154,7 +160,7 @@
                                             <div class="form-group">
                                                 <label for="example-date-input">Estudiantes</label>
                                                 <div class="input-largo">
-                                                    <input type="number"  min="0" max="99999" value="0" name="ext_estudiantes">
+                                                    <input type="number"  min="0" max="99999" value="{{ $datos->ext_estudiantes }}" name="ext_estudiantes">
                                                 </div>
                                             </div>
                                         </div>
@@ -163,7 +169,7 @@
                                             <div class="form-group">
                                                 <label for="example-date-input">Profesores</label>
                                                 <div class="input-largo">
-                                                    <input type="number" min="0" max="99999" value="0" name="ext_profesores">
+                                                    <input type="number" min="0" max="99999" value="{{ $datos->ext_profesores }}" name="ext_profesores">
                                                 </div>
                                             </div>
                                         </div>
@@ -172,7 +178,7 @@
                                             <div class="form-group">
                                                 <label for="example-date-input">Autoridades</label>
                                                 <div class="input-largo">
-                                                    <input type="number"  min="0" max="99999" value="0" name="ext_autoridades">
+                                                    <input type="number"  min="0" max="99999" value="{{ $datos->ext_autoridades }}" name="ext_autoridades">
                                                 </div>
                                             </div>
                                         </div>
@@ -181,7 +187,7 @@
                                             <div class="form-group">
                                                 <label for="example-date-input">Profesionales</label>
                                                 <div class="input-largo">
-                                                    <input type="number"  min="0" max="99999" value="0" name="ext_profesionales">
+                                                    <input type="number"  min="0" max="99999" value="{{ $datos->ext_profesionales }}" name="ext_profesionales">
                                                 </div>
                                             </div>
                                         </div>
