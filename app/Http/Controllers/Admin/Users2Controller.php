@@ -68,11 +68,12 @@ class Users2Controller extends Controller
         //
          $validatedData=$request->validate([
             'name' => 'required|max:255',
+            'name2' => 'required|max:255',
             'email' => 'required|max:255',
             'pass' => 'required',
             ]);
         $user = new User();
-        $user->name = $request->name;
+        $user->name = $request->name2;
         $user->email = $request->email;
         $user->password =Hash::make($request->pass);
         $user->save();
@@ -122,12 +123,14 @@ class Users2Controller extends Controller
     {
         //
         $validatedData=$request->validate([
+            'name' => 'required|max:255',
             'email' => 'required|max:255',
             'pass' => 'required',
             ]);
  
         $user = User::find($id);
         $user->email = $request->email;
+        $user->name = $request->name;
         $user->password = Hash::make($request->pass);
         $user->save();
 

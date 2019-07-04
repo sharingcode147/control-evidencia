@@ -66,6 +66,7 @@ class UsersController extends Controller
     {
         //
         $validatedData=$request->validate([
+            'username' => 'required|max:255',
             'run' => 'required|max:255',
             'name1' => 'required|max:255',
             'name2' => 'required|max:255',
@@ -76,7 +77,7 @@ class UsersController extends Controller
             'codigo_car' => 'required',
             ]);
         $user = new User();
-        $user->name = 'profe';
+        $user->name = $request->username;
         $user->email = $request->email;
         $user->password =Hash::make($request->pass);
         $user->save();
@@ -126,6 +127,7 @@ class UsersController extends Controller
     {
         //
         $validatedData=$request->validate([
+            'username' => 'required|max:255',
             'run' => 'required|max:255',
             'name1' => 'required|max:255',
             'name2' => 'required|max:255',
@@ -138,6 +140,7 @@ class UsersController extends Controller
  
         $user = User::find($id);
         $user->email = $request->email;
+        $user->name = $request->username;
         $user->password = Hash::make($request->pass);
         $user->save();
         $p = Profesor::where('user_id', $id)->first();
