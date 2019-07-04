@@ -77,24 +77,9 @@
           <li class="header">DAC</li>
 
           <li><a href="{{route('dacHome')}}"><i class="fa fa-home"></i> <span>Home</span></a></li>
+          <li><a href="{{route('colaDac')}}"><i class="fa fa-home"></i> <span>Cola de evidencias</span></a></li>
           <li><a href="{{route('evaprobadasdac')}}"><i class="fa fa-book"></i> <span>Evidencias aprobadas</span></a></li>
 
-          
-
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-pie-chart"></i>
-              <span>Opciones agrupadas</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> sub op1</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> sub op2</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> sub op3</a></li>
-            </ul>
-          </li>
         </ul>
         @endif
 

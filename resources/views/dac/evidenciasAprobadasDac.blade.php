@@ -28,6 +28,7 @@
                     <th>Carrera</th>
                     <th>Fecha</th>
                     <th>Ver</th>
+                    <th>PDF</th>
                   </tr>
                 </thead>
                 @if($evidencias->count())
@@ -40,6 +41,7 @@
                     <td>{{$evidencia->nombre_car}}</td>
                     <td>{{$evidencia->fecha_realizacion}}</td>
                     <td  align="center"><a href="{{route('evidenciaaprobdac',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+                    <td  align="center"><a href="{{route('pdf_dac',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-fw fa-file-pdf-o"></i></td>
                   </tr>
                 @endforeach
                 @endif
@@ -52,6 +54,7 @@
                     <th>Carrera</th>
                     <th>Fecha</th>
                     <th>Ver</th>
+                    <th>PDF</th>
                   </tr>                 
                 </tfoot>
               </table>
@@ -76,6 +79,7 @@
                     <th>Tipo</th>
                     <th>Fecha</th>
                     <th>Ver</th>
+                    <th>PDF</th>
                   </tr>
                 </thead>
                 @if($evidencias->count())
@@ -88,6 +92,7 @@
                     <td>{{$evidencia->tipo}}</td>
                     <td>{{$evidencia->fecha_realizacion}}</td>
                     <td  align="center"><a href="{{route('evidenciaaprobdac',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+                    <td  align="center"><a href="{{route('pdf_dac',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-fw fa-file-pdf-o"></i></td>
                   </tr>
                 @endforeach
                 @endif
@@ -100,6 +105,7 @@
                     <th>Tipo</th>
                     <th>Fecha</th>
                     <th>Ver</th>
+                    <th>PDF</th>
                   </tr>                 
                 </tfoot>
               </table>
