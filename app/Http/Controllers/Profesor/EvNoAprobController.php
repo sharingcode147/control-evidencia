@@ -67,7 +67,7 @@ class EvNoAprobController extends Controller
                                             ->select('observaciones.*','users.name','users.email')
                                             ->orderBy('observaciones.created_at','desc')
                                             ->get();
-            return view('profesor.evidenciasnoAprobada',["datos"=>$datos,"observaciones"=>$observaciones]);
+            return view('<profesor class="evidenciasN"></profesor>oAprobada',["datos"=>$datos,"observaciones"=>$observaciones]);
         }
     }
 
