@@ -17,7 +17,7 @@
 
 
 Route::get('/', function () {
-    return view('auth/login');
+    return view('home');
 })->middleware('guest');
 Auth::routes(['register'=>false]);
 
