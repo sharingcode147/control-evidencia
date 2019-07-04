@@ -155,7 +155,8 @@ Route::group(['namespace' => 'Consultas', 'middleware' => ['authConsultas','auth
 	Route::get('informepen', 'Consulta4Controller@generarInforme4')->name('informepen');
 
 	Route::get('consulta5','Consulta5Controller@index')->name('consulta5');
-	Route::get('ObserCarreras','Consulta5Controller@consultaobse');
+	Route::get('ObserCarreras','Consulta5Controller@consultaobse')->name('ObserCarreras');
+	Route::get('nobser', 'Consulta5Controller@generarInforme5')->name('nobser');
 
 	Route::get('consulta6','Consulta6Controller@index')->name('consulta6');
 	Route::get('GrafAlcance','Consulta6Controller@consulalcance');
