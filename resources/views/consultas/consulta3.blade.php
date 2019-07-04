@@ -132,6 +132,10 @@
         var INC=datos.INC;
         var ICE=datos.ICE;
         var IND=datos.IND;
+        var KIN=datos.KIN;
+        var PSI=datos.PSI;
+        var ENFT=datos.ENFT;
+        var ENFC=datos.ENFC;
         
       
         //CHART 1 - EXTERNOS
@@ -154,10 +158,10 @@
           resize: true,
           colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
           data: [
-            {label: "MED", value: 1},
-            {label: "Estudiantes", value: 0},
-            {label: "Profesionales", value: 0},
-            {label: "Autoridades", value: 0}
+            {label: "KIN", value: KIN},
+            {label: "PSI", value: PSI},
+            {label: "ENFT", value: ENFT},
+            {label: "ENFC", value: ENFC}
           ],
           hideHover: 'auto'
         });

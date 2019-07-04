@@ -39,7 +39,7 @@
 					<td>{{$evidencia->nombre1}} {{$evidencia->nombre2}} {{$evidencia->apellido1}} {{$evidencia->apellido2}}</td>
 					<td>{{$evidencia->nombre_car}}</td>
 					<td>{{$evidencia->fecha_realizacion}}</td>
-					<td  align="center"><a href="{{route('evidencia',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+					<td  align="center"><a href="{{route('formularioprofe',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
 				  </tr>
 				@endforeach
 				@else
@@ -93,7 +93,7 @@
 					<td>{{$evidencia->ambito}}</td>
 					<td>{{$evidencia->tipo}}</td>
 					<td>{{$evidencia->fecha_realizacion}}</td>
-					<td  align="center"><a href="{{route('evidencia',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+					<td  align="center"><a href="{{route('formularioprofe',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
 				  </tr>
 				@endforeach
 				@else

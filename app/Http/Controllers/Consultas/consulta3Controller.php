@@ -8,6 +8,7 @@ use Fpdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Carbon;
 
 class consulta3Controller extends Controller
 {
@@ -31,6 +32,10 @@ class consulta3Controller extends Controller
     	$INC = 0; 
     	$ICE = 0;
     	$IND = 0;
+        $KIN = 0;
+        $PSI = 0;
+        $ENFT=0;
+        $ENFC=0;
         $total_ing=0;
 
     	//	Recorriendo la respuesta.
@@ -48,16 +53,37 @@ class consulta3Controller extends Controller
         	if($form->codigo_car=="IND"){
         		$IND=$IND+1;
         	}
+                if($form->codigo_car=="KIN"){
+                        $KIN=$KIN+1;
+                }
+                if($form->codigo_car=="PSI"){
+                        $PSI=$PSI+1;
+                }
+                if($form->codigo_car=="ENFT"){
+                        $ENFT=$ENFT+1;
+                }
+                if($form->codigo_car=="ENFC"){
+                        $ENFC=$ENFC+1;
+                }
         }
 
         $total_ing= $ICI+ $INC +$ICE + $IND;
+        $total_med= $KIN+$PSI+$ENFT+$ENFC;
+        $total=$total_ing + $total_med;
         //	Preparando los datos para enviar.
         $datos = array(
 	        "ICI" => $ICI,					
 	    	"INC" => $INC,
 	    	"ICE" => $ICE,
 	    	"IND" => $IND,
-            "Total" => $total_ing
+                "IND" => $IND,
+                "KIN" => $KIN,
+                "PSI" => $PSI,
+                "ENFT" => $ENFT,
+                "ENFC" => $ENFC,
+            "Total_i" => $total_ing,
+            "Total_m" => $total_med,
+            "Total" => $total
     	);
     	//	Retornando los datos.
         return json_encode($datos);
@@ -94,38 +120,43 @@ class consulta3Controller extends Controller
         Fpdf::Cell(95,7,utf8_decode('Dep Ing.'),1,0,'C',FALSE);
         Fpdf::Cell(95,7,utf8_decode('Externos'),1,1,'C',FALSE);
 
-        Fpdf::Cell(47.5,7,utf8_decode('ICI'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode('Ing. Informática'),0,0,'L',FALSE);
         Fpdf::Cell(47.5,7,utf8_decode($datos->ICI),0,0,'L',FALSE);
 
-        Fpdf::Cell(47.5,7,utf8_decode('ICI'),0,0,'L',FALSE);
-        Fpdf::Cell(47.5,7,utf8_decode("0"),0,1,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode('Kinesiología'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->KIN),0,1,'L',FALSE);
 
-        Fpdf::Cell(47.5,7,utf8_decode('INC'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode('Ingeniería Civil'),0,0,'L',FALSE);
         Fpdf::Cell(47.5,7,utf8_decode($datos->INC),0,0,'L',FALSE);
 
-        Fpdf::Cell(47.5,7,utf8_decode('INC'),0,0,'L',FALSE);
-        Fpdf::Cell(47.5,7,utf8_decode("0"),0,1,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode('Psicología'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->PSI),0,1,'L',FALSE);
 
-        Fpdf::Cell(47.5,7,utf8_decode('ICE'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode('Ing. Electrónica'),0,0,'L',FALSE);
         Fpdf::Cell(47.5,7,utf8_decode($datos->ICE),0,0,'L',FALSE);
 
-        Fpdf::Cell(47.5,7,utf8_decode('ICE'),0,0,'L',FALSE);
-        Fpdf::Cell(47.5,7,utf8_decode("0"),0,1,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode('Enf. Curicó'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->ENFC),0,1,'L',FALSE);
 
-        Fpdf::Cell(47.5,7,utf8_decode('IND'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode('Ing Industial'),0,0,'L',FALSE);
         Fpdf::Cell(47.5,7,utf8_decode($datos->IND),0,0,'L',FALSE);
 
 
-        Fpdf::Cell(47.5,7,utf8_decode('IND'),0,0,'L',FALSE);
-        Fpdf::Cell(47.5,7,utf8_decode("0"),0,1,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode('Enf. Talca'),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->ENFT),0,1,'L',FALSE);
 
         Fpdf::Cell(47.5,7,utf8_decode('Total: '),1,0,'L',FALSE);
-        Fpdf::Cell(47.5,7,utf8_decode($datos->Total),1,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->Total_i),1,0,'L',FALSE);
 
         Fpdf::Cell(47.5,7,utf8_decode('Total: '),1,0,'L',FALSE);
-        Fpdf::Cell(47.5,7,utf8_decode($datos->Total),1,1,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos->Total_m),1,1,'L',FALSE);
 
-        Fpdf::Cell(0,7,utf8_decode('Depa'),1,1,'C',FALSE);
+        Fpdf::Ln(7);
+        Fpdf::Cell(95,7,utf8_decode('Total Evidencias'),1,0,'C',FALSE);
+        Fpdf::Cell(95,7,utf8_decode($datos->Total),1,1,'C',FALSE);
+            
+
+        
 
 
         Fpdf::Ln();       

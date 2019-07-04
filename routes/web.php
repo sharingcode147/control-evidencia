@@ -35,6 +35,12 @@ Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'p
 	Route::get('evidenciasCursoRevisor', 'HomeProfesorController@EvidenciaRevisor')->name('evidenciasC_revisor');
 	Route::get('evidenciasCursoDac', 'HomeProfesorController@EvidenciaDac')->name('evidenciasC_Dac');
 
+	Route::get('formularioprofe/{id}',[
+		'as' => 'formularioprofe',
+		'uses' => 'HomeProfesorController@showrev'
+	]);
+
+
 	Route::post('images-upload', 'prueba@upload');
 });
 
@@ -127,9 +133,11 @@ Route::group(['namespace' => 'Consultas', 'middleware' => ['authConsultas','auth
 
 	Route::get('consulta7','Consulta7Controller@index')->name('consulta7');
 	Route::get('grafambito','Consulta7Controller@consultambito');
+	Route::get('informe7','Consulta7Controller@generarInforme7');
 
 	Route::get('consulta8','Consulta8Controller@index')->name('consulta8');
 	Route::get('grafmes','Consulta8Controller@consulmes');
+	Route::get('informe8','Consulta8Controller@generarInforme8');
 
 
 });

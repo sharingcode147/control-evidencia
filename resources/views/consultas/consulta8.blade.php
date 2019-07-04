@@ -36,10 +36,10 @@
       </div>
     </div>
   </div>
-  <div class="col-md-12" id="generar_informe">
-    <button class="btn btn-block btn-success btn-flat" type="button">
+  <div class="col-md-12" id="generar_informe2">
+    <a class="btn btn-block btn-success btn-flat" type="button" id="generar_informe">
       Generar informe
-    </button>
+    </a>
   </div>
 
 </div>
@@ -89,6 +89,24 @@
        
       })
 
+    });
+    $("#generar_informe").on("click",function(){
+      var rango=$("#reservation").val();
+      var array = rango.split("-");
+      var inicio = array[0].split("/");
+      var fin = array[1].split("/");
+
+      var mes1 = inicio[0].replace(" ","");
+      var dia1 = inicio[1].replace(" ","");
+      var anio1 = inicio[2].replace(" ","");
+
+      var mes2 = fin[0].replace(" ","");
+      var dia2 = fin[1].replace(" ","");
+      var anio2 = fin[2].replace(" ","");
+      
+      var url = "/consultas/informe8";
+      this.href = url;
+      
     });
 
   });

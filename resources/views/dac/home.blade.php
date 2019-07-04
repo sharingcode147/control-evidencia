@@ -51,7 +51,7 @@
 							        <td>{{$evidencia->titulo}}</td>
 							        <td><span class="label label-warning">Pendiente</span></td>
 							        <td>{{$evidencia->fecha_realizacion}}</td>
-							        <td><a class="btn btn-info" href="{{route('formularioDac-show',$evidencia->id)}}"><i class="fa fa-file"></i></a></td>
+							        <td><a class="btn btn-danger" href="{{route('formularioDac-show',$evidencia->id)}}"><i class="fa fa-eye"></i></a></td>
 							      </tr>
 								@endforeach
 								@endif
