@@ -383,7 +383,9 @@ class HomeRevisorController extends Controller
         Fpdf::Cell(95,7,utf8_decode($total),1,1,'C',FALSE);
         Fpdf::Ln(7);
 
-        
+        $fecha_actual = new Carbon;
+
+        Fpdf::Output('I',"Ev_".$datos->codigo."-".$datos->numero."_".$fecha_actual);
         Fpdf::Output();
         exit;
         
