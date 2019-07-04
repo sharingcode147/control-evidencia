@@ -112,8 +112,15 @@
 
         });
 
-       
       })
+
+    });
+
+    $("#generar_informe").on("click",function(){
+      alert('hi');
+      var url = "informe4";
+      this.href = url;
+      
     });
   });
 </script>
