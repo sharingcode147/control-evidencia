@@ -1,9 +1,9 @@
 <template>
-    <div class="container">
+    <div class="contenedor">
         <div class="row justify-content-center">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card card-default">
-                    <div class="card-header">Example Component</div>
+                    <div class="card-header"></div> <!--escribir algo dentro del div (PROBANDO)-->
 
                     <div class="card-body">
                         <image-uploader></image-uploader>
