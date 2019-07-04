@@ -8,6 +8,7 @@ use App\Profesor;
 use App\Carrera;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
@@ -20,18 +21,26 @@ class UsersController extends Controller
     public function index()
     {
         //
-        $useradmin=User::where('name','admin')   
-                    ->orderBy('id','DESC')            
-                    ->get();
-        $userrevisor=User::where('name','revisor')   
-                    ->orderBy('id','DESC')            
-                    ->get();
-        $userprofe=User::where('name','profe')   
-                    ->orderBy('id','DESC')            
-                    ->get();
-        $userdac=User::where('name','dac')   
-                    ->orderBy('id','DESC')            
-                    ->get();
+        $useradmin=DB::table('role_user')
+                            ->where('role_id',1)
+                            ->join('users','users.id','=','role_user.user_id')
+                            ->orderBy('user_id','DESC')  
+                            ->get();
+        $userrevisor=DB::table('role_user')
+                            ->where('role_id',3)
+                            ->join('users','users.id','=','role_user.user_id')
+                            ->orderBy('user_id','DESC')  
+                            ->get();
+        $userprofe=DB::table('role_user')
+                            ->where('role_id',4)
+                            ->join('users','users.id','=','role_user.user_id')
+                            ->orderBy('user_id','DESC')  
+                            ->get();
+        $userdac=DB::table('role_user')
+                            ->where('role_id',2)
+                            ->join('users','users.id','=','role_user.user_id')
+                            ->orderBy('user_id','DESC')  
+                            ->get();
         return view('admin\Users.index',["useradmin"=>$useradmin,"userrevisor"=>$userrevisor,"userprofe"=>$userprofe,"userdac"=>$userdac]); 
     }
     /**
@@ -57,6 +66,7 @@ class UsersController extends Controller
     {
         //
         $validatedData=$request->validate([
+            'username' => 'required|max:255',
             'run' => 'required|max:255',
             'name1' => 'required|max:255',
             'name2' => 'required|max:255',
@@ -67,7 +77,7 @@ class UsersController extends Controller
             'codigo_car' => 'required',
             ]);
         $user = new User();
-        $user->name = 'profe';
+        $user->name = $request->username;
         $user->email = $request->email;
         $user->password =Hash::make($request->pass);
         $user->save();
@@ -117,6 +127,7 @@ class UsersController extends Controller
     {
         //
         $validatedData=$request->validate([
+            'username' => 'required|max:255',
             'run' => 'required|max:255',
             'name1' => 'required|max:255',
             'name2' => 'required|max:255',
@@ -129,6 +140,7 @@ class UsersController extends Controller
  
         $user = User::find($id);
         $user->email = $request->email;
+        $user->name = $request->username;
         $user->password = Hash::make($request->pass);
         $user->save();
         $p = Profesor::where('user_id', $id)->first();

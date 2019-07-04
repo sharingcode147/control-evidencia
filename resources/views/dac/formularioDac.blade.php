@@ -1,5 +1,6 @@
 
 @extends('theme.LTE.layout')
+
 @section('content')
 
 @if ($errors->any())
@@ -28,7 +29,159 @@
         <!-- Formulario -->
         <div class="tab-pane active" id="form">
           @foreach($datos as $dato)
-          <h1>Aqui mostrar formulario</h1>
+          <center>
+            <h2>Documento del Sistema de Gestión de Calidad</h2>
+            <h4>Registros del Sistema de Gestión de Calidad</h4>
+            <h4>Identificación de Registros</h4>
+          </center>
+          
+
+          <!--fecha realizacion-->
+
+          <div class="form-group">
+            <label>Fecha realización: {{$dato->fecha_realizacion}}</label>
+          </div>
+          <div class="form-group">
+            <label>Fecha de ingreso al sistema: {{$dato->created_at}}</label>
+          </div>
+
+          <!--Nombre usuario -->
+          <div class="form-group">
+            <label>Nombre de usuario:</label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <label class="form-control">{{$dato->nombre1}} {{$dato->nombre2}} {{$dato->apellido1}} {{$dato->apellido2}}</label>
+            </div>
+          </div>
+          <!-- Carrera -->
+          <div class="form-group">
+            <label>Carrera</label>
+            <label class="form-control">{{$dato->nombre_car}}</label>
+          </div>
+          <!--Titulo de evidencia-->
+
+          <div class="form-group">
+            <label>Titulo:</label>
+            <div class="input-group">
+                <label class="form-control">{{$dato->titulo}}</label>
+                <span class="input-group-addon"><i class="fa fa-book"></i></span>
+            </div>
+          </div>
+
+          <!--Descripcion -->
+
+          <div class="form-group">
+            <label>Descripción:</label>
+            <label class="form-control">{{$dato->descripcion}}</label>
+          </div>
+
+
+          <!-- Alcance-ambito-tipo -->
+          <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Alcance: {{$dato->alcance}}</label>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Ámbito: {{$dato->ambito}}</label>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Tipo: {{$dato->tipo}}</label>
+                    </div>
+                </div>
+          </div>
+
+
+          <!-- Cantidad de personas afectadas-->
+          <div class="contenedor">
+             
+            <div class="row gris-style">
+                <div class="text-center" role="alert"><h4>Cantidad de personas afectadas</h4></div>
+                <div class="form-group">
+                    <div class="text-center" role="alert"><label>Interior</label></div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Estudiantes</label>
+                            <label class="form-control">{{$dato->int_estudiantes}}</label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="example-date-input">Profesores</label>
+                            <div class="input-largo">
+                               <label class="form-control">{{$dato->int_profesores}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="example-date-input">Autoridades</label>
+                            <div class="input-largo">
+                                <label class="form-control">{{$dato->int_autoridades}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="example-date-input">Profesionales</label>
+                            <div class="input-largo">
+                                <label class="form-control">{{$dato->int_profesionales}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="text-center" role="alert"><label>Exterior</label></div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Estudiantes</label>
+                            <label class="form-control">{{$dato->ext_estudiantes}}</label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="example-date-input">Profesores</label>
+                            <div class="input-largo">
+                               <label class="form-control">{{$dato->ext_profesores}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="example-date-input">Autoridades</label>
+                            <div class="input-largo">
+                                <label class="form-control">{{$dato->ext_autoridades}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="example-date-input">Profesionales</label>
+                            <div class="input-largo">
+                                <label class="form-control">{{$dato->ext_profesionales}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+          <!-- ACCIONES FORMULARIO -->
           <div class="card-footer text-center">
             <div class="row">
               <div class="col-md-6">
@@ -36,9 +189,9 @@
               </div>
               <div class="col-md-6">
                 <button type="button" class="btn btn-block btn-danger" data-toggle="collapse" data-target="#form-obs">Rechazar con observaciones</button>
-              </div>
-
             </div>
+
+          </div>
         
             <div id="form-obs" class="collapse">
                 <form method="POST" action="{{ route('observacionDac',$dato->evidencia_id)}}">
@@ -110,88 +263,5 @@
   </div>
 </div>
 
-<div class="col-md-6">
-    <div class="box box-primary">
-    @if($datos->count())
-    @foreach($datos as $dato)
-            <div class="box-header with-border">
-              <h3 class="box-title">Formulario</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form role="form">
-              <div class="box-body">
-                <div class="form-group">
-                    
-                  <div class="col-md-4">Profesor: </div>
-                    <div class="col-md-8">
-                        {{$dato->nombre1}} {{$dato->nombre2}} {{$dato->apellido1}} {{$dato->apellido2}}
-                    </div>
-                </div>
-                <div class="form-grup">
-                    <div class="col-md-4">R.U.N: </div>
-                    <div class="col-md-8">
-                        {{$dato->run}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4">Carrera: </div>
-                    <div class="col-md-8">
-                        {{$dato->nombre_car}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4">Titulo: </div>
-                    <div class="col-md-8">
-                        {{$dato->titulo}}
-                    </div>
-                <div class="form-group">
-                    <div class="col-md-4">Fecha de Realizacion: </div>
-                    <div class="col-md-8">
-                        {{$dato->fecha_realizacion}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4">Fecha de Creacion: </div>
-                    <div class="col-md-8">
-                        {{$dato->created_at}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4">Descripción: </div>
-                    <div class="col-md-8">
-                        {{$dato->descripcion}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4">Alcance: </div>
-                    <div class="col-md-8">
-                        {{$dato->alcance}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4">Ambito: </div>
-                    <div class="col-md-8">
-                        {{$dato->ambito}}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-4">Tipo:</div>
-                    <div class="col-md-8">
-                        {{$dato->tipo}}
-                    </div>
-                </div>
-                
-              </div>
-              <!-- /.box-body -->
 
-              <div class="box-footer">
-                <a class="btn btn-primary" href="{{route('home')}}">Volver Atras</a>
-              </div>
-            </form>
-        </div>
-        
-    @endforeach
-    @endif
-</div>
 @endsection

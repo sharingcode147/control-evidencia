@@ -23,13 +23,14 @@
 
                         <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="{{ $user->name }}" disabled>
+                                <input type="text" id="formGroupExampleInput" class="form-control"  name="name" value="{{$user->name}}" placeholder="nombre" >
                             </div>
                         
 						
 					
 					
 					</div>
+
 					<div class="form-group">
 					    <label for="exampleFormControlTextarea1">Email</label>
 					    <input type="text" class="form-control" id="formGroupExampleInput" name="email" value="{{$user->email}}"></input>
