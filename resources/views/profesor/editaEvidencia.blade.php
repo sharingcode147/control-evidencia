@@ -7,17 +7,17 @@
             <div class="callout callout-info">
                 <h4>Tip!</h4>
 
-                <p>Aquí tienes la posibilidad de enviar una evidencia para que Revisores y DAC aprueben o desaprueben. Es recomendable que adjuntes archivos que ayuden a complementar tu solicitud.</p>
+                <p>Edita la evidencia basandote en las observaciones realizadas por el Revisor o DAC.</p>
             </div>
             <!-- Default box -->
              <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">NUEVA EVIDENCIA</h3>
+                    <h3 class="box-title">EDITA EVIDENCIA</h3>
                 </div>
 
                 <div class="box-body">
 
-                    <form method="POST" action="{{ route('nuevaEvidenciast') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('nuevaEvidenciaEdit') }}" enctype="multipart/form-data">
                         @csrf
                          <!--Nombre usuario -->
                              <div class="form-group">
@@ -41,7 +41,7 @@
                             <div class="form-group">
                                 <label>Titulo:</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Example input" name="titulo">
+                                    <input type="text" class="form-control" placeholder="" value="{{ $datos->titulo }}" name="titulo">
                                     <span class="input-group-addon"><i class="fa fa-book"></i></span>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
      
                             <div class="form-group">
                                 <label>Descripción:</label>
-                                <textarea class="form-control" rows="3" placeholder="Enter ..." name="descripcion"></textarea>
+                                <textarea class="form-control" rows="3" placeholder="Enter ..." name="descripcion">{{ $datos->descripcion }}</textarea>
                             </div>
 
 
@@ -194,7 +194,7 @@
                             <div class="form-group">
                                 <label>Fecha realización:</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="date" id="example-date-input" name="fecha_realizacion">
+                                    <input class="form-control" type="date" id="example-date-input" value="$datos->fecha_realizacion" name="fecha_realizacion">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>

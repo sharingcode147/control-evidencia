@@ -1,7 +1,7 @@
 @extends('theme.LTE.layout')
 
 @section('content')
-<div class="row">
+ <div class="row">
   <div class="col-xs-12">
     <div>Vista por:</div>
     <div class="nav-tabs-custom">
@@ -15,7 +15,7 @@
         <div class="tab-pane active" id="general">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Evidencias aprobadas DAC</h3>
+              <h3 class="box-title">Evidencias aprobadas por DAC</h3>
             </div>
             <div class="box-body">
               <table id="evidencias1" class="table table-bordered table-striped">
@@ -28,6 +28,7 @@
                     <th>Carrera</th>
                     <th>Fecha</th>
                     <th>Ver</th>
+                    <th>PDF</th>
                   </tr>
                 </thead>
                 @if($evidencias->count())
@@ -39,7 +40,8 @@
                     <td>{{$evidencia->nombre1}} {{$evidencia->nombre2}} {{$evidencia->apellido1}} {{$evidencia->apellido2}}</td>
                     <td>{{$evidencia->nombre_car}}</td>
                     <td>{{$evidencia->fecha_realizacion}}</td>
-                    <td  align="center"><a href="{{route('evidenciaaprobdac',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+                    <td  align="center"><a href="{{route('evidenciaap',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+                    <td  align="center"><a href="{{route('pdf_prof_evap',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-fw fa-file-pdf-o"></i></td>
                   </tr>
                 @endforeach
                 @endif
@@ -52,6 +54,7 @@
                     <th>Carrera</th>
                     <th>Fecha</th>
                     <th>Ver</th>
+                    <th>PDF</th>
                   </tr>                 
                 </tfoot>
               </table>
@@ -59,11 +62,11 @@
           </div>
         </div>
 
-        <!-- ALCANCE -->
+        <!-- ALCANCE/AMBITO/TIPO -->
         <div class="tab-pane" id="datos2">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Evidencias aprobadas DAC</h3>
+              <h3 class="box-title">Evidencias aprobadas por DAC</h3>
             </div>
             <div class="box-body">
               <table id="evidencias2" class="table table-bordered table-striped">
@@ -76,6 +79,7 @@
                     <th>Tipo</th>
                     <th>Fecha</th>
                     <th>Ver</th>
+                    <th>PDF</th>
                   </tr>
                 </thead>
                 @if($evidencias->count())
@@ -87,7 +91,8 @@
                     <td>{{$evidencia->ambito}}</td>
                     <td>{{$evidencia->tipo}}</td>
                     <td>{{$evidencia->fecha_realizacion}}</td>
-                    <td  align="center"><a href="{{route('evidencia',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+                    <td  align="center"><a href="{{route('evidenciaap',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+                    <td  align="center"><a href="{{route('pdf_rev',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-fw fa-file-pdf-o"></i></td>
                   </tr>
                 @endforeach
                 @endif
@@ -100,6 +105,7 @@
                     <th>Tipo</th>
                     <th>Fecha</th>
                     <th>Ver</th>
+                    <th>PDF</th>
                   </tr>                 
                 </tfoot>
               </table>
@@ -111,8 +117,6 @@
     </div>
   </div>
 </div>
-
-
 @endsection
 
 @section('scripts')

@@ -24,7 +24,7 @@ class NuevEvController extends Controller
      */
     public function index()
     {
-        return view('profesor.nuevaEvidencia');
+
     }
 
     /**
