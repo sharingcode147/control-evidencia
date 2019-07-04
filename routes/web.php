@@ -71,6 +71,8 @@ Route::group(['namespace' => 'Revisor', 'middleware' => ['authRevisor','auth'], 
 		'as' => 'observacionRevisor',
 		'uses' => 'HomeRevisorController@observacionRevisor'
 	]);
+
+	Route::get('pdf_evidencia_aprobada/{id}','HomeRevisorController@pdf_evidencia_aprobada')->name('pdf_rev');
 });
 //	Protección rutas DAC
 Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix' => 'dac'], function()
