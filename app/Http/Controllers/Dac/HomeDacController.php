@@ -177,7 +177,7 @@ class HomeDacController extends Controller
         return redirect()->route('colaDac')->with('success','Observación agregada correctamente. La evidencia volvió al profesor.');
     }
 
-    public function pdf_evidencia_aprobada($id){
+    public function pdf_evidencia_aprobada_dac($id){
 
         $datos = Formulario::where('formularios.id',$id)
                         ->join('ambito','ambito.id','=','formularios.ambito_id')

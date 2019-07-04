@@ -36,10 +36,10 @@
       </div>
     </div>
   </div>
-  <div class="col-md-12" id="generar_informe">
-    <button class="btn btn-block btn-success btn-flat" type="button">
+  <div class="col-md-12">
+    <a class="btn btn-block btn-success btn-flat" id="generar_informe">
       Generar informe
-    </button>
+    </a> 
   </div>
 
 </div>
@@ -86,7 +86,10 @@
       })
 
     });
-
+    $("#generar_informe").on("click",function(){
+      var url2 ="/consultas/nobser";
+      this.href = url2;
+    });
   });
 
 </script>

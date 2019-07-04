@@ -60,12 +60,12 @@ Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'p
 		'as' => 'edita_evnoaprob',
 		'uses' => 'EditEvController@editnoAprob'
 	]);
-	Route::post('evidencia_noapedit',[
+	Route::post('evidencia_noapedit/{id}',[
 		'as' => 'nuevaEvidenciaEdit',
 		'uses' => 'EditEvController@storeeditanoAprob'
 	]);
 
-	Route::get('pdf_evidencia_aprobada_prof/{id}','EvAprobController@pdf_evidencia_aprobada')->name('pdf_prof_evap');
+	Route::get('pdf_evidencia_aprobada_prof/{id}','EvAprobController@pdf_evidencia_aprobada_prof')->name('pdf_prof');
 });
 
 
@@ -104,7 +104,7 @@ Route::group(['namespace' => 'Revisor', 'middleware' => ['authRevisor','auth'], 
 		'uses' => 'HomeRevisorController@observacionRevisor'
 	]);
 
-	Route::get('pdf_evidencia_aprobada/{id}','HomeRevisorController@pdf_evidencia_aprobada')->name('pdf_rev');
+	Route::get('pdf_evidencia_aprobada_rev/{id}','HomeRevisorController@pdf_evidencia_aprobada_rev')->name('pdf_rev');
 });
 //	Protección rutas DAC
 Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix' => 'dac'], function()
@@ -132,7 +132,7 @@ Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix'
 		'uses' => 'HomeDacController@observacionDac'
 	]);
 
-	Route::get('pdf_evidencia_aprobada/{id}','HomeDacController@pdf_evidencia_aprobada')->name('pdf_dac');
+	Route::get('pdf_evidencia_aprobada_dac/{id}','HomeDacController@pdf_evidencia_aprobada_dac')->name('pdf_dac');
 });
 
 //	Protección rutas CONSULTAS
@@ -155,7 +155,8 @@ Route::group(['namespace' => 'Consultas', 'middleware' => ['authConsultas','auth
 	Route::get('informepen', 'Consulta4Controller@generarInforme4')->name('informepen');
 
 	Route::get('consulta5','Consulta5Controller@index')->name('consulta5');
-	Route::get('ObserCarreras','Consulta5Controller@consultaobse');
+	Route::get('ObserCarreras','Consulta5Controller@consultaobse')->name('ObserCarreras');
+	Route::get('nobser', 'Consulta5Controller@generarInforme5')->name('nobser');
 
 	Route::get('consulta6','Consulta6Controller@index')->name('consulta6');
 	Route::get('GrafAlcance','Consulta6Controller@consulalcance');
