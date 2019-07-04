@@ -1,17 +1,13 @@
 <?php
-
 namespace App\Http\Controllers\Revisor;
-
 use App\Evidencia;
 use App\Formulario;
 use App\Observaciones;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use Fpdf;
-
 class HomeRevisorController extends Controller
 {
     /**
@@ -23,7 +19,6 @@ class HomeRevisorController extends Controller
     {       
         return view('revisor.home');
     }
-
     public function colaRevisor()
     {
         //Obteniendo los datos sobre evidencias.
@@ -34,13 +29,10 @@ class HomeRevisorController extends Controller
                                 ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
                                 ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.created_at as fecha_creacion','evidencias.id as evidencia_id', 'evidencias.codigo_car')
                                 ->paginate(8);
-
         //  Obteniendo la cantidad de observaciones que tienen las evidencias.
         $num_observaciones = Observaciones::select(DB::raw('count(*) as revisiones, evidencia_id'))
                                             ->groupBy('evidencia_id')
                                             ->get();
-
-
         //  Recorriendo las evidencias
         foreach ($evidencias as $evidencia) {
             $evidencia->revisiones = 0; //Asumo que la evidencia no tiene observaciones.
@@ -58,7 +50,6 @@ class HomeRevisorController extends Controller
             
         return view('revisor.evCursoRevisor',["evidencias"=>$evidencias]);
     }
-
     /**
      * Display the specified resource.
      *
@@ -86,7 +77,6 @@ class HomeRevisorController extends Controller
                                 ->join('departamentos','carreras.codigo_dep','=','departamentos.codigo_dep')
                                 ->select('formularios.*','ambito.nombre as ambito','alcance.nombre as alcance','tipo.nombre as tipo','profesor.*','carreras.nombre_car','evidencias.id as evidencia_id','evidencias.created_at','departamentos.nombre_dep')
                                 ->get();
-
             $observaciones = Observaciones::where('evidencia_id',$id)
                                             ->join('users','users.id','=','observaciones.user_id')
                                             ->select('observaciones.*','users.name','users.email')
@@ -96,11 +86,9 @@ class HomeRevisorController extends Controller
         }
         
     }
-
     //Funcion para obtener las evidencias aprobadas
     public function getAp()
     {
-
         //Evidencias Aprobadas por Dac
         $evidencias = Evidencia::where([['estado','Finalizada'],['nivel',3],
                                 ])
@@ -128,10 +116,8 @@ class HomeRevisorController extends Controller
                                 ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
                                 ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car','alcance.nombre as alcance','ambito.nombre as ambito','tipo.nombre as tipo')
                                 ->get();
-
         return view('revisor.evidenciaNoAprobadas',["evidencias"=>$evidencias]);
     }
-
     //Funcion para mostrar las evidencias aprobadas y no aprobadas.
     public function showAprobadas($id)
     {
@@ -152,7 +138,6 @@ class HomeRevisorController extends Controller
                                 ->join('departamentos','carreras.codigo_dep','=','departamentos.codigo_dep')
                                 ->select('formularios.*','ambito.nombre as ambito','alcance.nombre as alcance','tipo.nombre as tipo','profesor.*','carreras.nombre_car','evidencias.id as evidencia_id','evidencias.nivel','evidencias.estado', 'departamentos.nombre_dep')
                                 ->get();
-
             $observaciones = Observaciones::where('evidencia_id',$id)
                                             ->join('users','users.id','=','observaciones.user_id')
                                             ->select('observaciones.*','users.name','users.email')
@@ -161,7 +146,6 @@ class HomeRevisorController extends Controller
             return view('revisor.evidenciaAprobada',["datos"=>$datos,"observaciones"=>$observaciones]);
         }
     }
-
     public function enviadasDAC()
     {
         $evidencias = Evidencia::where([['estado','Pendiente'],['nivel',3],
@@ -176,7 +160,6 @@ class HomeRevisorController extends Controller
                                 ->get();
         return view('revisor.evidenciasEnviadasDac',["evidencias"=>$evidencias]);   
     }
-
     /**
      * Modificar campo nivel de la tabla evidencias.
      *
@@ -193,7 +176,6 @@ class HomeRevisorController extends Controller
         $evidencia->save();
         return redirect()->route('colaRevisor')->with('success','Evidencia enviada correctamente a D.A.C.');
     }
-
     /**
      * Agregar una observación a la evidencia y cambiar el nivel de la evidencia.
      *
@@ -207,7 +189,6 @@ class HomeRevisorController extends Controller
         $validatedData=$request->validate([
             'observacionRevisor' => 'required|string',
         ]);
-
         //  Creando la observación en la base de datos.
         $observacion = new Observaciones;
         $observacion->evidencia_id = $id;
@@ -215,17 +196,13 @@ class HomeRevisorController extends Controller
         $observacion->user_id = auth()->user()->id;
         $observacion->nivel = 2;    //El nivel en que fue realizada la observación fue revisor.
         $observacion->save();
-
         //  Enviando la evidencia a profesor.
         $evidencia = Evidencia::find($id);  //Obteniendo los datos actuales de la evidencia. 
         $evidencia->nivel = 1;  //Cambiando el nivel a profesor.
         $evidencia->save();
-
         return redirect()->route('colaRevisor')->with('success','Observación agregada correctamente. La evidencia volvió al profesor.');
     }
-
-    public function pdf_evidencia_aprobada($id){
-
+    public function pdf_evidencia_aprobada_rev($id){
         $datos = Formulario::where('formularios.id',$id)
                         ->join('ambito','ambito.id','=','formularios.ambito_id')
                         ->join('alcance','alcance.id','=','formularios.alcance_id')
@@ -237,20 +214,13 @@ class HomeRevisorController extends Controller
                         ->join('folios','evidencias.folio_id','=','folios.id')
                         ->select('formularios.*','ambito.nombre as ambito','alcance.nombre as alcance','tipo.nombre as tipo','profesor.*','carreras.nombre_car','evidencias.id as evidencia_id','evidencias.created_at','departamentos.nombre_dep','folios.*')
                         ->first();
-
-
         //  Calculando totales.
         $total_int = $datos['int_profesores'] + $datos['int_profesionales'];
         $total_int = $total_int + $datos['int_estudiantes'] + $datos['int_autoridades'];
-
         $total_ext = $datos['ext_profesores'] + $datos['ext_profesionales'];
         $total_ext = $total_ext + $datos['ext_estudiantes'] + $datos['ext_autoridades'];
-
-
         $total = $total_int + $total_ext;
-
         Fpdf::AddPage();
-
         Fpdf::Image('img/logo_ucm_color.png',10,8,40);
         Fpdf::Image('img/logo_dac.png',160,8,40);
         Fpdf::SetFont('Arial','B',13);
@@ -261,7 +231,6 @@ class HomeRevisorController extends Controller
         Fpdf::Cell(30);
         Fpdf::Cell(120,10,utf8_decode('Departamento de Aseguramiento de la Calidad'),0,0,'C');
         Fpdf::Ln(20);
-
         Fpdf::SetFont('Arial','B',13);
         Fpdf::Cell(175,10,utf8_decode('Documento del Sistema de Gestión de Calidad'),0,0,'C');
         Fpdf::Ln(5);
@@ -270,7 +239,6 @@ class HomeRevisorController extends Controller
         Fpdf::Ln(5);
         Fpdf::Cell(180,10,utf8_decode('Identificación de Registros'),0,0,'C');
         Fpdf::Ln(15);
-
         Fpdf::Cell(30,7,utf8_decode('NºFolio'),'TBL',0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
         Fpdf::Cell(90,7,utf8_decode($datos['codigo']."-".$datos['numero']),'TBR',0,'L',FALSE);
@@ -318,17 +286,13 @@ class HomeRevisorController extends Controller
         Fpdf::Cell(63,7,utf8_decode($datos['tipo']),'BLR',0,'C',FALSE);
         Fpdf::Cell(63,7,utf8_decode($datos['ambito']),'BLR',0,'C',FALSE);
         Fpdf::Cell(64,7,utf8_decode($datos['alcance']),'BLR',0,'C',FALSE);
-
         Fpdf::Ln(16);
-
-
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(0,7,utf8_decode('Descripción'),'TLR',0,'L',FALSE);
         Fpdf::Ln(7);
         Fpdf::SetFont('Arial', '', 9);
         Fpdf::MultiCell(0,5,utf8_decode($datos['descripcion']),'BLR','J',FALSE);
         Fpdf::Ln();
-
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(0,7,utf8_decode('Responsable'),'TLR',0,'L',FALSE);
         Fpdf::Ln(7);
@@ -337,13 +301,10 @@ class HomeRevisorController extends Controller
         Fpdf::MultiCell(0,5,utf8_decode('Nombre: '.$nombre),'BLR','J',FALSE);
         Fpdf::MultiCell(0,5,utf8_decode('R.U.N: '.$datos['run']),'BLR','J',FALSE);
         Fpdf::Ln(7);
-
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(0,7,utf8_decode('Asistentes'),1,1,'C',FALSE);
         Fpdf::Cell(95,7,utf8_decode('Internos'),1,0,'C',FALSE);
         Fpdf::Cell(95,7,utf8_decode('Externos'),1,1,'C',FALSE);
-
-
         Fpdf::Cell(47.5,7,utf8_decode('Autoridades'),0,0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
         Fpdf::Cell(47.5,7,utf8_decode($datos['int_autoridades']),0,0,'L',FALSE);
@@ -387,13 +348,10 @@ class HomeRevisorController extends Controller
         Fpdf::Cell(95,7,utf8_decode('Total asistentes'),1,0,'C',FALSE);
         Fpdf::Cell(95,7,utf8_decode($total),1,1,'C',FALSE);
         Fpdf::Ln(7);
-
         $fecha_actual = new Carbon;
-
         Fpdf::Output('I',"Ev_".$datos['codigo']."-".$datos['numero']."_".$fecha_actual);
         Fpdf::Output();
         exit;
         
     }
-
 }
