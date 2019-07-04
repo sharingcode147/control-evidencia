@@ -65,7 +65,7 @@ Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'p
 		'uses' => 'EditEvController@storeeditanoAprob'
 	]);
 
-	Route::get('pdf_evidencia_aprobada_prof/{id}','EvAprobController@pdf_evidencia_aprobada')->name('pdf_prof_evap');
+	Route::get('pdf_evidencia_aprobada_prof/{id}','EvAprobController@pdf_evidencia_aprobada_prof')->name('pdf_prof');
 });
 
 
@@ -77,6 +77,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['authAdmin','auth'], 'pre
 	Route::resource('users','UsersController');
 	Route::resource('users2','Users2Controller');
 	Route::resource('carreras','CarrerasController');
+	Route::resource('departamentos','DepController');
 });
 //	Protección rutas REVISOR
 Route::group(['namespace' => 'Revisor', 'middleware' => ['authRevisor','auth'], 'prefix' => 'revisor'], function()
@@ -103,7 +104,7 @@ Route::group(['namespace' => 'Revisor', 'middleware' => ['authRevisor','auth'], 
 		'uses' => 'HomeRevisorController@observacionRevisor'
 	]);
 
-	Route::get('pdf_evidencia_aprobada/{id}','HomeRevisorController@pdf_evidencia_aprobada')->name('pdf_rev');
+	Route::get('pdf_evidencia_aprobada_rev/{id}','HomeRevisorController@pdf_evidencia_aprobada_rev')->name('pdf_rev');
 });
 //	Protección rutas DAC
 Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix' => 'dac'], function()
@@ -131,7 +132,7 @@ Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix'
 		'uses' => 'HomeDacController@observacionDac'
 	]);
 
-	Route::get('pdf_evidencia_aprobada/{id}','HomeDacController@pdf_evidencia_aprobada')->name('pdf_dac');
+	Route::get('pdf_evidencia_aprobada_dac/{id}','HomeDacController@pdf_evidencia_aprobada_dac')->name('pdf_dac');
 });
 
 //	Protección rutas CONSULTAS
@@ -143,7 +144,7 @@ Route::group(['namespace' => 'Consultas', 'middleware' => ['authConsultas','auth
 	
 	Route::get('consulta2','Consulta2Controller@index')->name('consulta2');
 	Route::get('obtenerDatos2', 'Consulta2Controller@obtenerDatoss');
-	Route::get('informe2','Consulta2Controller@generarInforme2');
+	Route::get('informe2','Consulta2Controller@generarInforme2')->name('informe2');
 
 	Route::get('consulta3','consulta3Controller@index')->name('consulta3');
 	Route::get('obtenerDatos1/{anio1}/{anio2}/{mes1}/{mes2}/{dia1}/{dia2}', 'consulta3Controller@obtenerDatos1');
@@ -151,7 +152,7 @@ Route::group(['namespace' => 'Consultas', 'middleware' => ['authConsultas','auth
 
 	Route::get('consulta4','Consulta4Controller@index')->name('consulta4');
 	Route::get('PendientesCarrera', 'Consulta4Controller@consultaPendientes');
-	Route::get('informe4', 'Consulta4Controller@generarInforme4');
+	Route::get('informepen', 'Consulta4Controller@generarInforme4')->name('informepen');
 
 	Route::get('consulta5','Consulta5Controller@index')->name('consulta5');
 	Route::get('ObserCarreras','Consulta5Controller@consultaobse');

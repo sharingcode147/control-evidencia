@@ -41,7 +41,7 @@
                     <td>{{$evidencia->nombre_car}}</td>
                     <td>{{$evidencia->fecha_realizacion}}</td>
                     <td  align="center"><a href="{{route('evidenciaap',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
-                    <td  align="center"><a href="{{route('pdf_prof_evap',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-fw fa-file-pdf-o"></i></td>
+                    <td  align="center"><a href="{{route('pdf_prof',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-fw fa-file-pdf-o"></i></td>
                   </tr>
                 @endforeach
                 @endif
@@ -92,7 +92,7 @@
                     <td>{{$evidencia->tipo}}</td>
                     <td>{{$evidencia->fecha_realizacion}}</td>
                     <td  align="center"><a href="{{route('evidenciaap',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
-                    <td  align="center"><a href="{{route('pdf_rev',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-fw fa-file-pdf-o"></i></td>
+                    <td  align="center"><a href="{{route('pdf_prof',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-fw fa-file-pdf-o"></i></td>
                   </tr>
                 @endforeach
                 @endif

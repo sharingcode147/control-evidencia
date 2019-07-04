@@ -171,13 +171,12 @@ $(function () {
 	});
 
 	$("#generar_informe2").on("click",function(){
-	    var url = "/consultas/informe2";
+	    var url = "informe2";
 	    this.href = url;
 	      
 	});
 });
 
 </script>
-
 
 @endsection

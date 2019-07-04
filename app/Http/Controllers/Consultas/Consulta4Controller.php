@@ -92,7 +92,7 @@ class Consulta4Controller extends Controller
     public function generarInforme4(){
         $datos = $this->consultaPendientes();
         $datos = json_decode($datos);
-        dd($datos);
+        
         Fpdf::AddPage();
 
         Fpdf::Image('img/logo_ucm_color.png',10,8,40);

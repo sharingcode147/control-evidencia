@@ -23,7 +23,7 @@
 							  <h3 class="box-title">Carreras</h3>
 							  <div class="pull-right">
 				                <div class="btn-group">
-				                  <a href="{{ route('carreras.create') }}" class="btn btn-info" >Añadir Carrera</a>
+				                  <a href="{{ route('departamentos.create') }}" class="btn btn-info" >Añadir Departamento</a>
 				                </div>
 				              	</div>
 								</div>
@@ -33,21 +33,20 @@
 							      <tr>
 							        <th>ID</th>
 							        <th>Nombre</th>
-							        <th>Departamento</th>
-							        
+				
+							    
 							        <th>Eliminar</th>
 							 
 							      </tr>
 							    </thead>
-							    @if($carrera->count())
-							    @foreach($carrera as $car)
+							    @if($dep->count())
+							    @foreach($dep as $de)
 							      <tr>
-							        <td>{{$car->codigo_car}}</td>
-                    				<td>{{$car->nombre_car}}</td>
-                    				<td>{{$car->codigo_dep}}</td>
-							       
+							        <td>{{$de->codigo_dep}}</td>
+                    				<td>{{$de->nombre_dep}}</td>
+                    			
 							        <td>
-				                    	<form action="{{action('Admin\CarrerasController@destroy', $car->codigo_car)}}" method="post">
+				                    	<form action="{{action('Admin\DepController@destroy', $de->codigo_dep)}}" method="post">
 				                       	{{csrf_field()}}
 				                       	<input name="_method" type="hidden" value="DELETE">
 				     
@@ -61,9 +60,9 @@
 							      <tr>
 							        <th>ID</th>
 							        <th>Nombre</th>
-							        <th>Departamento</th>
+							        
+							        <th>Editar</th>
 							       
-							        <th>Eliminar</th>
 							      </tr>                 
 							    </tfoot>
 							  </table>

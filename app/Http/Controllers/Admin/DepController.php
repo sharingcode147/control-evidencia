@@ -12,16 +12,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class CarrerasController extends Controller
+class DepController extends Controller
 {
     //
-    public function index()
+     public function index()
     {
         //
-        $carrera=DB::table('carreras')
-                            ->orderBy('codigo_car','DESC')  
+        $dep=DB::table('departamentos')
+                            ->orderBy('codigo_dep','DESC')  
                             ->get();
-        return view('admin\Carreras.index',["carrera"=>$carrera]); 
+        return view('admin\Departamentos.index',["dep"=>$dep]); 
     }
     /**
      * Show the form for creating a new resource.
@@ -31,9 +31,9 @@ class CarrerasController extends Controller
     public function create()
     {
         //
-        $carreras = Departamento::all();                  
+        $dep = Departamento::all();                  
       
-        return view('admin\Carreras.create',["carreras"=>$carreras]);
+        return view('admin\Departamentos.create',["dep"=>$dep]);
     }
 
     /**
@@ -48,15 +48,13 @@ class CarrerasController extends Controller
         $validatedData=$request->validate([
             'name' => 'required|max:255',
             'codigo' => 'required|max:255',
-            'codigo_dep' => 'required',
             ]);
-        $user = new Carrera();
-        $user->codigo_car = $request->codigo;
-        $user->nombre_car = $request->name;
-        $user->codigo_dep= $request->codigo_dep;
+        $user = new Departamento();
+        $user->codigo_dep = $request->codigo;
+        $user->nombre_dep = $request->name;
         $user->save();
         
-        return redirect()->route('carreras.index')->with('success','Registro creado satisfactoriamente'); 
+        return redirect()->route('departamentos.index')->with('success','Registro creado satisfactoriamente'); 
     }
 
     /**
@@ -80,11 +78,11 @@ class CarrerasController extends Controller
     public function edit($id)
     {
         //
-        $dep = Departamento::all();               
+                     
       
-        $carreras=Carrera::where('codigo_car', $id)->first();
+        $dep=Departamento::where('codigo_dep', $id)->first();
         
-        return view('admin\Carreras.edit',["carreras"=>$carreras,"dep"=>$dep]);
+        return view('admin\Departamentos.edit',["dep"=>$dep]);
     }
 
     /**
@@ -100,17 +98,14 @@ class CarrerasController extends Controller
         $validatedData=$request->validate([
             'codigo_dep' => 'required',
             'name' => 'required|max:255',
-            'codigo_car' => 'required',
             ]);
  
-        $carreras=Carrera::where('codigo_car',$id)->first();
-        $carreras->codigo_car = $request->codigo_car;
+        $carreras=Departamento::where('codigo_dep',$id)->first();
         $carreras->codigo_dep = $request->codigo_dep;
-        $carreras->nombre_carrera= $request->name;
+        $carreras->nombre_dep= $request->name;
         $carreras->save();
 
-
-        return redirect()->route('carreras.index')->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('departamentos.index')->with('success','Registro actualizado satisfactoriamente');
     }
 
     /**
@@ -122,8 +117,9 @@ class CarrerasController extends Controller
     public function destroy($id)
     {
         //
-        Carrera::where('codigo_car', $id)->delete();
+        Departamento::where('codigo_dep', $id)->delete();
        
-        return redirect()->route('carreras.index')->with('success','Registro eliminado satisfactoriamente');
+        return redirect()->route('departamentos.index')->with('success','Registro eliminado satisfactoriamente');
     }
+
 }
