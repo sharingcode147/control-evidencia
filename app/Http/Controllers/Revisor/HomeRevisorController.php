@@ -240,8 +240,11 @@ class HomeRevisorController extends Controller
 
 
         //  Calculando totales.
-        $total_int = $datos->int_profesores + $datos->int_profesionales + $datos->int_estudiantes + $datos->int_autoridades;
-        $total_ext = $datos->ext_profesores + $datos->ext_profesionales + $datos->ext_estudiantes + $datos->ext_autoridades;
+        $total_int = $datos->int_profesores + $datos->int_profesionales;
+        $total_int = $total_int + $datos->int_estudiantes + $datos->int_autoridades;
+
+        $total_ext = $datos->ext_profesores + $datos->ext_profesionales;
+        $total_ext = $total_ext + $datos->ext_estudiantes + $datos->ext_autoridades;
         $total = $total_int + $total_ext;
 
         Fpdf::AddPage();
