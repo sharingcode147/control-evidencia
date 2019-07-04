@@ -37,7 +37,7 @@
     </div>
   </div>
   <div class="col-md-12" id="generar_informe1">
-    <a class="btn btn-block btn-success btn-flat"  id="generar_informe" >
+    <a class="btn btn-block btn-success btn-flat" href="/consultas/informe7" id="generar_informe" >
       Generar informe
     </a>
   </div>
@@ -104,7 +104,7 @@
       var dia2 = fin[1].replace(" ","");
       var anio2 = fin[2].replace(" ","");
       
-      var url = "/consultas/informe3/"+anio1+"/"+anio2+"/"+mes1+"/"+mes2+"/"+dia1+"/"+dia2;
+      var url = "/consultas/informe7/";
       this.href = url;
       
     });

@@ -37,7 +37,7 @@
     </div>
   </div>
   <div class="col-md-12" id="generar_informe2">
-    <a class="btn btn-block btn-success btn-flat" type="button" id="generar_informe">
+    <a class="btn btn-block btn-success btn-flat" type="button" href="/consultas/informe8" id="generar_informe">
       Generar informe
     </a>
   </div>
