@@ -41,6 +41,14 @@ Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'p
 		'as' => 'evidenciaap',
 		'uses' => 'EvAprobController@showAprobadas'
 	]);
+	Route::get('evidencia_noap/{id}',[
+		'as' => 'edita_evnoaprob',
+		'uses' => 'EvNoAprobController@edinoAprob'
+	]);
+	Route::get('evidencia_edit/{id}',[
+		'as' => 'evidencianoap',
+		'uses' => 'EvNoAprobController@shownoAprobadas'
+	]);
 });
 
 

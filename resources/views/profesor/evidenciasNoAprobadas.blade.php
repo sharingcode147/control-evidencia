@@ -28,6 +28,7 @@
                     <th>Carrera</th>
                     <th>Fecha</th>
                     <th>Ver</th>
+                    <th>Editar</th>
                   </tr>
                 </thead>
                 @if($evidencias->count())
@@ -39,7 +40,8 @@
                     <td>{{$evidencia->nombre1}} {{$evidencia->nombre2}} {{$evidencia->apellido1}} {{$evidencia->apellido2}}</td>
                     <td>{{$evidencia->nombre_car}}</td>
                     <td>{{$evidencia->fecha_realizacion}}</td>
-                    <td  align="center"><a href="{{route('evidencia',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+                    <td  align="center"><a href="{{route('evidencianoap',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+                    <td  align="center"><a href="{{route('edita_evnoaprob',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-pencil-square-o"></i></td>
                   </tr>
                 @endforeach
                 @else
@@ -58,6 +60,7 @@
                     <th>Carrera</th>
                     <th>Fecha</th>
                     <th>Ver</th>
+                    <th>Editar</th>
                   </tr>                 
                 </tfoot>
               </table>
@@ -82,6 +85,7 @@
                     <th>Tipo</th>
                     <th>Fecha</th>
                     <th>Ver</th>
+                    <th>Editar</th>
                   </tr>
                 </thead>
                 @if($evidencias->count())
@@ -94,6 +98,7 @@
                     <td>{{$evidencia->tipo}}</td>
                     <td>{{$evidencia->fecha_realizacion}}</td>
                     <td  align="center"><a href="{{route('evidencia',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+                    <td  align="center"><a href="{{route('edita_evnoaprob',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-pencil-square-o"></i></td>
                   </tr>
                 @endforeach
                 @else
@@ -112,6 +117,7 @@
                     <th>Tipo</th>
                     <th>Fecha</th>
                     <th>Ver</th>
+                    <th>Editar</th>
                   </tr>                 
                 </tfoot>
               </table>
