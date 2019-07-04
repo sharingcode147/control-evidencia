@@ -160,6 +160,7 @@ Route::group(['namespace' => 'Consultas', 'middleware' => ['authConsultas','auth
 
 	Route::get('consulta6','Consulta6Controller@index')->name('consulta6');
 	Route::get('GrafAlcance','Consulta6Controller@consulalcance');
+	Route::get('info6','Consulta6Controller@generarInforme6')->name('info6');
 
 	Route::get('consulta7','Consulta7Controller@index')->name('consulta7');
 	Route::get('grafambito','Consulta7Controller@consultambito');
