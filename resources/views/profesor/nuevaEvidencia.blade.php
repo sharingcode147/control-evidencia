@@ -18,8 +18,9 @@
 
                 <div class="box-body">
 
-                    <form method="POST" action="{{ route('nuevaEvidenciast') }}">
+                    <form method="POST" action="{{ route('nuevaEvidenciast') }}" enctype="multipart/form-data">
                         @csrf
+                         <!--Nombre usuario -->
                              <div class="form-group">
                                 <label>Nombre de usuario:</label>
                                 <div class="input-group">
@@ -27,7 +28,7 @@
                                     <input type="text" class="form-control" placeholder="{{ Auth::user()->name }}" disabled>
                                 </div>
                              </div>
-
+                            <!-- Careras -->
                             <div class="form-group">
                                 <label>Carrera</label>
                                 <select class="form-control" name="name_car">
@@ -36,7 +37,8 @@
                                 @endforeach
                                 </select>
                              </div>
-
+                              <!--Titulo de evidencia-->
+                
                             <div class="form-group">
                                 <label>Titulo:</label>
                                 <div class="input-group">
@@ -44,6 +46,8 @@
                                     <span class="input-group-addon"><i class="fa fa-book"></i></span>
                                 </div>
                             </div>
+
+                             <!--Descripcion -->
      
                             <div class="form-group">
                                 <label>Descripción:</label>
@@ -51,6 +55,7 @@
                             </div>
 
 
+                             <!-- Alcance-ambito-tipo -->
                              <div class="row">
                                     <div class="col-lg-4">
                                         <div class="form-group">
@@ -99,88 +104,93 @@
                             </div>
 
 
+                             <!-- Cantidad de personas afectadas-->
+                             <div class="contenedor">
+                                 
+                                <div class="row gris-style">
+                                    <div class="text-center" role="alert"><h4>Cantidad de personas afectadas</h4></div>
+                                    <div class="form-group">
+                                        <div class="text-center" role="alert"><label>Interior</label></div>
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label>Estudiantes</label>
+                                                <div class="input-largo">
+                                                    <input type="number"  min="0" max="99999" value="0" name="int_estudiantes">
+                                                </div>
+                                            </div>
+                                        </div>
 
-                            <div class="row">
-                                <div class="text-center" role="alert">Cantidad de personas afectadas</div>
-                                <div class="form-group">
-                                    <div class="text-center" role="alert">Interior</div>
-                                    <div class="col-lg-3">
-                                        <div class="form-group">
-                                            <label>Estudiantes</label>
-                                            <div class="input-group">
-                                                <input type="number"  min="0" max="99999" value="0" name="int_estudiantes">
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label for="example-date-input">Profesores</label>
+                                                <div class="input-largo">
+                                                    <input type="number" min="0" max="99999" value="0" name="int_profesores">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label for="example-date-input">Autoridades</label>
+                                                <div class="input-largo">
+                                                    <input type="number"  min="0" max="99999" value="0" name="int_autoridades">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label for="example-date-input">Profesionales</label>
+                                                <div class="input-largo">
+                                                    <input type="number"  min="0" max="99999" value="0" name="int_profesionales">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-3">
-                                        <div class="form-group">
-                                            <label for="example-date-input">Profesores</label>
-                                            <div class="input-group">
-                                                <input type="number" min="0" max="99999" value="0" name="int_profesores">
+
+                                    <div class="form-group">
+                                        <div class="text-center" role="alert"><label>Exterior</label></div>
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label for="example-date-input">Estudiantes</label>
+                                                <div class="input-largo">
+                                                    <input type="number"  min="0" max="99999" value="0" name="ext_estudiantes">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-lg-3">
-                                        <div class="form-group">
-                                            <label for="example-date-input">Autoridades</label>
-                                            <div class="input-group">
-                                                <input type="number"  min="0" max="99999" value="0" name="int_autoridades">
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label for="example-date-input">Profesores</label>
+                                                <div class="input-largo">
+                                                    <input type="number" min="0" max="99999" value="0" name="ext_profesores">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-lg-3">
-                                        <div class="form-group">
-                                            <label for="example-date-input">Profesionales</label>
-                                            <div class="input-group">
-                                                <input type="number"  min="0" max="99999" value="0" name="int_profesionales">
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label for="example-date-input">Autoridades</label>
+                                                <div class="input-largo">
+                                                    <input type="number"  min="0" max="99999" value="0" name="ext_autoridades">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label for="example-date-input">Profesionales</label>
+                                                <div class="input-largo">
+                                                    <input type="number"  min="0" max="99999" value="0" name="ext_profesionales">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                             </div>
 
-
-                                <div class="form-group">
-                                    <div class="text-center" role="alert">Exterior</div>
-                                    <div class="col-lg-3">
-                                        <div class="form-group">
-                                            <label for="example-date-input">Estudiantes</label>
-                                            <div class="input-group">
-                                                <input type="number"  min="0" max="99999" value="0" name="ext_estudiantes">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-3">
-                                        <div class="form-group">
-                                            <label for="example-date-input">Profesores</label>
-                                            <div class="input-group">
-                                                <input type="number" min="0" max="99999" value="0" name="ext_profesores">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-3">
-                                        <div class="form-group">
-                                            <label for="example-date-input">Autoridades</label>
-                                            <div class="input-group">
-                                                <input type="number"  min="0" max="99999" value="0" name="ext_autoridades">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-3">
-                                        <div class="form-group">
-                                            <label for="example-date-input">Profesionales</label>
-                                            <div class="input-group">
-                                                <input type="number"  min="0" max="99999" value="0" name="ext_profesionales">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                             <!--fecha realizacion-->
 
                             <div class="form-group">
                                 <label>Fecha realización:</label>
@@ -190,6 +200,18 @@
                                 </div>
                             </div>
 
+                             <!-- subir archivo-->
+                            <div class="form-group">
+                                <label>Subir archivo:</label>
+                                <div class="input-group">
+                                    <input class="form-control" type="file" id="archivos" name="archivoEvid" accept="application/pdf, .doc, .docx, .odf, zip, x-rar-compressed">
+                                    <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                </div>
+                                <div class="small-info">Exntesiones: .pdf, .doc, .docx, .odf, .zip, .rar permitidas.</div>
+                            </div>
+
+                             <!--Subir imagen-->
+        
                             <div class="content" id="app">
                                 <app/>
                             </div>

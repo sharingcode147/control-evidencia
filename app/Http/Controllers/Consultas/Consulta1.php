@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 use App\Evidencia;
 use App\Formulario;
+
+use Illuminate\Support\Carbon;
 use Fpdf;
 
 class Consulta1 extends Controller
@@ -40,6 +42,7 @@ class Consulta1 extends Controller
         $total_int = 0;
         $total_ext = 0;
         $total = 0;
+        $cantidad = 0;
 
     	//	Recorriendo la respuesta.
         foreach($formularios as $form){
@@ -54,6 +57,8 @@ class Consulta1 extends Controller
 	    	$ext_profesionales = $ext_profesionales + $form->ext_profesionales;
 	    	$ext_estudiantes = $ext_estudiantes + $form->ext_estudiantes;
 	    	$ext_autoridades = $ext_autoridades + $form->ext_autoridades;
+
+            $cantidad++;
         }
 
         //  Calculando totales.
@@ -73,7 +78,8 @@ class Consulta1 extends Controller
 	    	"ext_autoridades" => $ext_autoridades,
             "total_int" => $total_int,
             "total_ext" => $total_ext,
-            "total" => $total
+            "total" => $total,
+            "cantidad" => $cantidad
     	);
     	//	Retornando los datos.
         return json_encode($datos);
@@ -144,9 +150,13 @@ class Consulta1 extends Controller
         Fpdf::Ln(7);
         Fpdf::Cell(95,7,utf8_decode('Total asistentes'),1,0,'C',FALSE);
         Fpdf::Cell(95,7,utf8_decode($datos->total),1,1,'C',FALSE);
+        Fpdf::Ln(7);
+        Fpdf::Cell(190,7,utf8_decode('*Elaborado en base a un total de '.$datos->cantidad.' evidencias.'),0,1,'L',FALSE);
+        Fpdf::Ln();      
 
-        Fpdf::Ln();       
-        Fpdf::Output();
+        $fecha_actual = new Carbon;
+
+        Fpdf::Output('I',"informe_1_".$fecha_actual);
         exit;
     }
 }

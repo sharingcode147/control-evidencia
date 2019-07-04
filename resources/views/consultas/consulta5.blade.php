@@ -29,24 +29,13 @@
   <div class="col-md-6">
     <div class="box box-danger">
       <div class="box-header with-border">
-        <h3 class="box-title">Evidencias Pendientes de Revision</h3>
+        <h3 class="box-title">Numero de Observaciones por Carrera</h3>
       </div>
       <div class="box-body chart-responsive">
         <div class="chart" id="chart1" style="height: 300px; position: relative;"></div>
       </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="box box-danger">
-      <div class="box-header with-border">
-        <h3 class="box-title">Evidencias Finalizadas</h3>
-      </div>
-      <div class="box-body chart-responsive">
-        <div class="chart" id="chart2" style="height: 300px; position: relative;"></div>
-      </div>
-    </div>
-  </div>
-
   <div class="col-md-12" id="generar_informe">
     <button class="btn btn-block btn-success btn-flat" type="button">
       Generar informe
@@ -72,18 +61,13 @@
   $(function () {
     "use strict";
     $("#consul").on("click",function(){
-      var url = "PendientesCarrera";
+      var url = "ObserCarreras";
       $.get(url,function(resul){
         var datos= jQuery.parseJSON(resul);
         var ICI =datos.ICI;
         var INC=datos.INC;
         var ICE=datos.ICE;
         var IND=datos.IND;
-        var FICI =datos.FICI;
-        var FINC=datos.FINC;
-        var FICE=datos.FICE;
-        var FIND=datos.FIND;
-      
         //CHART 1 - EXTERNOS
         var chart1 = new Morris.Donut({
           element: 'chart1',
@@ -98,23 +82,12 @@
           hideHover: 'auto'
 
         });
-        var chart2 = new Morris.Donut({
-          element: 'chart2',
-          resize: true,
-          colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
-          data: [
-            {label: "FICI", value: FICI},
-            {label: "FINC", value: FINC},
-            {label: "FICE", value: FICE},
-            {label: "FIND", value: FIND}
-          ],
-          hideHover: 'auto'
-
-        });
-
        
       })
+
     });
+
   });
+
 </script>
 @endsection
