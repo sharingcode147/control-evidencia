@@ -37790,13 +37790,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "contenedor" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-9" }, [
+      _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("Example Component")
-          ]),
+          _c("div", { staticClass: "card-header" }),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [_c("image-uploader")], 1)
         ])
@@ -37878,7 +37876,7 @@ var render = function() {
         [
           _c("i", { staticClass: "fa fa-cloud-upload" }),
           _vm._v(" "),
-          _c("p", [_vm._v("Arrastra tus imgenes aqui")]),
+          _c("p", [_vm._v("Arrastra tus imágenes aquí")]),
           _vm._v(" "),
           _c("div", [_vm._v("O")]),
           _vm._v(" "),

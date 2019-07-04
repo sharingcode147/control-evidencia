@@ -65,7 +65,7 @@
   </div>
 
   <div class="col-md-12">
-    <a class="btn btn-block btn-success btn-flat" href="{{url('/consultas/informe1')}}" id="generar_informe">
+    <a class="btn btn-block btn-success btn-flat" id="generar_informe">
       Generar informe
     </a> 
   </div>
@@ -140,7 +140,7 @@
         
       
         //CHART 1 - INTERNOS
-        var chart2 = new Morris.Donut({
+        var chart1 = new Morris.Donut({
           element: 'chart1',
           resize: true,
           colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
@@ -154,7 +154,7 @@
         });
         
         //CHART 2 - EXTERNOS
-        var chart1 = new Morris.Donut({
+        var chart2 = new Morris.Donut({
           element: 'chart2',
           resize: true,
           colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
@@ -186,8 +186,8 @@
       var dia2 = fin[1].replace(" ","");
       var anio2 = fin[2].replace(" ","");
       
-      var url = "/"+anio1+"/"+anio2+"/"+mes1+"/"+mes2+"/"+dia1+"/"+dia2;
-      this.href = this.href+url;
+      var url = "/consultas/informe1/"+anio1+"/"+anio2+"/"+mes1+"/"+mes2+"/"+dia1+"/"+dia2;
+      this.href = url;
       
     });
     

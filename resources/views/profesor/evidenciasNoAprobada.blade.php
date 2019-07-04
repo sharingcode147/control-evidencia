@@ -16,8 +16,7 @@
 
         <!-- Formulario -->
         <div class="tab-pane active" id="form">
-          <div class="tab-pane active" id="form">
-          @foreach($datos as $dato)
+                    @foreach($datos as $dato)
           <center>
             <h2>Documento del Sistema de Gestión de Calidad</h2>
             <h4>Registros del Sistema de Gestión de Calidad</h4>
@@ -25,6 +24,9 @@
           </center>
           
 
+          <div class="form-group">
+            <label>*EVIDENCIA NO APROBADA</label>
+          </div>
           <!--fecha realizacion-->
 
           <div class="form-group">
@@ -41,6 +43,11 @@
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                 <label class="form-control">{{$dato->nombre1}} {{$dato->nombre2}} {{$dato->apellido1}} {{$dato->apellido2}}</label>
             </div>
+          </div>
+          <!-- Departamento -->
+          <div class="form-group">
+            <label>Departamento</label>
+            <label class="form-control">{{$dato->nombre_dep}}</label>
           </div>
           <!-- Carrera -->
           <div class="form-group">
@@ -169,11 +176,7 @@
             </div>
           </div>
 
-
-         
           @endforeach
-        </div>
-
         </div>
 
         <!-- Observaciones -->

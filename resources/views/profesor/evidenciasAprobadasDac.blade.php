@@ -1,76 +1,122 @@
 @extends('theme.LTE.layout')
 
 @section('content')
-<div class="box">
-			<div class="box box-success collapsed-box box-solidd">
-			  <h3 class="box-title">Evidencias aprobadas DAC</h3>
-			</div>
+ <div class="row">
+  <div class="col-xs-12">
+    <div>Vista por:</div>
+    <div class="nav-tabs-custom">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#general" data-toggle="tab">Vista general</a></li>
+        <li><a href="#datos2" data-toggle="tab">Ver por alcance/ámbito/tipo</a></li>
+      </ul>
+      <div class="tab-content">
 
-			<div class="box box-success collapsed-box box-solid">
-				<div class="box-header with-border">
+        <!-- GENERAL -->
+        <div class="tab-pane active" id="general">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Evidencias aprobadas por DAC</h3>
+            </div>
+            <div class="box-body">
+              <table id="evidencias1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>R.U.N.</th>
+                    <th>Profesor</th>
+                    <th>Carrera</th>
+                    <th>Fecha</th>
+                    <th>Ver</th>
+                    <th>PDF</th>
+                  </tr>
+                </thead>
+                @if($evidencias->count())
+                @foreach($evidencias->sortBy('fecha_realizacion') as $evidencia)
+                  <tr>
+                    <td>EVID-{{$evidencia->id}}-{{$evidencia->codigo_car}}</td>
+                    <td>{{$evidencia->titulo}}</td>
+                    <td>{{$evidencia->run}}</td>
+                    <td>{{$evidencia->nombre1}} {{$evidencia->nombre2}} {{$evidencia->apellido1}} {{$evidencia->apellido2}}</td>
+                    <td>{{$evidencia->nombre_car}}</td>
+                    <td>{{$evidencia->fecha_realizacion}}</td>
+                    <td  align="center"><a href="{{route('evidenciaap',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+                    <td  align="center"><a href="{{route('pdf_prof_evap',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-fw fa-file-pdf-o"></i></td>
+                  </tr>
+                @endforeach
+                @endif
+                <tfoot>
+                  <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>R.U.N.</th>
+                    <th>Profesor</th>
+                    <th>Carrera</th>
+                    <th>Fecha</th>
+                    <th>Ver</th>
+                    <th>PDF</th>
+                  </tr>                 
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
 
-				  	<i class="fa fa-filter"></i><h3 class="box-title">Filtros</h3>
+        <!-- ALCANCE/AMBITO/TIPO -->
+        <div class="tab-pane" id="datos2">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Evidencias aprobadas por DAC</h3>
+            </div>
+            <div class="box-body">
+              <table id="evidencias2" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Alcance</th>
+                    <th>Ámbito</th>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                    <th>Ver</th>
+                    <th>PDF</th>
+                  </tr>
+                </thead>
+                @if($evidencias->count())
+                @foreach($evidencias->sortBy('fecha_realizacion') as $evidencia)
+                  <tr>
+                    <td>EVID-{{$evidencia->id}}-{{$evidencia->codigo_car}}</td>
+                    <td>{{$evidencia->titulo}}</td>
+                    <td>{{$evidencia->alcance}}</td>
+                    <td>{{$evidencia->ambito}}</td>
+                    <td>{{$evidencia->tipo}}</td>
+                    <td>{{$evidencia->fecha_realizacion}}</td>
+                    <td  align="center"><a href="{{route('evidenciaap',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+                    <td  align="center"><a href="{{route('pdf_rev',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-fw fa-file-pdf-o"></i></td>
+                  </tr>
+                @endforeach
+                @endif
+                <tfoot>
+                  <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Alcance</th>
+                    <th>Ámbito</th>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                    <th>Ver</th>
+                    <th>PDF</th>
+                  </tr>                 
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
 
-				  	<div class="box-tools pull-right">
-						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-				  	</div>
-				  <!-- /.box-tools -->
-				</div>
-				<!-- /.box-header -->
-				<form method="POST" action="">
-					<div class="box-body">
-						AQUI FILTROS
-					</div>
-					<!-- /.box-body -->
-					<div class="box-footer">
-						<button type="submit" class="btn btn-success pull-right ">Enviar</button>
-					</div>
-				</form>
-			  </div>
-			  <!-- /.box -->
-
-			  <!-- /.box -->
-			<div class="box-body">
-			  <table id="evidencias" class="table table-bordered table-striped">
-				<thead>
-				  <tr>
-					<th>ID</th>
-					<th>Título</th>
-					<th>R.U.N.</th>
-					<th>Profesor</th>
-					<th>Carrera</th>
-					<th>Fecha</th>
-					<th>Ver</th>
-				  </tr>
-				</thead>
-				@if($evidencias->count())
-				@foreach($evidencias->sortBy('fecha_realizacion') as $evidencia)
-				  <tr>
-					<td>EVID-{{$evidencia->id}}-{{$evidencia->codigo_car}}</td>
-					<td>{{$evidencia->titulo}}</td>
-					<td>{{$evidencia->run}}</td>
-					<td>{{$evidencia->nombre1}} {{$evidencia->nombre2}} {{$evidencia->apellido1}} {{$evidencia->apellido2}}</td>
-					<td>{{$evidencia->nombre_car}}</td>
-					<td>{{$evidencia->fecha_realizacion}}</td>
-					<td  align="center"><a href="{{route('evidenciaaprobdac',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
-				  </tr>
-			@endforeach
-			@endif
-				<tfoot>
-				  <tr>
-					<th>ID</th>
-					<th>Título</th>
-					<th>R.U.N.</th>
-					<th>Profesor</th>
-					<th>Carrera</th>
-					<th>Fecha</th>
-					<th>Ver</th>
-				  </tr>                 
-				</tfoot>
-			  </table>
-			</div>
-		  </div>
-
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('scripts')
@@ -82,7 +128,8 @@
 <!-- page script -->
 <script>
   $(function () {
-	$('#evidencias').DataTable()
+    $('#evidencias1').DataTable()
+    $('#evidencias2').DataTable()
   })
 </script>
 @endsection

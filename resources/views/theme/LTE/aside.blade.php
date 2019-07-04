@@ -64,23 +64,10 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">REVISOR</li>
           <li><a href="{{route('revisorHome')}}"><i class="fa fa-home"></i> <span>Home</span></a></li>
+          <li><a href="{{route('colaRevisor')}}"><i class="fa fa-home"></i> <span>Cola de evidencias</span></a></li>
           <li><a href="{{route('revaprobadas')}}"><i class="fa fa-book"></i> <span>Evidencias aprobadas</span></a></li>
           <li><a href="{{route('revnoaprobadas')}}"><i class="fa fa-book"></i> <span>Evidencias no aprobadas</span></a></li>
           <li><a href="{{route('evenviadas')}}"><i class="fa fa-book"></i> <span>Evidencias enviadas a DAC</span></a></li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-pie-chart"></i>
-              <span>Opciones agrupadas</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> sub op1</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> sub op2</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> sub op3</a></li>
-            </ul>
-          </li>
         </ul>
         @endif
 
@@ -89,10 +76,10 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">DAC</li>
 
-          <li><a href="#"><i class="fa fa-book"></i> <span>Opción</span></a></li>
+          <li><a href="{{route('dacHome')}}"><i class="fa fa-home"></i> <span>Home</span></a></li>
           <li><a href="{{route('evaprobadasdac')}}"><i class="fa fa-book"></i> <span>Evidencias aprobadas</span></a></li>
 
-          <li><a href="{{route('dacHome')}}"><i class="fa fa-home"></i> <span>Home</span></a></li>
+          
 
           <li class="treeview">
             <a href="#">
@@ -127,12 +114,13 @@
             <ul class="treeview-menu">
               <li><a href="{{route('consulta1')}}"><i class="fa fa-circle-o"></i> Número de asistentes</a></li>
               <li><a href="{{route('consulta2')}}"><i class="fa fa-circle-o"></i>Número solicitudes profesor</a></li>
-              <li><a href="{{route('consulta3')}}"><i class="fa fa-circle-o"></i>Número de evidencias por carrera</a></li>
+              <li><a href="{{route('consulta3')}}"><i class="fa fa-circle-o"></i>Evidencias por carrera</a></li>
               <li><a href="{{route('consulta4')}}"><i class="fa fa-circle-o"></i>Pendientes por carrera</a></li>
               <li><a href="{{route('consulta5')}}"><i class="fa fa-circle-o"></i>N°Observaciones por carrera</a></li>
               <li><a href="{{route('consulta6')}}"><i class="fa fa-circle-o"></i>N°Evidencias por alcance</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> sub op3</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> sub op2</a></li>
+              <li><a href="{{route('consulta7')}}"><i class="fa fa-circle-o"></i>N°Evidencias por ambito</a></li>
+              <li><a href="{{route('consulta8')}}"><i class="fa fa-circle-o"></i>N° de Profesores por Carerra</a></li>
+              
             </ul>
           </li>
         </ul>

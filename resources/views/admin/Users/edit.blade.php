@@ -30,6 +30,9 @@
 						</select>
 					</div>
 					<div class="form-group">
+					    <label for="formGroupExampleInput">Nombre de usuario </label>
+					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese username" name="username" value="{{$user->name}}">
+					<div class="form-group">
 					    <label for="formGroupExampleInput">Run </label>
 					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese Run" name="run" value="{{$profe->run}}">
 					</div>

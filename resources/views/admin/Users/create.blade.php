@@ -30,6 +30,10 @@
 						</select>
 					</div>
 					<div class="form-group">
+					    <label for="formGroupExampleInput">Nombre Usuario </label>
+					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese username" name="username">
+					</div>
+					<div class="form-group">
 					    <label for="formGroupExampleInput">Run </label>
 					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese Run" name="run">
 					</div>

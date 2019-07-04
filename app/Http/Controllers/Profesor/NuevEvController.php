@@ -24,7 +24,7 @@ class NuevEvController extends Controller
      */
     public function index()
     {
-        return view('profesor.nuevaEvidencia');
+
     }
 
     /**
@@ -63,7 +63,12 @@ class NuevEvController extends Controller
         //     'codigo_car' => 'required',
         //     ]);
 
-
+        if($request->hasFile('archivoEvid'))
+        {
+            $file = $request->file('archivoEvid'); //recibo el archivo
+            $name = time().$file->getClientOriginalName(); //le doy un nuevo nombre al archivo
+            $file->move(public_path().'/filesev',$name);//moverlo a carpeta dentro del proyecto
+        }
         $cod_carrera = Carrera::where('nombre_car',$request->name_car)->select('codigo_car')->first();
         $cod_alcance = Alcance::where('nombre',$request->name_alcance)->select('id')->first();
         $cod_tipo = Tipo::where('nombre',$request->name_tipo)->select('id')->first();

@@ -29,6 +29,10 @@
 					</div>
 					</div>
 					<div class="form-group">
+					    <label for="exampleFormControlTextarea1">Nombre</label>
+					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese nombre" name="name2"></input>
+					</div>
+					<div class="form-group">
 					    <label for="exampleFormControlTextarea1">Email</label>
 					    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese email" name="email"></input>
 					</div>

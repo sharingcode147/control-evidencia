@@ -26,29 +26,35 @@ class HomeProfesorController extends Controller
     public function EvidenciaRevisor()
     {
         //
-        $userID =  auth()->user()->id;  
 
-        $evidencias = Evidencia::where([['estado','Pendiente'],['evidencias.user_id',$userID],
+       $userID =  auth()->user()->id;  
+
+        $evidencias = Evidencia::where([['estado','Pendiente'],['nivel',2],['evidencias.user_id',$userID],
                                 ])
-                                ->where('nivel',2)
                                 ->join('profesor','evidencias.user_id','=','profesor.user_id')
                                 ->join('formularios','evidencias.formulario_id','=','formularios.id')
+                                ->join('alcance','formularios.alcance_id','=','alcance.id')
+                                ->join('ambito','formularios.ambito_id','=','ambito.id')
+                                ->join('tipo','formularios.tipo_id','=','tipo.id')
                                 ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
-                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id')
+                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car','alcance.nombre as alcance','ambito.nombre as ambito','tipo.nombre as tipo')
                                 ->paginate(8);
+
         return view('profesor.evidenciasCursoRevisor',["evidencias"=>$evidencias]);
     }
     public function EvidenciaDac()
     {
         //
         $userID =  auth()->user()->id;  
-        $evidencias = Evidencia::where('estado','Pendiente')
-                                ->where('nivel',3)
-                                ->where('evidencias.user_id',$userID)
+        $evidencias = Evidencia::where([['estado','Pendiente'],['nivel',3],['evidencias.user_id',$userID],
+                                ])
                                 ->join('profesor','evidencias.user_id','=','profesor.user_id')
                                 ->join('formularios','evidencias.formulario_id','=','formularios.id')
+                                ->join('alcance','formularios.alcance_id','=','alcance.id')
+                                ->join('ambito','formularios.ambito_id','=','ambito.id')
+                                ->join('tipo','formularios.tipo_id','=','tipo.id')
                                 ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
-                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id')
+                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car','alcance.nombre as alcance','ambito.nombre as ambito','tipo.nombre as tipo')
                                 ->paginate(8);
 
         return view('profesor.evidenciasCursoDac',["evidencias"=>$evidencias]);
