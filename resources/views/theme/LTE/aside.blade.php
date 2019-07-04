@@ -64,6 +64,7 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">REVISOR</li>
           <li><a href="{{route('revisorHome')}}"><i class="fa fa-home"></i> <span>Home</span></a></li>
+          <li><a href="{{route('colaRevisor')}}"><i class="fa fa-home"></i> <span>Cola de evidencias</span></a></li>
           <li><a href="{{route('revaprobadas')}}"><i class="fa fa-book"></i> <span>Evidencias aprobadas</span></a></li>
           <li><a href="{{route('revnoaprobadas')}}"><i class="fa fa-book"></i> <span>Evidencias no aprobadas</span></a></li>
           <li><a href="{{route('evenviadas')}}"><i class="fa fa-book"></i> <span>Evidencias enviadas a DAC</span></a></li>

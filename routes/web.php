@@ -51,6 +51,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['authAdmin','auth'], 'pre
 Route::group(['namespace' => 'Revisor', 'middleware' => ['authRevisor','auth'], 'prefix' => 'revisor'], function()
 {
 	Route::get('home','HomeRevisorController@index')->name('revisorHome');
+	Route::get('colaRevisor','HomeRevisorController@colaRevisor')->name('colaRevisor');
 	Route::get('evidenciasaprobadas','HomeRevisorController@getAp')->name('revaprobadas');
 	Route::get('evidenciasnoaprobadas','HomeRevisorController@getNoAp')->name('revnoaprobadas');
 	Route::get('evidenciasenvdac','HomeRevisorController@enviadasDAC')->name('evenviadas');

@@ -19,6 +19,11 @@ class HomeRevisorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {       
+        return view('revisor.home');
+    }
+
+    public function colaRevisor()
     {
         //Obteniendo los datos sobre evidencias.
         $evidencias = Evidencia::where('estado','Pendiente')
@@ -50,7 +55,7 @@ class HomeRevisorController extends Controller
         }
         
             
-        return view('revisor.home',["evidencias"=>$evidencias]);
+        return view('revisor.evCursoRevisor',["evidencias"=>$evidencias]);
     }
 
     /**
@@ -183,7 +188,7 @@ class HomeRevisorController extends Controller
         $evidencia->nivel = 3;
         //   Guardando los cambios.
         $evidencia->save();
-        return redirect()->route('revisorHome')->with('success','Evidencia enviada correctamente a D.A.C.');
+        return redirect()->route('colaRevisor')->with('success','Evidencia enviada correctamente a D.A.C.');
     }
 
     /**
@@ -213,6 +218,6 @@ class HomeRevisorController extends Controller
         $evidencia->nivel = 1;  //Cambiando el nivel a profesor.
         $evidencia->save();
 
-        return redirect()->route('revisorHome')->with('success','Observación agregada correctamente. La evidencia volvió al profesor.');
+        return redirect()->route('colaRevisor')->with('success','Observación agregada correctamente. La evidencia volvió al profesor.');
     }
 }
