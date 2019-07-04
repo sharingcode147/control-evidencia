@@ -47,10 +47,10 @@
     </div>
   </div>
 
-  <div class="col-md-12" id="generar_informe">
-    <button class="btn btn-block btn-success btn-flat" type="button">
+  <div class="col-md-12">
+    <a class="btn btn-block btn-success btn-flat" id="generar_informe">
       Generar informe
-    </button>
+    </a> 
   </div>
 
 </div>
@@ -66,6 +66,25 @@
 <script src="{{asset("assets/$theme/bower_components/morris.js/morris.min.js")}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset("assets/$theme./dist/js/demo.js")}}"></script>
+<!-- Select2 -->
+<script src="{{asset("assets/$theme/bower_components/select2/dist/js/select2.full.min.js")}}"></script>
+<!-- InputMask -->
+<script src="{{asset("assets/$theme/plugins/input-mask/jquery.inputmask.js")}}"></script>
+<script src="{{asset("assets/$theme/plugins/input-mask/jquery.inputmask.date.extensions.js")}}"></script>
+<script src="{{asset("assets/$theme/plugins/input-mask/jquery.inputmask.extensions.js")}}"></script>
+<!-- date-range-picker -->
+<script src="{{asset("assets/$theme/bower_components/moment/min/moment.min.js")}}"></script>
+<script src="{{asset("assets/$theme/bower_components/bootstrap-daterangepicker/daterangepicker.js")}}"></script>
+<!-- bootstrap datepicker -->
+<script src="{{asset("assets/$theme/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js")}}"></script>
+<!-- bootstrap color picker -->
+<script src="{{asset("assets/$theme/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js")}}"></script>
+<!-- bootstrap time picker -->
+<script src="{{asset("assets/$theme/plugins/timepicker/bootstrap-timepicker.min.js")}}"></script>
+<!-- SlimScroll -->
+<script src="{{asset("assets/$theme/bower_components/jquery-slimscroll/jquery.slimscroll.min.js")}}"></script>
+<!-- iCheck 1.0.1 -->
+<script src="{{asset("assets/$theme/plugins/iCheck/icheck.min.js")}}"></script>
 
 <!-- page script -->
 <script>
@@ -103,10 +122,10 @@
           resize: true,
           colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
           data: [
-            {label: "FICI", value: FICI},
-            {label: "FINC", value: FINC},
-            {label: "FICE", value: FICE},
-            {label: "FIND", value: FIND}
+            {label: "ICI", value: FICI},
+            {label: "INC", value: FINC},
+            {label: "ICE", value: FICE},
+            {label: "IND", value: FIND}
           ],
           hideHover: 'auto'
 
@@ -117,10 +136,8 @@
     });
 
     $("#generar_informe").on("click",function(){
-      alert('hi');
-      var url = "informe4";
-      this.href = url;
-      
+      var url2 ="/consultas/informepen";
+      this.href = url2;
     });
   });
 </script>

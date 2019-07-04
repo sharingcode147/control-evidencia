@@ -90,11 +90,11 @@
 	</div>
 
 	<!--boton generar informe-->
-	<div class="col-md-12" id="generar_informe2">
-	    <button class="btn btn-block btn-success btn-flat" type="button">
-	      Generar informe
-	    </button>
-	</div>
+  <div class="col-md-12">
+    <a class="btn btn-block btn-success btn-flat" id="generar_informe2">
+      Generar informe
+    </a> 
+  </div>
 </div>
 
 
@@ -157,41 +157,12 @@ $(function () {
 	});
 
 	$("#generar_informe2").on("click",function(){
-	    var url = "/consultas/informe2";
+	    var url = "informe2";
 	    this.href = url;
 	      
 	});
 });
 
 </script>
-
-
-$(function () {
-	"use strict";
-	$("#consultar").on("click",function(){
-		var url = "obtenerDatos2";
-		$.get(url,function(resul){
-			var datos= jQuery.parseJSON(resul);
-			var num_ev = datos[0].num_ev;
-			var runprof = datos[0].run;
-			var num_ev1 = 10;//datos[1].num_ev;
-			//var runprof1 = datos[1].run;
-			//CHART 1
-			var chart1 = new Morris.Donut({
-			  element: 'chart1',
-			  resize: true,
-			  colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
-			  data: [
-				{label: runprof, value: num_ev},
-				{label: "runprof1", value: num_ev1}
-			  ],
-			  hideHover: 'auto'
-			});
-		})
-	  
-	});
-});
-
-
 
 @endsection
