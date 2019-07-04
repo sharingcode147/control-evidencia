@@ -28,7 +28,7 @@
             </a>
             <ul class="treeview-menu">
               <li><a href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> sub op2</a></li>
+              <li><a href="{{route('carreras.index')}}"><i class="fa fa-users"></i> Carreras</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> sub op3</a></li>
             </ul>
           </li>

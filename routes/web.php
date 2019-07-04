@@ -76,6 +76,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['authAdmin','auth'], 'pre
 	Route::get('home','HomeAdminController@index')->name('adminHome');
 	Route::resource('users','UsersController');
 	Route::resource('users2','Users2Controller');
+	Route::resource('carreras','CarrerasController');
 });
 //	Protección rutas REVISOR
 Route::group(['namespace' => 'Revisor', 'middleware' => ['authRevisor','auth'], 'prefix' => 'revisor'], function()
