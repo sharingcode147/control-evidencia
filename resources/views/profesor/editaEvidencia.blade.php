@@ -23,7 +23,7 @@
                         <h4>Identificación de Registros</h4>
                     </center>
 
-                    <form method="POST" action="{{ route('nuevaEvidenciaEdit') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('nuevaEvidenciaEdit',$datos->id) }}" enctype="multipart/form-data">
                         @csrf
                          <!--Nombre usuario -->
                              <div class="form-group">

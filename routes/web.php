@@ -60,7 +60,7 @@ Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'p
 		'as' => 'edita_evnoaprob',
 		'uses' => 'EditEvController@editnoAprob'
 	]);
-	Route::post('evidencia_noapedit',[
+	Route::post('evidencia_noapedit/{id}',[
 		'as' => 'nuevaEvidenciaEdit',
 		'uses' => 'EditEvController@storeeditanoAprob'
 	]);

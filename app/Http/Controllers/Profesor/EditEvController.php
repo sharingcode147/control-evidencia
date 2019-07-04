@@ -58,7 +58,7 @@ class EditEvController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeeditanoAprob(Request $request)
+    public function storeeditanoAprob(Request $request, $id)
     {
         if($request->hasFile('archivoEvid'))
         {
@@ -71,8 +71,9 @@ class EditEvController extends Controller
         $cod_tipo = Tipo::where('nombre',$request->name_tipo)->select('id')->first();
         $cod_ambito = Ambito::where('nombre',$request->name_ambito)->select('id')->first();
 
-        $formulari = new Formulario();
 
+
+        $formulari = Formulario::find($id);
         $formulari->alcance_id = $cod_alcance->id;
         $formulari->ambito_id = $cod_ambito->id;
         $formulari->tipo_id = $cod_tipo->id;
@@ -89,11 +90,7 @@ class EditEvController extends Controller
         $formulari->ext_profesionales = $request->ext_profesionales;
         $formulari->save();
 
-        $evidencia = new Evidencia;
-        $evidencia->user_id = Auth::user()->id;
-        $evidencia->formulario_id = $formulari->id;
-        $evidencia->estado = 'Pendiente';
-        $evidencia->nivel = 2;
+        $evidencia = Evidencia::find($id);
         $evidencia->codigo_car = $cod_carrera->codigo_car;
         $evidencia->save();
 
