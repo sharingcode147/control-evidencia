@@ -97,7 +97,7 @@
                     <td>{{$evidencia->ambito}}</td>
                     <td>{{$evidencia->tipo}}</td>
                     <td>{{$evidencia->fecha_realizacion}}</td>
-                    <td  align="center"><a href="{{route('evidencia',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
+                    <td  align="center"><a href="{{route('evidencianoap',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
                     <td  align="center"><a href="{{route('edita_evnoaprob',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-pencil-square-o"></i></td>
                   </tr>
                 @endforeach

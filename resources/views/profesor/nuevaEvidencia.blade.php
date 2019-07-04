@@ -17,6 +17,12 @@
 
                 <div class="box-body">
 
+                    <center>
+                        <h2>Documento del Sistema de Gestión de Calidad</h2>
+                        <h4>Registros del Sistema de Gestión de Calidad</h4>
+                        <h4>Identificación de Registros</h4>
+                    </center>
+
                     <form method="POST" action="{{ route('nuevaEvidenciast') }}" enctype="multipart/form-data">
                         @csrf
                          <!--Nombre usuario -->
