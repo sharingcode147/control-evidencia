@@ -37,17 +37,26 @@ Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'p
 
 	Route::post('images-upload', 'prueba@upload');
 
+	//ve l evidencia aprobada
 	Route::get('evidencia/{id}',[
 		'as' => 'evidenciaap',
 		'uses' => 'EvAprobController@showAprobadas'
 	]);
+
+	//ve la evidencia no aprobada
 	Route::get('evidencia_noap/{id}',[
-		'as' => 'edita_evnoaprob',
-		'uses' => 'EvNoAprobController@edinoAprob'
-	]);
-	Route::get('evidencia_edit/{id}',[
 		'as' => 'evidencianoap',
 		'uses' => 'EvNoAprobController@shownoAprobadas'
+	]);
+
+	//edita la evidencia
+	Route::get('evidencia_noapedit/{id}',[
+		'as' => 'edita_evnoaprob',
+		'uses' => 'EditEvController@editnoAprob'
+	]);
+	Route::post('evidencia_noapedit',[
+		'as' => 'nuevaEvidenciaEdit',
+		'uses' => 'EditEvController@storeeditanoAprob'
 	]);
 });
 
