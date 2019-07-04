@@ -20,72 +20,81 @@
 @section('content')
 
 <div class="row">
-  <div class="col-md-12">
-    <button class="btn btn-block btn-success btn-flat" type="button" id="consultar">
-      Consultar
-    </button>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-md-6">
-	<div class="box box-danger">
-	  <div class="box-header with-border">
-		<h3 class="box-title">Solicitudes enviadas por profesor</h3>
-
-		<div class="box-tools pull-right">
-		  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-		  </button>
-		  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-		</div>
-	  </div>
-	  <div class="box-body chart-responsive">
-		<div class="chart" id="chart1" style="height: 300px; position: relative;"></div>
+		<!--boton consultar-->
+	<div class="col-md-12">
+	    <button class="btn btn-block btn-success btn-flat" type="button" id="consultar">
+	      Consultar
+	    </button>
 	  </div>
 	</div>
-  </div>
 
-  <div class="col-md-6">
-	<div class="box box-danger">
-	  <div class="box-header with-border">
-		<h3 class="box-title">Tabla informativa</h3>
+	<div class="row">
+		<!--grafico-->
+	  	<div class="col-md-6">
+		<div class="box box-danger">
+		  <div class="box-header with-border">
+			<h3 class="box-title">Solicitudes enviadas por profesor</h3>
 
-		<div class="box-tools pull-right">
-		  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-		  </button>
-		  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+			<div class="box-tools pull-right">
+			  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+			  </button>
+			  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+			</div>
+		  </div>
+		  <div class="box-body chart-responsive">
+			<div class="chart" id="chart1" style="height: 300px; position: relative;"></div>
+		  </div>
 		</div>
 	  </div>
-	  <div class="box-body chart-responsive">
-			  <table id="evidencias" class="table table-bordered table-striped">
-				<thead>
-				  <tr>
-					<th>R.U.N.</th>
-					<th>Profesor</th>
-					<th>Numero solicitudes</th>
-				  </tr>
-				</thead>
-				@if($evidencias->count())
-				@foreach($evidencias->sortBy('num_ev') as $evidencia)
-				  <tr>
-					<td>{{$evidencia->run}}</td>
-					<td>{{$evidencia->nombre1}} {{$evidencia->nombre2}} {{$evidencia->apellido1}} {{$evidencia->apellido2}}</td>
-					<td><center><span class="label label-primary">{{$evidencia->num_ev}}</span></center></td>
-				  </tr>
-			@endforeach
-			@endif
-				<tfoot>
-				  <tr>
-					<th>R.U.N.</th>
-					<th>Profesor</th>
-					<th>Numero solicitudes</th>
-				  </tr>                 
-				</tfoot>
-			  </table>
-	  </div>
-	</div>    
-  </div>
+	<!--tabla informativa-->
+	<div class="col-md-6">
+		<div class="box box-danger">
+		  <div class="box-header with-border">
+			<h3 class="box-title">Tabla informativa</h3>
 
+			<div class="box-tools pull-right">
+			  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+			  </button>
+			  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+			</div>
+		  </div>
+		  <div class="box-body chart-responsive">
+				  <table id="evidencias" class="table table-bordered table-striped">
+					<thead>
+					  <tr>
+						<th>R.U.N.</th>
+						<th>Profesor</th>
+						<th>Numero solicitudes</th>
+					  </tr>
+					</thead>
+					@if($evidencias->count())
+					@foreach($evidencias->sortBy('num_ev') as $evidencia)
+					  <tr>
+						<td>{{$evidencia->run}}</td>
+						<td>{{$evidencia->nombre1}} {{$evidencia->nombre2}} {{$evidencia->apellido1}} {{$evidencia->apellido2}}</td>
+						<td><center><span class="label label-primary">{{$evidencia->num_ev}}</span></center></td>
+					  </tr>
+				@endforeach
+				@endif
+					<tfoot>
+					  <tr>
+						<th>R.U.N.</th>
+						<th>Profesor</th>
+						<th>Numero solicitudes</th>
+					  </tr>                 
+					</tfoot>
+				  </table>
+		  </div>
+		</div>    
+	</div>
+
+	<!--boton generar informe-->
+	<div class="col-md-12" id="generar_informe2">
+	    <button class="btn btn-block btn-success btn-flat" type="button">
+	      Generar informe
+	    </button>
+	</div>
 </div>
 
 
@@ -128,7 +137,6 @@ $(function () {
 		var url = "obtenerDatos2";
 		$.get(url,function(resul){
 			var datos= jQuery.parseJSON(resul);
-
 			var num_ev = datos[0].num_ev;
 			var runprof = datos[0].run;
 			var num_ev1 = 10;//datos[1].num_ev;
@@ -144,13 +152,46 @@ $(function () {
 			  ],
 			  hideHover: 'auto'
 			});
+		})
+	  
+	});
 
+	$("#generar_informe2").on("click",function(){
+	    var url = "/consultas/informe2";
+	    this.href = url;
+	      
+	});
+});
+
+</script>
+
+
+$(function () {
+	"use strict";
+	$("#consultar").on("click",function(){
+		var url = "obtenerDatos2";
+		$.get(url,function(resul){
+			var datos= jQuery.parseJSON(resul);
+			var num_ev = datos[0].num_ev;
+			var runprof = datos[0].run;
+			var num_ev1 = 10;//datos[1].num_ev;
+			//var runprof1 = datos[1].run;
+			//CHART 1
+			var chart1 = new Morris.Donut({
+			  element: 'chart1',
+			  resize: true,
+			  colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
+			  data: [
+				{label: runprof, value: num_ev},
+				{label: "runprof1", value: num_ev1}
+			  ],
+			  hideHover: 'auto'
+			});
 		})
 	  
 	});
 });
 
-</script>
 
 
 @endsection
