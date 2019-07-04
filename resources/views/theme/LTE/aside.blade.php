@@ -64,23 +64,10 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">REVISOR</li>
           <li><a href="{{route('revisorHome')}}"><i class="fa fa-home"></i> <span>Home</span></a></li>
+          <li><a href="{{route('colaRevisor')}}"><i class="fa fa-home"></i> <span>Cola de evidencias</span></a></li>
           <li><a href="{{route('revaprobadas')}}"><i class="fa fa-book"></i> <span>Evidencias aprobadas</span></a></li>
           <li><a href="{{route('revnoaprobadas')}}"><i class="fa fa-book"></i> <span>Evidencias no aprobadas</span></a></li>
           <li><a href="{{route('evenviadas')}}"><i class="fa fa-book"></i> <span>Evidencias enviadas a DAC</span></a></li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-pie-chart"></i>
-              <span>Opciones agrupadas</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> sub op1</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> sub op2</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> sub op3</a></li>
-            </ul>
-          </li>
         </ul>
         @endif
 
