@@ -15,8 +15,7 @@ class Consulta4Controller extends Controller
     	return view('consultas.consulta4');
     }
     public function consultaPendientes(){
-        //	Obteniendo el número de asistentes en el rango de fechas.
-        //	Consultando los formularios en el rango de fechas.
+        //consultando evidencias disponibles
         $cpendiente = Evidencia::all();
         //	Inicializando en 0 en caso de no tener resultados.
         $ICI = 0;					
@@ -31,7 +30,7 @@ class Consulta4Controller extends Controller
 
     	//	Recorriendo la respuesta.
         foreach($cpendiente as $form){
-        	//	Sumando los participantes internos.
+        	//	Sumando las evidencias pendientes.
             if($form->estado=="Pendiente"){
                 
             	if($form->codigo_car=="ICI"){
@@ -47,6 +46,7 @@ class Consulta4Controller extends Controller
             		$IND=$IND+1;
             	}
             }
+            //Sumando evidencias Finalizadas
             if($form->estado=="Finalizada"){
                 
                 if($form->codigo_car=="ICI"){
