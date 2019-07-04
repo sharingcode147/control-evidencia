@@ -19,7 +19,13 @@ class Consulta2Controller extends Controller
 										->select(DB::raw('evidencias.user_id, run, count(*) as num_ev,nombre1, nombre2, apellido1, apellido2'))
 										->groupBy('evidencias.user_id','run','nombre1','nombre2','apellido1','apellido2')
 										->get();
-		return view('consultas.consulta2',["evidencias"=>$evidencias]);     
+
+		$dato = DB::table('evidencias')
+								->join('profesor','evidencias.user_id','=','profesor.user_id')
+								->select(DB::raw('run, count(*) as num_ev'))
+								->groupBy('evidencias.user_id','run')
+								->get();
+		return view('consultas.consulta2',["evidencias"=>$evidencias,"dato"=>$dato]);     
 	}
 
 	public function obtenerDatoss(){
@@ -71,8 +77,10 @@ class Consulta2Controller extends Controller
 		Fpdf::Cell(113,7,utf8_decode('Nombre'),1,0,'C',FALSE);
 		Fpdf::Cell(33,7,utf8_decode('Total Evidencias'),1,1,'C',FALSE);
 
+		$total_ev = 0;
 		foreach($datos as $dato)
 		{
+			$total_ev = $total_ev+1;
 			$nombre_full = $dato->nombre1. ' ' .$dato->nombre2. ' ' .$dato->apellido1.' '.$dato->apellido2;
 			Fpdf::Cell(43,7,utf8_decode($dato->run),1,0,'C',FALSE);
 			Fpdf::Cell(113,7,utf8_decode($nombre_full),1,0,'C',FALSE);
@@ -84,7 +92,7 @@ class Consulta2Controller extends Controller
 		Fpdf::Cell(95,7,utf8_decode('Total asistentes'),1,0,'C',FALSE);
 		Fpdf::Cell(95,7,utf8_decode('que onda'),1,1,'C',FALSE);
 		Fpdf::Ln(7);
-		Fpdf::Cell(190,7,utf8_decode('*Elaborado en base a un total de evidencias.'),0,1,'L',FALSE);
+		Fpdf::Cell(190,7,utf8_decode('*Elaborado en base a un total de '.$total_ev.'  evidencias.'),0,1,'L',FALSE);
 		Fpdf::Ln();      
 
 		$fecha_actual = new Carbon;

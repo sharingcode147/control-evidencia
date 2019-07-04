@@ -4,8 +4,25 @@
 @section('content')
 
 
-<h1>REVISOR</h1>
+<div class="col-md-12">
+  <div class="box box-default collapsed-box">
+    <div class="box-header with-border">
+      <h3 class="box-title">¡Bienvenido revisor!</h3>
 
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+        </button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <p>Revisa - Comenta - Envía - Controla. <br><br> Tu tiempo es importante, con la ayuda de SISGEV ya no tendrás toneladas de trabajo sobre tu escritorio.</p>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+</div>
 
 
 @endsection

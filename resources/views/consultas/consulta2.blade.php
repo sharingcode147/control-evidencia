@@ -19,6 +19,22 @@
 
 @section('content')
 
+
+<?php
+
+$data = [];
+
+foreach ($dato as $datos)
+{
+	$data[] = [
+	        'label' => $datos->run,
+	        'value' => (int)$datos->num_ev
+	    ];
+}
+?>
+<script>var chartData = <?=json_encode($data)?>;</script>
+
+
 <div class="row">
 
 		<!--boton consultar-->
@@ -129,10 +145,11 @@
 <script src="{{asset("assets/$theme/bower_components/jquery-slimscroll/jquery.slimscroll.min.js")}}"></script>
 <!-- iCheck 1.0.1 -->
 <script src="{{asset("assets/$theme/plugins/iCheck/icheck.min.js")}}"></script>
-<script>
 
+<script>
 $(function () {
 	"use strict";
+
 	$("#consultar").on("click",function(){
 		var url = "obtenerDatos2";
 		$.get(url,function(resul){
@@ -146,10 +163,7 @@ $(function () {
 			  element: 'chart1',
 			  resize: true,
 			  colors: ["#3c8dbc", "#f56954", "#00a65a", "#430e45"],
-			  data: [
-				{label: runprof, value: num_ev},
-				{label: "runprof1", value: num_ev1}
-			  ],
+			  data: chartData,
 			  hideHover: 'auto'
 			});
 		})

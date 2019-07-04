@@ -240,8 +240,13 @@ class HomeRevisorController extends Controller
 
 
         //  Calculando totales.
-        $total_int = $datos->int_profesores + $datos->int_profesionales + $datos->int_estudiantes + $datos->int_autoridades;
-        $total_ext = $datos->ext_profesores + $datos->ext_profesionales + $datos->ext_estudiantes + $datos->ext_autoridades;
+        $total_int = $datos['int_profesores'] + $datos['int_profesionales'];
+        $total_int = $total_int + $datos['int_estudiantes'] + $datos['int_autoridades'];
+
+        $total_ext = $datos['ext_profesores'] + $datos['ext_profesionales'];
+        $total_ext = $total_ext + $datos['ext_estudiantes'] + $datos['ext_autoridades'];
+
+
         $total = $total_int + $total_ext;
 
         Fpdf::AddPage();
@@ -268,40 +273,40 @@ class HomeRevisorController extends Controller
 
         Fpdf::Cell(30,7,utf8_decode('NºFolio'),'TBL',0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(90,7,utf8_decode($datos->codigo."-".$datos->numero),'TBR',0,'L',FALSE);
+        Fpdf::Cell(90,7,utf8_decode($datos['codigo']."-".$datos['numero']),'TBR',0,'L',FALSE);
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(0,7,utf8_decode('Fecha de Emisión del Registro'),'TLR',0,'C',FALSE);
         Fpdf::Ln(7);
         Fpdf::SetFont('Arial', '', 9);
         Fpdf::Cell(120,7,'','',0,'L',FALSE);
-        Fpdf::Cell(0,7,utf8_decode($datos->created_at),'BLR',0,'C',FALSE);
+        Fpdf::Cell(0,7,utf8_decode($datos['created_at']),'BLR',0,'C',FALSE);
         Fpdf::Ln(7);
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(120,7,'','',0,'L',FALSE);
         Fpdf::Ln(7);
         Fpdf::Cell(30,7,utf8_decode('Título'),'TBL',0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(0,7,utf8_decode($datos->titulo),'TBR',0,'L',FALSE);
+        Fpdf::Cell(0,7,utf8_decode($datos['titulo']),'TBR',0,'L',FALSE);
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Ln(7);
         Fpdf::Cell(30,7,utf8_decode('ID'),'TBL',0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(0,7,utf8_decode($datos->evidencia_id),'TBR',0,'L',FALSE);  
+        Fpdf::Cell(0,7,utf8_decode($datos['evidencia_id']),'TBR',0,'L',FALSE);  
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Ln(7);
         Fpdf::Cell(30,7,utf8_decode('Fecha realización'),'TBL',0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(0,7,utf8_decode($datos->fecha_realizacion),'TBR',0,'L',FALSE);
+        Fpdf::Cell(0,7,utf8_decode($datos['fecha_realizacion']),'TBR',0,'L',FALSE);
         Fpdf::Ln(7);
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(30,7,utf8_decode('Carrera'),'TBL',0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(0,7,utf8_decode($datos->nombre_car),'TBR',0,'L',FALSE);
+        Fpdf::Cell(0,7,utf8_decode($datos['nombre_car']),'TBR',0,'L',FALSE);
         Fpdf::Ln(7);
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(30,7,utf8_decode('Departamento'),'TBL',0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(0,7,utf8_decode($datos->nombre_dep),'TBR',0,'L',FALSE);
+        Fpdf::Cell(0,7,utf8_decode($datos['nombre_dep']),'TBR',0,'L',FALSE);
         Fpdf::Ln(7);
     
         Fpdf::SetFont('Arial', 'B', 9);
@@ -310,9 +315,9 @@ class HomeRevisorController extends Controller
         Fpdf::Cell(64,7,utf8_decode('Alcance'),'TLR',0,'C',FALSE);
         Fpdf::Ln(7);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(63,7,utf8_decode($datos->tipo),'BLR',0,'C',FALSE);
-        Fpdf::Cell(63,7,utf8_decode($datos->ambito),'BLR',0,'C',FALSE);
-        Fpdf::Cell(64,7,utf8_decode($datos->alcance),'BLR',0,'C',FALSE);
+        Fpdf::Cell(63,7,utf8_decode($datos['tipo']),'BLR',0,'C',FALSE);
+        Fpdf::Cell(63,7,utf8_decode($datos['ambito']),'BLR',0,'C',FALSE);
+        Fpdf::Cell(64,7,utf8_decode($datos['alcance']),'BLR',0,'C',FALSE);
 
         Fpdf::Ln(16);
 
@@ -321,16 +326,16 @@ class HomeRevisorController extends Controller
         Fpdf::Cell(0,7,utf8_decode('Descripción'),'TLR',0,'L',FALSE);
         Fpdf::Ln(7);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::MultiCell(0,5,utf8_decode($datos->descripcion),'BLR','J',FALSE);
+        Fpdf::MultiCell(0,5,utf8_decode($datos['descripcion']),'BLR','J',FALSE);
         Fpdf::Ln();
 
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(0,7,utf8_decode('Responsable'),'TLR',0,'L',FALSE);
         Fpdf::Ln(7);
         Fpdf::SetFont('Arial', '', 9);
-        $nombre = $datos->nombre1." ".$datos->nombre2." ".$datos->apellido1." ".$datos->apellido2;
+        $nombre = $datos['nombre1']." ".$datos['nombre2']." ".$datos['apellido1']." ".$datos['apellido2'];
         Fpdf::MultiCell(0,5,utf8_decode('Nombre: '.$nombre),'BLR','J',FALSE);
-        Fpdf::MultiCell(0,5,utf8_decode('R.U.N: '.$datos->run),'BLR','J',FALSE);
+        Fpdf::MultiCell(0,5,utf8_decode('R.U.N: '.$datos['run']),'BLR','J',FALSE);
         Fpdf::Ln(7);
 
         Fpdf::SetFont('Arial', 'B', 9);
@@ -341,35 +346,35 @@ class HomeRevisorController extends Controller
 
         Fpdf::Cell(47.5,7,utf8_decode('Autoridades'),0,0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(47.5,7,utf8_decode($datos->int_autoridades),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos['int_autoridades']),0,0,'L',FALSE);
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(47.5,7,utf8_decode('Autoridades'),0,0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(47.5,7,utf8_decode($datos->ext_autoridades),0,1,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos['ext_autoridades']),0,1,'L',FALSE);
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(47.5,7,utf8_decode('Estudiantes'),0,0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(47.5,7,utf8_decode($datos->int_estudiantes),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos['int_estudiantes']),0,0,'L',FALSE);
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(47.5,7,utf8_decode('Estudiantes'),0,0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(47.5,7,utf8_decode($datos->ext_estudiantes),0,1,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos['ext_estudiantes']),0,1,'L',FALSE);
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(47.5,7,utf8_decode('Profesionales'),0,0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(47.5,7,utf8_decode($datos->int_profesionales),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos['int_profesionales']),0,0,'L',FALSE);
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(47.5,7,utf8_decode('Profesionales'),0,0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(47.5,7,utf8_decode($datos->ext_profesionales),0,1,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos['ext_profesionales']),0,1,'L',FALSE);
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(47.5,7,utf8_decode('Profesores'),0,0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(47.5,7,utf8_decode($datos->int_profesores),0,0,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos['int_profesores']),0,0,'L',FALSE);
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(47.5,7,utf8_decode('Profesores'),0,0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
-        Fpdf::Cell(47.5,7,utf8_decode($datos->ext_profesores),0,1,'L',FALSE);
+        Fpdf::Cell(47.5,7,utf8_decode($datos['ext_profesores']),0,1,'L',FALSE);
         Fpdf::SetFont('Arial', 'B', 9);
         Fpdf::Cell(47.5,7,utf8_decode('Total: '),1,0,'L',FALSE);
         Fpdf::SetFont('Arial', '', 9);
@@ -385,7 +390,7 @@ class HomeRevisorController extends Controller
 
         $fecha_actual = new Carbon;
 
-        Fpdf::Output('I',"Ev_".$datos->codigo."-".$datos->numero."_".$fecha_actual);
+        Fpdf::Output('I',"Ev_".$datos['codigo']."-".$datos['numero']."_".$fecha_actual);
         Fpdf::Output();
         exit;
         
