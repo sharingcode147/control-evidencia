@@ -2,181 +2,25 @@
 @extends('theme.LTE.layout')
 
 @section('content')
-	<h1>DAC</h1>
-	@if(Session::has('success'))
-        <div class="col-md-12 alert alert-success" role="alert">
-            <button class='close' data-dismiss="alert">
-                &times;
-            </button>
-            {{Session::get('success')}}
-        </div>
-    @endif
-		
-	<div class="row">
-	  	<div class="col-xs-12">
-			<div>Prioridad por:</div>
-			<div class="nav-tabs-custom">
-	  			<ul class="nav nav-tabs">
-	    			<li class="active"><a href="#pri_1" data-toggle="tab">Sin prioridad</a></li>
-	    			<li><a href="#pri_2" data-toggle="tab">Cantidad de revisiones</a></li>
-	    			<li><a href="#pri_3" data-toggle="tab">Días en el sistema</a></li>
-	  			</ul>
-	  			<div class="tab-content">
+<div class="col-md-12">
+  <div class="box box-default collapsed-box">
+    <div class="box-header with-border">
+      <h3 class="box-title">¡Bienvenido D.A.C!</h3>
 
-	        		<!-- SIN PRIORIDAD -->
-	        		<div class="tab-pane active" id="pri_1">
-						<div class="box">
-							<div class="box-header">
-							  <h3 class="box-title">Evidencias pendientes</h3>
-							</div>
-							<div class="box-body">
-							  <table id="evidencias1" class="table table-bordered table-striped">
-							    <thead>
-							      <tr>
-							        <th>R.U.N</th>
-							        <th>Nombre</th>
-							        <th>Carrera</th>
-							        <th>Título</th>
-							        <th>Estado</th>
-							        <th>Fecha</th>
-							        <th>Ver</th>
-							      </tr>
-							    </thead>
-							    @if($evidencias->count())
-							    @foreach($evidencias->sortBy('fecha_realizacion') as $evidencia)
-							      <tr>
-							        <td>{{$evidencia->run}}</td>
-							        <td>{{$evidencia->nombre1}}</td>
-							        <td>{{$evidencia->nombre_car}}</td>
-							        <td>{{$evidencia->titulo}}</td>
-							        <td><span class="label label-warning">Pendiente</span></td>
-							        <td>{{$evidencia->fecha_realizacion}}</td>
-							        <td><a class="btn btn-danger" href="{{route('formularioDac-show',$evidencia->id)}}"><i class="fa fa-eye"></i></a></td>
-							      </tr>
-								@endforeach
-								@endif
-							    <tfoot>
-							      <tr>
-							        <th>R.U.N</th>
-							        <th>Nombre</th>
-							        <th>Carrera</th>
-							        <th>Título</th>
-							        <th>Estado</th>
-							        <th>Fecha</th>
-							        <th>Ver</th>
-							      </tr>                 
-							    </tfoot>
-							  </table>
-							</div>
-						</div>
-
-	        		</div>
-
-					<!-- CANTIDAD DE REVISIONES -->
-	        		<div class="tab-pane" id="pri_2">
-						<div class="box">
-							<div class="box-header">
-							  <h3 class="box-title">Evidencias pendientes</h3>
-							</div>
-							<div class="box-body">
-							  <table id="evidencias2" class="table table-bordered table-striped">
-							    <thead>
-							      <tr>
-							      	<th></th>
-							        <th>R.U.N</th>
-							        <th>Nombre</th>
-							        <th>Carrera</th>
-							        <th>Título</th>
-							        <th>Estado</th>
-							        <th>Fecha</th>
-							        <th>Ver</th>
-							      </tr>
-							    </thead>
-							    @if($evidencias->count())
-							    @foreach($evidencias->sortBy('fecha_realizacion') as $evidencia)
-							      <tr>
-							      	<td><center><span class="label label-primary">{{$evidencia->revisiones}}</span></center></td>
-							        <td>{{$evidencia->run}}</td>
-							        <td>{{$evidencia->nombre1}}</td>
-							        <td>{{$evidencia->nombre_car}}</td>
-							        <td>{{$evidencia->titulo}}</td>
-							        <td><span class="label label-warning">Pendiente</span></td>
-							        <td>{{$evidencia->fecha_realizacion}}</td>
-							        <td><a class="btn btn-info" href="{{route('formularioDac-show',$evidencia->id)}}"><i class="fa fa-file"></i></a></td>
-							      </tr>
-								@endforeach
-								@endif
-							    <tfoot>
-							      <tr>
-							        <th>R.U.N</th>
-							        <th>Nombre</th>
-							        <th>Carrera</th>
-							        <th>Título</th>
-							        <th>Estado</th>
-							        <th>Fecha</th>
-							        <th>Ver</th>
-							      </tr>                 
-							    </tfoot>
-							  </table>
-							</div>
-						</div>
-	        		</div>
-
-	        		<!-- DÍAS EN EL SISTEMA -->
-	        		<div class="tab-pane" id="pri_3">
-						<div class="box">
-							<div class="box-header">
-							  <h3 class="box-title">Evidencias pendientes</h3>
-							</div>
-							<div class="box-body">
-							  <table id="evidencias3" class="table table-bordered table-striped">
-							    <thead>
-							      <tr>
-							      	<th></th>
-							        <th>R.U.N</th>
-							        <th>Nombre</th>
-							        <th>Carrera</th>
-							        <th>Título</th>
-							        <th>Estado</th>
-							        <th>Fecha</th>
-							        <th>Ver</th>
-							      </tr>
-							    </thead>
-							    @if($evidencias->count())
-							    @foreach($evidencias->sortBy('fecha_realizacion') as $evidencia)
-							      <tr>
-							      	<td><center><span class="label label-primary">{{$evidencia->dias}}</span></center></td>
-							        <td>{{$evidencia->run}}</td>
-							        <td>{{$evidencia->nombre1}}</td>
-							        <td>{{$evidencia->nombre_car}}</td>
-							        <td>{{$evidencia->titulo}}</td>
-							        <td><span class="label label-warning">Pendiente</span></td>
-							        <td>{{$evidencia->fecha_realizacion}}</td>
-							        <td><a class="btn btn-info" href="{{route('formularioDac-show',$evidencia->id)}}"><i class="fa fa-file"></i></a></td>
-							      </tr>
-								@endforeach
-								@endif
-							    <tfoot>
-							      <tr>
-							        <th>R.U.N</th>
-							        <th>Nombre</th>
-							        <th>Carrera</th>
-							        <th>Título</th>
-							        <th>Estado</th>
-							        <th>Fecha</th>
-							        <th>Ver</th>
-							      </tr>                 
-							    </tfoot>
-							  </table>
-							</div>
-						</div>
-	        		</div>
-
-
-	        	</div>
-	        </div>
-	    </div>
-	</div>
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+        </button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <p>Revisa - Comenta - Informa - Optimiza. <br><br> Son las principales funciones que encontrarás para gestionar tus evidencias.</p>
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+</div>
 
 @endsection
 
