@@ -35,6 +35,7 @@
               <table id="evidencias1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                    <th>ID</th>
                     <th>R.U.N</th>
                     <th>Nombre</th>
                     <th>Carrera</th>
@@ -47,25 +48,28 @@
                 @if($evidencias->count())
                 @foreach($evidencias->sortBy('fecha_realizacion') as $evidencia)
 	                <tr>
+                    <td>EVID-{{$evidencia->id}}-{{$evidencia->codigo_car}}</td>
 	                  <td>{{$evidencia->run}}</td>
 	                  <td>{{$evidencia->nombre1}}</td>
 	                  <td>{{$evidencia->nombre_car}}</td>
 	                  <td>{{$evidencia->titulo}}</td>
 	                  <td><span class="label label-warning">Pendiente</span></td>
 	                  <td>{{$evidencia->fecha_realizacion}}</td>
-                    <td><a class="btn btn-info" href="{{route('formularioEvidencia-show',$evidencia->id)}}"><i class="fa fa-file"></i></a></td>
+                    <td  align="center"><a href="{{route('formularioEvidencia-show',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
 	                </tr>
 	      		@endforeach
 	      		@endif
 
                 <tfoot>
                   <tr>
+                    <th>ID</th>
                     <th>R.U.N</th>
                     <th>Nombre</th>
                     <th>Carrera</th>
                     <th>Título</th>
                     <th>Estado</th>
                     <th>Fecha</th>
+                    <th>Ver</th>
                   </tr>                 
                 </tfoot>
               </table>
@@ -85,6 +89,7 @@
                 <thead>
                   <tr>
                     <th></th>
+                    <th>ID</th>
                     <th>R.U.N</th>
                     <th>Nombre</th>
                     <th>Carrera</th>
@@ -98,19 +103,21 @@
                 @foreach($evidencias->sortBy('fecha_realizacion') as $evidencia)
                   <tr>
                     <td><center><span class="label label-primary">{{$evidencia->revisiones}}</span></center></td>
+                    <td>EVID-{{$evidencia->id}}-{{$evidencia->codigo_car}}</td>
                     <td>{{$evidencia->run}}</td>
                     <td>{{$evidencia->nombre1}}</td>
                     <td>{{$evidencia->nombre_car}}</td>
                     <td>{{$evidencia->titulo}}</td>
                     <td><span class="label label-warning">Pendiente</span></td>
                     <td>{{$evidencia->fecha_realizacion}}</td>
-                    <td><a class="btn btn-info" href="{{route('formularioEvidencia-show',$evidencia->id)}}"><i class="fa fa-file"></i></a></td>
+                    <td  align="center"><a href="{{route('formularioEvidencia-show',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
                   </tr>
             @endforeach
             @endif
                 <tfoot>
                   <tr>
                     <th></th>
+                    <th>ID</th>
                     <th>R.U.N</th>
                     <th>Nombre</th>
                     <th>Carrera</th>
@@ -137,39 +144,42 @@
                 <thead>
                   <tr>
                     <th></th>
+                    <th>ID</th>
                     <th>R.U.N</th>
                     <th>Nombre</th>
                     <th>Carrera</th>
                     <th>Título</th>
                     <th>Estado</th>
                     <th>Fecha</th>
-                    <th>Ver</th> 
+                    <th>Ver</th>
                   </tr>
                 </thead>
                 @if($evidencias->count())
                 @foreach($evidencias->sortBy('fecha_realizacion') as $evidencia)
                   <tr>
                     <td><center><span class="label label-primary">{{$evidencia->dias}}</span></center></td>
+                    <td>EVID-{{$evidencia->id}}-{{$evidencia->codigo_car}}</td>
                     <td>{{$evidencia->run}}</td>
                     <td>{{$evidencia->nombre1}}</td>
                     <td>{{$evidencia->nombre_car}}</td>
                     <td>{{$evidencia->titulo}}</td>
                     <td><span class="label label-warning">Pendiente</span></td>
                     <td>{{$evidencia->fecha_realizacion}}</td>
-                    <td><a class="btn btn-info" href="{{route('formularioEvidencia-show',$evidencia->id)}}"><i class="fa fa-file"></i></a></td>
+                    <td  align="center"><a href="{{route('formularioEvidencia-show',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
                   </tr>
                 @endforeach
                 @endif
                 <tfoot>
                   <tr>
                     <th></th>
+                    <th>ID</th>
                     <th>R.U.N</th>
                     <th>Nombre</th>
                     <th>Carrera</th>
                     <th>Título</th>
                     <th>Estado</th>
                     <th>Fecha</th>
-                    <th>Ver</th> 
+                    <th>Ver</th>
                   </tr>                 
                 </tfoot>
               </table>
