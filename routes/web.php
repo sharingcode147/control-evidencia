@@ -36,6 +36,11 @@ Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'p
 	Route::get('evidenciasCursoDac', 'HomeProfesorController@EvidenciaDac')->name('evidenciasC_Dac');
 
 	Route::post('images-upload', 'prueba@upload');
+
+	Route::get('evidencia/{id}',[
+		'as' => 'evidenciaap',
+		'uses' => 'EvAprobController@showAprobadas'
+	]);
 });
 
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\profesor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Evidencia;
+use App\Formulario;
+use App\Observaciones;
 
 class EvAprobController extends Controller
 {
@@ -57,11 +59,34 @@ class EvAprobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showfilter($id)
+    public function showAprobadas($id)
     {
+        //
+        if (is_numeric($id)){
+            $id_form = Evidencia::where('id',$id)->select('formulario_id')->first();
+            if (empty($id_form))
+                $formulario_id = 0;
+            else
+                $formulario_id = $id_form->formulario_id;
+            $datos = Formulario::where('formularios.id',$formulario_id)
+                                ->join('ambito','ambito.id','=','formularios.ambito_id')
+                                ->join('alcance','alcance.id','=','formularios.alcance_id')
+                                ->join('tipo','tipo.id','=','formularios.tipo_id')
+                                ->join('evidencias','evidencias.formulario_id','=','formularios.id')
+                                ->join('profesor','evidencias.user_id','=','profesor.user_id')
+                                ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
+                                ->join('departamentos','carreras.codigo_dep','=','departamentos.codigo_dep')
+                                ->select('formularios.*','ambito.nombre as ambito','alcance.nombre as alcance','tipo.nombre as tipo','profesor.*','carreras.nombre_car','evidencias.id as evidencia_id','evidencias.nivel','evidencias.estado', 'departamentos.nombre_dep')
+                                ->get();
 
+            $observaciones = Observaciones::where('evidencia_id',$id)
+                                            ->join('users','users.id','=','observaciones.user_id')
+                                            ->select('observaciones.*','users.name','users.email')
+                                            ->orderBy('observaciones.created_at','desc')
+                                            ->get();
+            return view('profesor.evidenciasAprobada',["datos"=>$datos,"observaciones"=>$observaciones]);
+        }
     }
-
     /**
      * Show the form for editing the specified resource.
      *
