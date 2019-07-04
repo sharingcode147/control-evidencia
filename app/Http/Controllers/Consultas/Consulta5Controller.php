@@ -18,7 +18,7 @@ class Consulta5Controller extends Controller
     }
     public function consultaobse(){
         //	Obteniendo el número de asistentes en el rango de fechas.
-        //	Consultando cod  carrera de observaciones.
+        //	Consultando codigo carrera de observaciones.
         $obs = DB::table('evidencias')
                             ->select('evidencias.codigo_car')
                             ->join('observaciones','evidencias.id','=','observaciones.evidencia_id')
