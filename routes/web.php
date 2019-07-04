@@ -130,6 +130,8 @@ Route::group(['namespace' => 'Dac', 'middleware' => ['authDac','auth'], 'prefix'
 		'as' => 'observacionDac',
 		'uses' => 'HomeDacController@observacionDac'
 	]);
+
+	Route::get('pdf_evidencia_aprobada/{id}','HomeDacController@pdf_evidencia_aprobada')->name('pdf_dac');
 });
 
 //	Protección rutas CONSULTAS
