@@ -92,6 +92,7 @@ class EditEvController extends Controller
 
         $evidencia = Evidencia::find($id);
         $evidencia->codigo_car = $cod_carrera->codigo_car;
+        $evidencia->nivel = 2;
         $evidencia->save();
 
          return redirect('profesor/home')->with('success', 'Book is successfully saved');
