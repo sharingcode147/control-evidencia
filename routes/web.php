@@ -170,6 +170,9 @@ Route::group(['namespace' => 'Consultas', 'middleware' => ['authConsultas','auth
 	Route::get('grafmes','Consulta8Controller@consulmes');
 	Route::get('informe8','Consulta8Controller@generarInforme8');
 
+	Route::get('verificadorFolio','VerificadorFolio@index')->name('verificadorFolio');
+	Route::post('existeFolio','VerificadorFolio@existeFolio')->name('existeFolio');
 
+	Route::get('pdf_folio/{id}','VerificadorFolio@pdf_folio')->name('pdf_folio');
 });
 
