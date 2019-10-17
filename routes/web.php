@@ -66,6 +66,8 @@ Route::group(['namespace' => 'Profesor', 'middleware' => ['authProf','auth'], 'p
 	]);
 
 	Route::get('pdf_evidencia_aprobada_prof/{id}','EvAprobController@pdf_evidencia_aprobada_prof')->name('pdf_prof');
+
+	Route::get('cancelarEvidencia/{id}','EditEvController@cancelarEv')->name('cancelarEvidencia');
 });
 
 

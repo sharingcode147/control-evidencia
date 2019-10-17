@@ -29,6 +29,7 @@
                     <th>Fecha</th>
                     <th>Ver</th>
                     <th>Editar</th>
+                    <th></th>
                   </tr>
                 </thead>
                 @if($evidencias->count())
@@ -42,6 +43,7 @@
                     <td>{{$evidencia->fecha_realizacion}}</td>
                     <td  align="center"><a href="{{route('evidencianoap',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
                     <td  align="center"><a href="{{route('edita_evnoaprob',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-pencil-square-o"></i></td>
+                    <td  align="center"><a href="{{route('cancelarEvidencia',$evidencia->id)}}" class="btn btn-danger btn-xs" onclick="return confirm('¿Desea cancelar la evidencia?')"><i class="fa fa-trash"></i></td>
                   </tr>
                 @endforeach
                 @else
@@ -61,6 +63,7 @@
                     <th>Fecha</th>
                     <th>Ver</th>
                     <th>Editar</th>
+                    <th></th>
                   </tr>                 
                 </tfoot>
               </table>
@@ -86,6 +89,7 @@
                     <th>Fecha</th>
                     <th>Ver</th>
                     <th>Editar</th>
+                    <th></th>
                   </tr>
                 </thead>
                 @if($evidencias->count())
@@ -99,6 +103,7 @@
                     <td>{{$evidencia->fecha_realizacion}}</td>
                     <td  align="center"><a href="{{route('evidencianoap',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i></td>
                     <td  align="center"><a href="{{route('edita_evnoaprob',$evidencia->id)}}" class="btn btn-danger btn-xs"><i class="fa fa-pencil-square-o"></i></td>
+                    <td  align="center"><a href="{{route('cancelarEvidencia',$evidencia->id)}}" class="btn btn-danger btn-xs" onclick="return confirm('¿Desea cancelar la evidencia?')"><i class="fa fa-trash"></i></td>
                   </tr>
                 @endforeach
                 @else
@@ -118,6 +123,7 @@
                     <th>Fecha</th>
                     <th>Ver</th>
                     <th>Editar</th>
+                    <th></th>
                   </tr>                 
                 </tfoot>
               </table>

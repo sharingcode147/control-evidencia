@@ -7,6 +7,16 @@
 
 @section('content')
 
+@if(Session::has('evCancelada'))
+    <div class="col-md-12 alert alert-success" role="alert">
+        <button class='close' data-dismiss="alert">
+            &times;
+        </button>
+        {{Session::get('evCancelada')}}
+    </div>
+@endif
+
+
 	<div class="col-md-12">
 	  <div class="box box-default collapsed-box">
 	    <div class="box-header with-border">

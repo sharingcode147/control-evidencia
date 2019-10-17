@@ -43,16 +43,6 @@ class EditEvController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -98,48 +88,17 @@ class EditEvController extends Controller
          return redirect('profesor/home')->with('success', 'Book is successfully saved');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function cancelarEv($id)
     {
-        //
+
+        //  Buscando los datos actuales de la evidencia
+        $evidencia = Evidencia::find($id);
+        //  Cancelando la evidencia
+        $evidencia->estado = "Cancelada";
+        $evidencia->nivel = 1;
+        $evidencia->save();
+        //  Redirección al home de profesor
+        return redirect('profesor/home')->with('evCancelada', 'Evidencia cancelada correctamente.');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

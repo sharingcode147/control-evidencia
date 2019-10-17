@@ -88,7 +88,5 @@ class HomeProfesorController extends Controller
             return view('profesor.evidenciaCurso',["datos"=>$datos,"observaciones"=>$observaciones]);
         }
     }
-  
-
 
 }
