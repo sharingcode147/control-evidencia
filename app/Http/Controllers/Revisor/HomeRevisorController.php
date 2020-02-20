@@ -67,6 +67,7 @@ class HomeRevisorController extends Controller
                 $formulario_id = 0;
             else
                 $formulario_id = $id_form->formulario_id;
+            
             $datos = Formulario::where('formularios.id',$formulario_id)
                                 ->join('ambito','ambito.id','=','formularios.ambito_id')
                                 ->join('alcance','alcance.id','=','formularios.alcance_id')
@@ -170,11 +171,17 @@ class HomeRevisorController extends Controller
     {
         //   Obteniendo los datos actuales de la evidencia.
         $evidencia = Evidencia::find($id);
-        //   Cambiando los datos antiguos por los nuevos.
-        $evidencia->nivel = 3;
-        //   Guardando los cambios.
-        $evidencia->save();
-        return redirect()->route('colaRevisor')->with('success','Evidencia enviada correctamente a D.A.C.');
+        if($evidencia->estado == "Cancelada"){
+            //  El profesor canceló la evidencia mientras se revisaba.
+            return redirect()->route('colaRevisor')->with('error','La evidencia no pudo ser enviada, ya que fue cancelada por profesor.');
+        }else{
+            //   Cambiando los datos antiguos por los nuevos.
+            $evidencia->nivel = 3;
+            //   Guardando los cambios.
+            $evidencia->save();
+            return redirect()->route('colaRevisor')->with('success','Evidencia enviada correctamente a D.A.C.');
+        }
+        
     }
     /**
      * Agregar una observación a la evidencia y cambiar el nivel de la evidencia.
@@ -189,18 +196,25 @@ class HomeRevisorController extends Controller
         $validatedData=$request->validate([
             'observacionRevisor' => 'required|string',
         ]);
-        //  Creando la observación en la base de datos.
-        $observacion = new Observaciones;
-        $observacion->evidencia_id = $id;
-        $observacion->observacion = $request->input('observacionRevisor');
-        $observacion->user_id = auth()->user()->id;
-        $observacion->nivel = 2;    //El nivel en que fue realizada la observación fue revisor.
-        $observacion->save();
-        //  Enviando la evidencia a profesor.
         $evidencia = Evidencia::find($id);  //Obteniendo los datos actuales de la evidencia. 
-        $evidencia->nivel = 1;  //Cambiando el nivel a profesor.
-        $evidencia->save();
-        return redirect()->route('colaRevisor')->with('success','Observación agregada correctamente. La evidencia volvió al profesor.');
+        if($evidencia->estado == "Cancelada"){
+            //  El profesor canceló la evidencia mientras se revisaba.
+            return redirect()->route('colaRevisor')->with('error','No se agregaron las observaciones, ya que la evidencia fue cancelada por profesor.');
+        }else{
+            //  Creando la observación en la base de datos.
+            $observacion = new Observaciones;
+            $observacion->evidencia_id = $id;
+            $observacion->observacion = $request->input('observacionRevisor');
+            $observacion->user_id = auth()->user()->id;
+            $observacion->nivel = 2;    //El nivel en que fue realizada la observación fue revisor.
+            $observacion->save();
+            
+            //  Enviando la evidencia a profesor.
+            $evidencia->nivel = 1;  //Cambiando el nivel a profesor.
+            $evidencia->save();
+            return redirect()->route('colaRevisor')->with('success','Observación agregada correctamente. La evidencia volvió al profesor.');
+        }
+        
     }
 
 

@@ -74,23 +74,25 @@ class HomeDacController extends Controller
                 $formulario_id = 0;
             else
                 $formulario_id = $id_form->formulario_id;
+                
             $datos = Formulario::where('formularios.id',$formulario_id)
-                                ->join('ambito','ambito.id','=','formularios.ambito_id')
-                                ->join('alcance','alcance.id','=','formularios.alcance_id')
-                                ->join('tipo','tipo.id','=','formularios.tipo_id')
-                                ->join('evidencias','evidencias.formulario_id','=','formularios.id')
-                                ->join('profesor','evidencias.user_id','=','profesor.user_id')
-                                ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
-                                ->select('formularios.*','ambito.nombre as ambito','alcance.nombre as alcance','tipo.nombre as tipo','profesor.*','carreras.nombre_car')
-                                ->select('formularios.*','ambito.nombre as ambito','alcance.nombre as alcance','tipo.nombre as tipo','profesor.*','carreras.nombre_car','evidencias.id as evidencia_id')
-                                ->get();
+                            ->join('ambito','ambito.id','=','formularios.ambito_id')
+                            ->join('alcance','alcance.id','=','formularios.alcance_id')
+                            ->join('tipo','tipo.id','=','formularios.tipo_id')
+                            ->join('evidencias','evidencias.formulario_id','=','formularios.id')
+                            ->join('profesor','evidencias.user_id','=','profesor.user_id')
+                            ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
+                            ->select('formularios.*','ambito.nombre as ambito','alcance.nombre as alcance','tipo.nombre as tipo','profesor.*','carreras.nombre_car')
+                            ->select('formularios.*','ambito.nombre as ambito','alcance.nombre as alcance','tipo.nombre as tipo','profesor.*','carreras.nombre_car','evidencias.id as evidencia_id')
+                            ->get();
 
             $observaciones = Observaciones::where('evidencia_id',$id)
-                                            ->join('users','users.id','=','observaciones.user_id')
-                                            ->select('observaciones.*','users.name','users.email')
-                                            ->orderBy('observaciones.created_at','desc')
-                                            ->get();
+                                        ->join('users','users.id','=','observaciones.user_id')
+                                        ->select('observaciones.*','users.name','users.email')
+                                        ->orderBy('observaciones.created_at','desc')
+                                        ->get();
             return view('dac.formularioDac',["datos"=>$datos,"observaciones"=>$observaciones]);
+    
         }
     }
 
@@ -103,6 +105,7 @@ class HomeDacController extends Controller
                 $formulario_id = 0;
             else
                 $formulario_id = $id_form->formulario_id;
+
             $datos = Formulario::where('formularios.id',$formulario_id)
                                 ->join('ambito','ambito.id','=','formularios.ambito_id')
                                 ->join('alcance','alcance.id','=','formularios.alcance_id')
@@ -134,17 +137,23 @@ class HomeDacController extends Controller
     {
         //   Obteniendo los datos actuales de la evidencia.
         $evidencia = Evidencia::find($id);
-        //   Cambiando los datos antiguos por los nuevos.
-        $evidencia->estado = 'Finalizada';
-        //   Guardando los cambios.
-        $foli = new Folio();
-        $foli->codigo = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWYXZ"),0,5);
-        $foli->numero = $evidencia->id;
-        $foli->save();
-        $evidencia->folio_id = $foli->id;
-        $evidencia->save();
+        if($evidencia->estado == "Cancelada"){
+            //  El profesor canceló la evidencia mientras se revisaba.
+            return redirect()->route('colaDac')->with('error','La evidencia no ha sido guardada como aprobada, ya que fue cancelada por profesor.');
+        }else{
+            //   Cambiando los datos antiguos por los nuevos.
+            $evidencia->estado = 'Finalizada';
+            //   Guardando los cambios.
+            $foli = new Folio();
+            $foli->codigo = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWYXZ"),0,5);
+            $foli->numero = $evidencia->id;
+            $foli->save();
+            $evidencia->folio_id = $foli->id;
+            $evidencia->save();
 
-        return redirect()->route('colaDac')->with('success','Evidencia aprobada correctamente.');
+            return redirect()->route('colaDac')->with('success','Evidencia aprobada correctamente.');
+        }
+        
     }
 
     /**
@@ -161,20 +170,28 @@ class HomeDacController extends Controller
             'observacionDac' => 'required|string',
         ]);
 
-        //  Creando la observación en la base de datos.
-        $observacion = new Observaciones;
-        $observacion->evidencia_id = $id;
-        $observacion->observacion = $request->input('observacionDac');
-        $observacion->user_id = auth()->user()->id;
-        $observacion->nivel = 3;    //El nivel en que fue realizada la observación fue Dac.
-        $observacion->save();
-
-        //  Enviando la evidencia a profesor.
         $evidencia = Evidencia::find($id);  //Obteniendo los datos actuales de la evidencia. 
-        $evidencia->nivel = 1;  //Cambiando el nivel a profesor.
-        $evidencia->save();
+        if($evidencia->estado == "Cancelada"){
+            //  El profesor canceló la evidencia mientras se revisaba.
+            return redirect()->route('colaDac')->with('error','No se agregaron las observaciones, ya que la evidencia fue cancelada por profesor.');
+        }else{
+            //  Creando la observación en la base de datos.
+            $observacion = new Observaciones;
+            $observacion->evidencia_id = $id;
+            $observacion->observacion = $request->input('observacionDac');
+            $observacion->user_id = auth()->user()->id;
+            $observacion->nivel = 3;    //El nivel en que fue realizada la observación fue Dac.
+            $observacion->save();
 
-        return redirect()->route('colaDac')->with('success','Observación agregada correctamente. La evidencia volvió al profesor.');
+            //  Enviando la evidencia a profesor.
+            
+            $evidencia->nivel = 1;  //Cambiando el nivel a profesor.
+            $evidencia->save();
+
+            return redirect()->route('colaDac')->with('success','Observación agregada correctamente. La evidencia volvió al profesor.');
+        }
+
+        
     }
 
     public function pdf_evidencia_aprobada_dac($id){

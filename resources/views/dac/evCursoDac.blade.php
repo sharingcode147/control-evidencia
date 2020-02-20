@@ -11,6 +11,14 @@
             {{Session::get('success')}}
         </div>
     @endif
+    @if(Session::has('error'))
+	    <div class="col-md-12 alert alert-error" role="alert">
+	        <button class='close' data-dismiss="alert">
+	            &times;
+	        </button>
+	        {{Session::get('error')}}
+	    </div>
+	@endif
 		
 	<div class="row">
 	  	<div class="col-xs-12">
