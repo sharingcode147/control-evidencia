@@ -42,11 +42,11 @@ class UsersTableSeeder extends Seeder
         $user->password = Hash::make('profe12345');
         $user->save();
         $user->roles()->attach(Role::where('name', 'profesor')->first());
-        $user->datos_profesor('19696122-4','Nicolás','Ignacio','Gómez','Lira',$user->id);
-        $user->profesor_carrera('19696122-4','ICI');     
-        $user->profesor_carrera('19696122-4','EICI'); 
-        $user->profesor_carrera('19696122-4','IND'); 
-        $user->profesor_carrera('19696122-4','ICE'); 
+        $user->datos_profesor('11223344-4','Nicolás','Ignacio','Gómez','Lira',$user->id);
+        $user->profesor_carrera('11223344-4','ICI');     
+        $user->profesor_carrera('11223344-4','EICI'); 
+        $user->profesor_carrera('11223344-4','IND'); 
+        $user->profesor_carrera('11223344-4','ICE'); 
 
         $user = new User();
         $user->name = 'profe2';
@@ -57,5 +57,17 @@ class UsersTableSeeder extends Seeder
         $user->datos_profesor('11123112-3','Joaquin','Esteban','Perez','Perez',$user->id);
         $user->profesor_carrera('11123112-3','ICI');     
         $user->profesor_carrera('11123112-3','EICI');     
+
+        $user = new User();
+        $user->name = 'Matías';
+        $user->email = 'matiascifuenteslara@gmail.com';
+        $user->password = Hash::make('profe12345');
+        $user->save();
+        $user->roles()->attach(Role::where('name', 'profesor')->first());
+        $user->datos_profesor('19696122-4','Matías','Nicolás','Cifuentes','Lara',$user->id);
+        $user->profesor_carrera('19696122-4','ICI');     
+        $user->profesor_carrera('19696122-4','EICI'); 
+        $user->profesor_carrera('19696122-4','IND'); 
+        $user->profesor_carrera('19696122-4','ICE'); 
     }
 }

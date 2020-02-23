@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Dac;
 use App\Evidencia;
 use App\Formulario;
 use App\Observaciones;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Folio;
+use App\Mail\SistemaEvidenciasInfo;
+use Mail;
+
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
@@ -151,6 +155,11 @@ class HomeDacController extends Controller
             $evidencia->folio_id = $foli->id;
             $evidencia->save();
 
+            try{
+                $email = User::where('id',$evidencia->user_id)->select('email')->first();
+                Mail::to($email)->send(new SistemaEvidenciasInfo($id,"Aprobado","D.A.C.","Proceso terminado"));
+            }catch(Exception $e){}
+
             return redirect()->route('colaDac')->with('success','Evidencia aprobada correctamente.');
         }
         
@@ -184,9 +193,13 @@ class HomeDacController extends Controller
             $observacion->save();
 
             //  Enviando la evidencia a profesor.
-            
             $evidencia->nivel = 1;  //Cambiando el nivel a profesor.
             $evidencia->save();
+            
+            try{
+                $email = User::where('id',$evidencia->user_id)->select('email')->first();
+                Mail::to($email)->send(new SistemaEvidenciasInfo($id,"Rechazado","D.A.C.","Profesor"));
+            }catch(Exception $e){}
 
             return redirect()->route('colaDac')->with('success','Observación agregada correctamente. La evidencia volvió al profesor.');
         }

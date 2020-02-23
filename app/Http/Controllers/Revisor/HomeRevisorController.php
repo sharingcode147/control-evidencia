@@ -3,10 +3,13 @@ namespace App\Http\Controllers\Revisor;
 use App\Evidencia;
 use App\Formulario;
 use App\Observaciones;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use App\Mail\SistemaEvidenciasInfo;
+use Mail;
 use Fpdf;
 class HomeRevisorController extends Controller
 {
@@ -179,6 +182,12 @@ class HomeRevisorController extends Controller
             $evidencia->nivel = 3;
             //   Guardando los cambios.
             $evidencia->save();
+
+            try{
+                $email = User::where('id',$evidencia->user_id)->select('email')->first();
+                Mail::to($email)->send(new SistemaEvidenciasInfo($id,"Aprobado","Revisor","D.A.C."));
+            }catch(Exception $e){}
+
             return redirect()->route('colaRevisor')->with('success','Evidencia enviada correctamente a D.A.C.');
         }
         
@@ -212,6 +221,12 @@ class HomeRevisorController extends Controller
             //  Enviando la evidencia a profesor.
             $evidencia->nivel = 1;  //Cambiando el nivel a profesor.
             $evidencia->save();
+
+            try{
+                $email = User::where('id',$evidencia->user_id)->select('email')->first();
+                Mail::to($email)->send(new SistemaEvidenciasInfo($id,"Rechazado","Revisor","Profesor"));
+            }catch(Exception $e){}
+
             return redirect()->route('colaRevisor')->with('success','Observación agregada correctamente. La evidencia volvió al profesor.');
         }
         

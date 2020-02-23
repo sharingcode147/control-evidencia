@@ -177,4 +177,3 @@ Route::group(['namespace' => 'Consultas', 'middleware' => ['authConsultas','auth
 
 	Route::get('pdf_folio/{id}','VerificadorFolio@pdf_folio')->name('pdf_folio');
 });
-
