@@ -40,7 +40,12 @@ class VerificadorFolio extends Controller
     						->select('id');
 	    	if ($folio->count() > 0){
 	    		//	El folio existe, se muestra pdf
-	    		return redirect(route('pdf_folio',$num));
+	    		$id_form = Evidencia::where('id',$num)->select('formulario_id')->first();
+	            if (empty($id_form))
+	                $formulario_id = 0;
+	            else
+	                $formulario_id = $id_form->formulario_id;
+	    		return redirect(route('pdf_folio',$formulario_id));
 	    	}
     	}
     	//	El folio no existe, se retorna mensaje de error

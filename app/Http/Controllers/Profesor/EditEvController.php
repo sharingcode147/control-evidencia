@@ -37,7 +37,7 @@ class EditEvController extends Controller
             $ambitos = Ambito::all();
             $tipos = Tipo::all();
      
-            return view('profesor.editaEvidencia',["datos"=>$datos,"carreras"=>$carreras,"alcances"=>$alcances,"ambitos"=>$ambitos,"tipos"=>$tipos]);
+            return view('profesor.editaEvidencia',["id"=>$id,"datos"=>$datos,"carreras"=>$carreras,"alcances"=>$alcances,"ambitos"=>$ambitos,"tipos"=>$tipos]);
         }
 
     }
@@ -62,8 +62,12 @@ class EditEvController extends Controller
         $cod_ambito = Ambito::where('nombre',$request->name_ambito)->select('id')->first();
 
 
+        $evidencia = Evidencia::find($id);
+        $evidencia->codigo_car = $cod_carrera->codigo_car;
+        $evidencia->nivel = 2;
+        $evidencia->save();
 
-        $formulari = Formulario::find($id);
+        $formulari = Formulario::find($evidencia->formulario_id);
         $formulari->alcance_id = $cod_alcance->id;
         $formulari->ambito_id = $cod_ambito->id;
         $formulari->tipo_id = $cod_tipo->id;
@@ -80,10 +84,7 @@ class EditEvController extends Controller
         $formulari->ext_profesionales = $request->ext_profesionales;
         $formulari->save();
 
-        $evidencia = Evidencia::find($id);
-        $evidencia->codigo_car = $cod_carrera->codigo_car;
-        $evidencia->nivel = 2;
-        $evidencia->save();
+        
 
          return redirect('profesor/home')->with('success', 'Book is successfully saved');
     }

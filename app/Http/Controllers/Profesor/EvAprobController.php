@@ -30,7 +30,7 @@ class EvAprobController extends Controller
                                 ->join('ambito','formularios.ambito_id','=','ambito.id')
                                 ->join('tipo','formularios.tipo_id','=','tipo.id')
                                 ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
-                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car','alcance.nombre as alcance','ambito.nombre as ambito','tipo.nombre as tipo')
+                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','evidencias.id','evidencias.codigo_car','alcance.nombre as alcance','ambito.nombre as ambito','tipo.nombre as tipo')
                                 ->get();
         return view('profesor.evidenciasAprobadasDac',["evidencias"=>$evidencias]);   
     }
@@ -72,7 +72,13 @@ class EvAprobController extends Controller
    
     public function pdf_evidencia_aprobada_prof($id){
 
-        $datos = Formulario::where('formularios.id',$id)
+        $id_form = Evidencia::where('id',$id)->select('formulario_id')->first();
+        if (empty($id_form))
+            $formulario_id = 0;
+        else
+            $formulario_id = $id_form->formulario_id;
+
+        $datos = Formulario::where('formularios.id',$formulario_id)
                         ->join('ambito','ambito.id','=','formularios.ambito_id')
                         ->join('alcance','alcance.id','=','formularios.alcance_id')
                         ->join('tipo','tipo.id','=','formularios.tipo_id')

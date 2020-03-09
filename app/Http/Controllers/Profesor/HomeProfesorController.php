@@ -37,7 +37,7 @@ class HomeProfesorController extends Controller
                                 ->join('ambito','formularios.ambito_id','=','ambito.id')
                                 ->join('tipo','formularios.tipo_id','=','tipo.id')
                                 ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
-                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car','alcance.nombre as alcance','ambito.nombre as ambito','tipo.nombre as tipo')
+                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','evidencias.id','evidencias.codigo_car','alcance.nombre as alcance','ambito.nombre as ambito','tipo.nombre as tipo')
                                 ->paginate(8);
 
         return view('profesor.evidenciasCursoRevisor',["evidencias"=>$evidencias]);
@@ -54,7 +54,7 @@ class HomeProfesorController extends Controller
                                 ->join('ambito','formularios.ambito_id','=','ambito.id')
                                 ->join('tipo','formularios.tipo_id','=','tipo.id')
                                 ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
-                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.codigo_car','alcance.nombre as alcance','ambito.nombre as ambito','tipo.nombre as tipo')
+                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','evidencias.id','evidencias.codigo_car','alcance.nombre as alcance','ambito.nombre as ambito','tipo.nombre as tipo')
                                 ->paginate(8);
 
         return view('profesor.evidenciasCursoDac',["evidencias"=>$evidencias]);

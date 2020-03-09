@@ -36,7 +36,7 @@ class HomeDacController extends Controller
                                 ->join('profesor','evidencias.user_id','=','profesor.user_id')
                                 ->join('formularios','evidencias.formulario_id','=','formularios.id')
                                 ->join('carreras','evidencias.codigo_car','=','carreras.codigo_car')
-                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','formularios.id','evidencias.created_at as fecha_creacion','evidencias.id as evidencia_id')
+                                ->select('profesor.*','formularios.fecha_realizacion','formularios.titulo','carreras.nombre_car','evidencias.id','evidencias.created_at as fecha_creacion','evidencias.id as evidencia_id')
                                 ->paginate(8);
 
         //  Obteniendo la cantidad de observaciones que tienen las evidencias.
@@ -209,7 +209,13 @@ class HomeDacController extends Controller
 
     public function pdf_evidencia_aprobada_dac($id){
 
-        $datos = Formulario::where('formularios.id',$id)
+        $id_form = Evidencia::where('id',$id)->select('formulario_id')->first();
+        if (empty($id_form))
+                $formulario_id = 0;
+        else
+            $formulario_id = $id_form->formulario_id;
+
+        $datos = Formulario::where('formularios.id',$formulario_id)
                         ->join('ambito','ambito.id','=','formularios.ambito_id')
                         ->join('alcance','alcance.id','=','formularios.alcance_id')
                         ->join('tipo','tipo.id','=','formularios.tipo_id')
