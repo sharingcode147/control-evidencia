@@ -50,6 +50,25 @@ class EditEvController extends Controller
      */
     public function storeeditanoAprob(Request $request, $id)
     {
+
+        $validatedData=$request->validate([
+            'name_car' => 'required|string',
+            'titulo' => 'required|string',
+            'descripcion' => 'required|string',
+            'name_alcance' => 'required|string',
+            'name_ambito' => 'required|string',
+            'name_tipo' => 'required|string',
+            'int_estudiantes' => 'required|numeric',
+            'int_profesores' => 'required|numeric',
+            'int_autoridades' => 'required|numeric',
+            'int_profesionales' => 'required|numeric',
+            'ext_estudiantes' => 'required|numeric',
+            'ext_profesores' => 'required|numeric',
+            'ext_autoridades' => 'required|numeric',
+            'ext_profesionales' => 'required|numeric',
+            'fecha_realizacion' =>  'required',
+             ]);
+        
         if($request->hasFile('archivoEvid'))
         {
             $file = $request->file('archivoEvid'); //recibo el archivo

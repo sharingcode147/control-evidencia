@@ -33,7 +33,7 @@
                                     <input type="text" class="form-control" placeholder="{{ Auth::user()->name }}" disabled>
                                 </div>
                              </div>
-                            <!-- Careras -->
+                            <!-- Carreras -->
                             <div class="form-group">
                                 <label>Carrera</label>
                                 <select class="form-control" name="name_car">
@@ -200,7 +200,7 @@
                             <div class="form-group">
                                 <label>Fecha realización:</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="date" id="example-date-input" name="fecha_realizacion">
+                                    <input class="form-control" type="date" value=<?php echo date("Y-m-d") ?> id="example-date-input" name="fecha_realizacion">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>

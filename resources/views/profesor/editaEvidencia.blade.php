@@ -69,8 +69,12 @@
                                                 <span class="input-group-addon">@</span>
 
                                                 <select class="form-control" name="name_alcance">
-                                                     @foreach ($alcances as $alcance)
-                                                    <option>{{ $alcance->nombre }}</option>
+                                                    @foreach ($alcances as $alcance)
+                                                    @if ($alcance->id == $datos->alcance_id)
+                                                        <option value="{{$alcance->nombre}}" selected>{{ $alcance->nombre }}</option>
+                                                    @else
+                                                        <option value="{{$alcance->nombre}}">{{ $alcance->nombre }}</option>
+                                                    @endif
                                                 @endforeach
                                                 </select>
                                             </div>
@@ -84,8 +88,13 @@
                                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                                                 <select class="form-control" name="name_ambito">
-                                                     @foreach ($ambitos as $ambito)
-                                                    <option>{{ $ambito->nombre }}</option>
+                                                    @foreach ($ambitos as $ambito)
+                                                    @if ($ambito->id == $datos->ambito_id)
+                                                        <option value="{{$ambito->nombre}}" selected>{{ $ambito->nombre }}</option>
+                                                    @else
+                                                        <option value="{{$ambito->nombre}}">{{ $ambito->nombre }}</option>
+                                                    @endif
+                            
                                                 @endforeach
                                                 </select>
                                             </div>
@@ -99,8 +108,13 @@
                                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
                                                 <select class="form-control" name="name_tipo">
-                                                     @foreach ($tipos as $tipo)
-                                                    <option>{{ $tipo->nombre }}</option>
+                                                    @foreach ($tipos as $tipo)
+
+                                                    @if ($tipo->id == $datos->tipo_id)
+                                                        <option value="{{$tipo->nombre}}" selected>{{ $tipo->nombre }}</option>
+                                                    @else
+                                                        <option value="{{$tipo->nombre}}">{{ $tipo->nombre }}</option>
+                                                    @endif
                                                 @endforeach
                                                 </select>
                                             </div>
@@ -200,7 +214,7 @@
                             <div class="form-group">
                                 <label>Fecha realización:</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="date" id="example-date-input" value="$datos->fecha_realizacion" name="fecha_realizacion">
+                                    <input class="form-control" type="date" id="example-date-input" value="{{ $datos->fecha_realizacion}}" name="fecha_realizacion">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 </div>
                             </div>
